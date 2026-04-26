@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .field {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #374151;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: #fafafa;
+            transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .remember input {
+            width: auto;
+            margin: 0;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.05s;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: #333;
+        }
+
+        button:active {
+            transform: scale(0.99);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="card"
+        onsubmit="event.preventDefault(); alert('Signed in as ' + document.getElementById('email').value);">
+        <div class="logo">A</div>
+        <h1>Welcome back</h1>
+        <p class="subtitle">Sign in to continue to your account</p>
+
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+
+        <div class="row">
+            <label class="remember">
+                <input type="checkbox" />
+                Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit">Sign in</button>
+
+        <p class="footer">Don't have an account? <a href="#">Sign up</a></p>
+    </form>
+</body>
+
+</html>
