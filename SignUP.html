@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+
+<body>
+
+    <header>
+    </header>
+
+    <main>
+        <div id="BOX1">
+            <h4 id="Welcome">Create an account</h4>
+            <form action="signup.php" method="POST">
+                <div style="display: flex; flex-direction: column;">
+                    <label class="Email" for="Email">Email </label>
+                    <input type="email" class="Email" id="Email" name="email" placeholder="you@example.com" required>
+
+                    <label class="Password" for="Password">Password </label>
+                    <input class="Password" type="password" id="password" name="password" placeholder="*******" required
+                        minlength="5">
+
+                    <label class="Password" for="ConfirmPassword">Confirm Password </label>
+                    <input class="Password" type="password" id="confirmPassword" name="confirmPassword"
+                        placeholder="*******" required minlength="5">
+
+                    <input id="submit" type="submit" value="Sign Up">
+                    <a href="Login.html">Already have an account? Sign in</a>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>
