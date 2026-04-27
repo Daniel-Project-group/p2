@@ -21,7 +21,7 @@ p {
     width: 300px;
     height: auto;
     background-color: white;
-    box-shadow: 8px 6px 5px;
+    box-shadow: 3px 10px 5px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     margin: 50px auto;
     padding: 40px;
@@ -96,4 +96,26 @@ a {
     text-align: center;
     margin-top: 10px;
     color: black;
+
+}
+
+input:focus {
+    outline: none;
+    border-color: rgb(4, 118, 218);
+    background-color: white;
+}
+
+#submit:hover {
+    background-color: rgb(4, 118, 218);
+}
+
+#submit:active {
+    transform: scale(0.98);
+    cursor: pointer;
+}
+
+
+a:hover {
+    color: rgb(4, 118, 218);
+    text-decoration: underline;
 }
