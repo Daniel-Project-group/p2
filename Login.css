@@ -106,7 +106,7 @@ input:focus {
 }
 
 #submit:hover {
-    background-color: rgb(4, 118, 218);
+    background-color: rgb(255, 91, 31, 1);
 }
 
 #submit:active {
@@ -116,6 +116,11 @@ input:focus {
 
 
 a:hover {
-    color: rgb(4, 118, 218);
+    color: rgba(255, 91, 31, 0.25);
     text-decoration: underline;
+
+}
+
+#Logo {
+    margin-left: 85px;
 }

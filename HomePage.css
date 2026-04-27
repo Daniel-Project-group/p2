@@ -149,3 +149,11 @@ h5 {
     box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
     transform: translateY(-1px);
 }
+
+#Content {
+    margin-left: 250px;
+    /* same width as sidebar */
+    padding: 40px;
+    font-family: 'Inter Tight', sans-serif;
+
+}
