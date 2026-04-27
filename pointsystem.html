@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 
-<HTML>
+<html>
+
 <head>
-<title> 
-
-State your qualifications
-
-</title>
-
+<title> Qualification test </title>
 
 <link rel="stylesheet" href="pointsystem.css">
-
-
-</head>
-
-
-<body>
-
+<link rel="stylesheet" href="HomePage.css">
 
 <style>
 body {
-
     margin: 0;
     height: 100vh;
     display: flex;
@@ -29,11 +18,41 @@ body {
     justify-content: center;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+input[type="range"] {
+
+width: 100px;
+margin-top: 10px;
+}
+
+
+.labels{
+display: flex;
+justify-content: space-between;
+width: 10px;
+}
+
+
+
 </style>
+</head>
 
-<input type="range" min="1" max="10">
+<body>
 
-<div>
+
+<div class="container">
+
+     <p> Choose your qualification. 1 is the worst and 10 is the best. This will help with delegation of tasks. </p>
+
+<input type="range" min="0" max="10" step="1" value="5">
+
+<div class="labels">
 <span>1</span>
 <span>2</span>
 <span>3</span>
@@ -46,13 +65,8 @@ body {
 <span>10</span>
 </div>
 
-
-
-
-
+</div>
 
 </body>
 
-
-
-</HTML>
+</html>
