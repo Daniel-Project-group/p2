@@ -51,6 +51,40 @@ app.post('/signup', async (req, res) => {
     // Send a success response
     res.json({ message: 'Account created successfully!' });
 });
+// Login route - this runs when someone submits the login form
+app.post('/login', async (req, res) => {
+    // Get the email and password from the request
+    const { email, password } = req.body;
+
+    // Check that email and password were sent
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    // Check if the accounts file exists
+    if (!fs.existsSync('accounts.json')) {
+        return res.status(400).json({ message: 'No accounts found. Please sign up first.' });
+    }
+
+    // Read the accounts file
+    const data = fs.readFileSync('accounts.json', 'utf-8');
+    const accounts = JSON.parse(data);
+
+    // Find the user with this email
+    const user = accounts.find(account => account.email === email);
+    if (!user) {
+        return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    // Compare the password with the stored hashed password
+    const passwordMatches = await bcrypt.compare(password, user.password);
+    if (!passwordMatches) {
+        return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    // Success!
+    res.json({ message: 'Login successful! Welcome back.' });
+});
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

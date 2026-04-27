@@ -1,26 +1,10 @@
 [
   {
     "email": "danieldk2310@gmail.com",
-    "password": "$2b$10$NB8pDBxQpgWEsZ3tvrWa/eWGP41gSJ2hsemA6JwzTv.kd8moQE1p."
+    "password": "$2b$10$93J1s52qRYfmBz5qqpkt4.VrEaKqqcWOvfMjoxX9.Dr3ULTr0eBmW"
   },
   {
     "email": "test@gmai.com",
-    "password": "$2b$10$Uu9Uq0I627IIp1eMoU2N9OzLij3vDmxtllne5W02qJSGzQ/LAH4eq"
-  },
-  {
-    "email": "test1@gmai.com",
-    "password": "$2b$10$Tqk8OcJwW1/gA67I9.MlA.FV8R0xlYNQtQfIDCp7oC37TumRFHBqy"
-  },
-  {
-    "email": "test3@test.com",
-    "password": "$2b$10$Jzuszy10Nw7dyXTFJxSjK.x9J9S8UZ8Mpk8UI0072oGCHim1RI9EO"
-  },
-  {
-    "email": "danieldk23103@gmail.com",
-    "password": "$2b$10$l1nE9F3HgVMHCP9gTpnD1.KgHeqXAyT4g1yrM7WfeiZTP0FnXdYVa"
-  },
-  {
-    "email": "danieldk2314234240@gmail.com",
-    "password": "$2b$10$n0FN/VIaeRpUktmoXWl9.uuv0sn5YEP9TJ/XWDoL1Th6zo8lDkxGy"
+    "password": "$2b$10$0tfAUhsX6RX7B41vDWy38.l.itd0Q6WG.7Mv37bRc.GlLz5dB/h1q"
   }
 ]
