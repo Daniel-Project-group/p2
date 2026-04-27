@@ -1,0 +1,28 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    padding: 20px;
+    z-index: 20;
+    background: transparent;
+    box-shadow: none;
+}
+
+#SideBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(240, 235, 225);
+    padding-top: 80px;
+    box-sizing: border-box;
+    z-index: 10;
+    /* LOWER than header */
+}
+
+#Logo {
+    margin-top: 5px;
+    padding: 20px;
+}
