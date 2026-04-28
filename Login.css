@@ -20,8 +20,8 @@ p {
     position: relative;
     width: 300px;
     height: auto;
-    background-color: white;
-    box-shadow: 3px 10px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(240, 235, 225);
+    box-shadow: 4px 10px 5px rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     margin: 50px auto;
     padding: 40px;
@@ -31,7 +31,7 @@ p {
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0px;
-    background-color: rgb(235, 237, 242);
+    background-color: rgb(200, 195, 183);
 }
 
 #Welcome {
@@ -88,6 +88,9 @@ input {
 #submit {
     background-color: black;
     color: white;
+    display: flex;
+    transform: translateX(5%);
+    cursor: pointer;
 }
 
 
@@ -106,7 +109,7 @@ input:focus {
 }
 
 #submit:hover {
-    background-color: rgb(4, 118, 218);
+    background-color: rgb(255, 91, 31, 1);
 }
 
 #submit:active {
@@ -116,6 +119,11 @@ input:focus {
 
 
 a:hover {
-    color: rgb(4, 118, 218);
+    color: rgba(255, 91, 31, 1);
     text-decoration: underline;
+
+}
+
+#Logo {
+    margin-left: 85px;
 }

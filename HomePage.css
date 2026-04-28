@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
+
+body {
+    margin: 0;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -10,19 +16,136 @@ header {
 }
 
 #SideBar {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 250px;
     height: 100vh;
     background-color: rgb(240, 235, 225);
-    padding-top: 80px;
+    padding-top: 20px;
+    padding: 20px;
     box-sizing: border-box;
-    z-index: 10;
-    /* LOWER than header */
+    border-right: 2px solid rgb(205, 204, 204);
+
 }
 
-#Logo {
-    margin-top: 5px;
-    padding: 20px;
+#SideBar h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#Logo {}
+
+hr {
+    margin-top: 20px;
+    border-top: 1px solid rgb(205, 204, 204);
+}
+
+h5 {
+    color: rgb(163, 163, 163);
+}
+
+.SideBarButton {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    /* top/bottom 8px, left/right 16px */
+    box-sizing: border-box;
+    height: 30px;
+    color: black;
+    border-radius: 7px;
+    gap: 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.SideBarButton:hover {
+    background-color: rgb(221, 216, 205);
+    cursor: pointer;
+
+}
+
+.sidebarbuttonActive {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    /* top/bottom 8px, left/right 16px */
+    box-sizing: border-box;
+    height: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    gap: 10px;
+    text-decoration: none;
+
+
+}
+
+#AddTask {
+    margin-top: auto;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+
+    height: 44px;
+
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+
+    background-color: rgb(255, 91, 31);
+    color: white;
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    /* less bold */
+    font-size: 14px;
+    /* smaller, matches menu items */
+    letter-spacing: 0.01em;
+
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
+
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+#AddTask:hover {
+    background-color: rgb(230, 75, 20);
+    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
+    transform: translateY(-1px);
+}
+
+#Content {
+    margin-left: 250px;
+    /* same width as sidebar */
+    padding: 40px;
+    font-family: 'Inter Tight', sans-serif;
+
+}
+
+main {
+    background-color: rgb(241, 234, 220);
+    min-height: 100vh;
+    padding: 40px;
+    margin: 0;
 }
