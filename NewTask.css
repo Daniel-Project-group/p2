@@ -11,9 +11,17 @@ form {
     margin: auto;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.522);
+    box-shadow: 5px 10px 10px rgba(255, 91, 31, 0.513);
     gap: 8px;
     margin-bottom: 20px;
+    transition: all 0.5s;
+
+}
+
+#NEWTASKBOX:hover {
+    box-shadow: 1px 2px 15px rgba(255, 91, 31, 0.513);
+    transform: translateY(4px);
+    transition: all 0.5s;
 
 }
 
@@ -121,4 +129,49 @@ form {
 #Quantity {
     width: 2px;
 
+}
+
+#submit {
+    margin-top: 190px;
+    margin-bottom: 8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+
+    height: 44px;
+
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+
+    background-color: rgb(255, 91, 31);
+    color: white;
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    /* less bold */
+    font-size: 14px;
+    /* smaller, matches menu items */
+    letter-spacing: 0.01em;
+
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
+
+    cursor: pointer;
+    transition: all 0.15s;
+
+}
+
+#submit:hover {
+    background-color: rgb(230, 75, 20);
+    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
+    transform: translateY(-1px);
+}
+
+#submit:active {
+    transform: translateY(-10px);
 }
