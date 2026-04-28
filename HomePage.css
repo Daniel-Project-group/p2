@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
 
+body {
+    margin: 0;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -91,25 +95,6 @@ h5 {
 
 }
 
-/*#AddTask {
-    margin-top: auto;
-    margin-bottom: 8px;
-    background-color: rgb(255, 91, 31);
-    height: 40px;
-    text-align: center;
-    padding-top: 15px;
-    border-radius: 7px;
-    background-color: rgb(255, 91, 31);
-    color: white;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-    text-decoration: none;
-    gap: 8px;
-    cursor: pointer;
-    transition: background-color 0.15s, transform 0.1s;
-}
-*/
 #AddTask {
     margin-top: auto;
     margin-bottom: 8px;
@@ -156,4 +141,11 @@ h5 {
     padding: 40px;
     font-family: 'Inter Tight', sans-serif;
 
+}
+
+main {
+    background-color: rgb(241, 234, 220);
+    min-height: 100vh;
+    padding: 40px;
+    margin: 0;
 }
