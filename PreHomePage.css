@@ -1,0 +1,85 @@
+body {
+    background-color: rgb(241, 234, 220);
+}
+
+main {
+    font-family: 'Inter Tight', sans-serif;
+    text-align: center;
+
+
+}
+
+main a {
+    text-decoration: none;
+}
+
+#AddTask {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+
+    height: 44px;
+    width: 200px;
+
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+
+    background-color: rgb(255, 91, 31);
+    color: white;
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    /* less bold */
+    font-size: 14px;
+    /* smaller, matches menu items */
+    letter-spacing: 0.01em;
+
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
+
+    cursor: pointer;
+    transition: all 0.15s;
+
+    margin: auto;
+
+
+}
+
+#AddTask:hover {
+    background-color: rgb(230, 75, 20);
+    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
+    transform: translateY(-1px);
+
+}
+
+#AddTask:active {
+    transform: translateY(-10px);
+}
+
+
+#BOX1 {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: auto;
+    background-color: rgb(240, 235, 225);
+    margin: 30px auto;
+
+
+    box-shadow: 4px 10px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 200px;
+    text-align: center;
+    color: black;
+}
+
+#BOX1:hover {
+    box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+}

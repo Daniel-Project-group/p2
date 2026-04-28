@@ -60,8 +60,42 @@
             </div>
         </main>
     </header>
+
     <main id="Content">
-        <h1>Welcome Back, Daniel </h1>
+        <div id="topbar">
+            <div id="profile">
+                <span id="userInitials">DB</span>
+
+                <div id="dropdown">
+                    <div class="dropdown-header">
+                        <div id="dropdownUsername">Username</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+
+        </div>
+        <h1 id="welcomeText">Welcome Back </h1>
+        ´
+        <script>
+            document.getElementById('logoutBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.removeItem('username');
+                window.location.href = 'signin.html';
+            });
+            const username = localStorage.getItem("username");
+            if (username) {
+                document.getElementById("welcomeText").textContent = `Welcome Back ${username}`;
+                document.getElementById("userInitials").textContent = username.substring(0, 2).toLocaleUpperCase();
+                document.getElementById("dropdownUsername").textContent = username;
+            }
+            else {
+                window.location.href = "signin.html";
+            }
+        </script>
+
     </main>
 </body>
 

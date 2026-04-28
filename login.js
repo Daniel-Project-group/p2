@@ -20,11 +20,10 @@ loginForm.addEventListener('submit', async function (event) {
         const data = await response.json();
 
         if (response.ok) {
-            alert(data.message);
-            // Later, you can redirect to a dashboard or homepage here
-            // window.location.href = 'dashboard.html';
+            localStorage.setItem('username', data.username);
+            window.location.href = 'HomePage.html';
         } else {
-            alert(data.message);
+            document.getElementById("Error").textContent = data.message;
         }
     } catch (error) {
         alert('Could not connect to the server. Is it running?');
