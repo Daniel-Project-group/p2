@@ -1,0 +1,124 @@
+form {
+    padding: 0 10px;
+}
+
+#NEWTASKBOX {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 700px;
+    background-color: white;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.522);
+    gap: 8px;
+    margin-bottom: 20px;
+
+}
+
+#NEWTASKBOX hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+#NEWTASKBOX p {
+
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+#NEWTASKBOX input {
+    padding: 12px 14px;
+    border: 1px solid rgb(220, 215, 205);
+    border-radius: 8px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    background-color: rgb(248, 244, 235);
+    transition: all 0.50s;
+    width: 100%;
+    box-sizing: border-box;
+    width: 400px;
+}
+
+#NEWTASKBOX input:focus {
+    outline: none;
+    border-color: rgb(255, 91, 31);
+    background-color: white;
+}
+
+#backButton {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    background-color: white;
+    color: rgb(255, 91, 31);
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+#backButton:hover {
+    background-color: rgb(241, 234, 220);
+    transform: translateX(-2px);
+}
+
+#NEWTASKBOX textarea {
+    padding: 12px 14px;
+    border: 1px solid rgb(220, 215, 205);
+    border-radius: 8px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    background-color: rgb(248, 244, 235);
+    transition: all 0.15s;
+    width: 100%;
+    box-sizing: border-box;
+
+    /* Textarea-specific */
+    min-height: 120px;
+    resize: vertical;
+    /* user can drag to resize, only vertically */
+    font-family: 'Inter Tight', sans-serif;
+    /* important - default is monospace */
+}
+
+#NEWTASKBOX textarea:focus {
+    outline: none;
+    border-color: rgb(255, 91, 31);
+    background-color: white;
+}
+
+#Quantity {
+    width: 2px;
+
+}

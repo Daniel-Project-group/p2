@@ -243,3 +243,30 @@ main {
 .dropdown-item.logout:hover {
     background-color: rgba(220, 50, 50, 0.08);
 }
+
+#OpenTask {
+    margin: 0;
+    height: 80px;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgb(205, 204, 204);
+
+}
+
+#OpenTask h6 {
+    font-family: 'Inter Tight', sans-serif;
+    margin: 0;
+    color: rgba(58, 58, 58, 0.61);
+    font-size: 1em;
+    font-weight: 100;
+}
+
+#OpenTask p {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-top: 10px;
+}
