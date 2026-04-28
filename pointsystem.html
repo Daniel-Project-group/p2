@@ -1,20 +1,110 @@
 <!DOCTYPE html>
 
-<HTML>
+<html>
+
+<head>
+<title> Qualification test </title>
+
+<link rel="stylesheet" href="pointsystem.css">
+<link rel="stylesheet" href="HomePage.css">
+
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #ccc;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.labels{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#value {
+margin-top: 10px;
+font-weight: bold;
+}
+
+</style>
+</head>
 
 <body>
 
+            <div id="SideBar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&amp;display=swap');
+
+                        .wordmark {
+                            font-family: 'Fraunces', Georgia, serif;
+                            font-weight: 500;
+                            font-size: 22px;
+                            letter-spacing: -0.02em;
+                            fill: #14140f;
+                        }
+                    </style>
+                    <circle cx="11" cy="16" r="11" fill="#14140f" />
+                    <circle cx="11" cy="16" r="6" fill="#ff5b1f" />
+                    <text x="32" y="23" class="wordmark">Delegate</text>
+                </svg>
+            </div>
 
 
 
-<input type="range">
+
+<div class="container">
+
+     <h6> Test </h6>
+
+<input type="range" min="1" max="10" step="1" value="5" id="sliders">
+
+<div class="labels">
+<span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+</div>
+
+<p id="value">5</p>
+
+</div>
+
+<script> 
+
+const sliders = document.getElementById("sliders");
+const value = document.getElementById("value");
 
 
-
-
-
+sliders.addEventListener("input", () => {
+    value.textContent = sliders.value;
+});
+</script>
 
 
 </body>
 
-</HTML>
+</html>
