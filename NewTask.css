@@ -1,74 +1,186 @@
-form {
-    padding: 0 10px;
-}
-
+/* Container */
 #NEWTASKBOX {
     display: flex;
     flex-direction: column;
     width: 600px;
-    height: auto;
     background-color: white;
-    margin: auto;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 5px 10px 10px rgba(255, 91, 31, 0.513);
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(255, 91, 31, 0.9);
     gap: 8px;
-    margin-bottom: 20px;
-    transition: all 0.5s;
-
+    transition: all 1s;
 }
 
 #NEWTASKBOX:hover {
-    box-shadow: 1px 2px 15px rgba(255, 91, 31, 0.513);
-    transform: translateY(4px);
-    transition: all 0.5s;
-
+    box-shadow: 0 12px 40px rgba(255, 91, 31, 0.15);
+    transform: translateY(-2px);
 }
+
+
+#NEWTASKBOX p {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
 
 #NEWTASKBOX hr {
     width: 100%;
     border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 0;
-    flex-shrink: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin: 0 0 20px 0;
 }
 
-#NEWTASKBOX p {
 
-    font-family: 'Fraunces', serif;
-    font-size: 36px;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-top: 10px;
-    text-align: left;
-    font-size: 2em;
-    padding: 10px;
+form {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
 }
 
-#NEWTASKBOX input {
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.LABEL {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #14140f;
+}
+
+
+#NEWTASKBOX input[type="text"],
+#NEWTASKBOX input[type="number"],
+#NEWTASKBOX input[type="date"],
+#NEWTASKBOX textarea {
     padding: 12px 14px;
     border: 1px solid rgb(220, 215, 205);
     border-radius: 8px;
     font-family: 'Inter Tight', sans-serif;
     font-size: 14px;
     background-color: rgb(248, 244, 235);
-    transition: all 0.50s;
+    transition: all 0.15s;
     width: 100%;
     box-sizing: border-box;
-    width: 400px;
 }
 
-#NEWTASKBOX input:focus {
+#NEWTASKBOX input[type="text"]:focus,
+#NEWTASKBOX input[type="number"]:focus,
+#NEWTASKBOX input[type="date"]:focus,
+#NEWTASKBOX textarea:focus {
     outline: none;
     border-color: rgb(255, 91, 31);
     background-color: white;
+}
+
+/* Textarea specific */
+#NEWTASKBOX textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Radio button group */
+.radio-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid rgb(220, 215, 205);
+    border-radius: 8px;
+    background-color: rgb(248, 244, 235);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+}
+
+.radio-option:hover {
+    border-color: rgb(255, 91, 31);
+    background-color: white;
+}
+
+.radio-option input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: rgb(255, 91, 31);
+    cursor: pointer;
+    margin: 0;
+}
+
+/* When radio is checked, highlight the whole option */
+.radio-option:has(input[type="radio"]:checked) {
+    border-color: rgb(255, 91, 31);
+    background-color: rgba(255, 91, 31, 0.05);
+}
+
+#submit {
+    margin-top: auto;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+
+    height: 44px;
+
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 0px;
+
+
+    background-color: rgb(255, 91, 31);
+    color: white;
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+
+    font-size: 14px;
+
+    letter-spacing: 0.01em;
+
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
+
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+#submit:hover {
+    background-color: rgb(230, 75, 20);
+    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
+    transform: translateY(-1px);
+}
+
+#submit:active {
+    transform: translateY(-10px);
 }
 
 #backButton {
@@ -79,7 +191,6 @@ form {
     display: flex;
     align-items: center;
     gap: 6px;
-
     padding: 8px 14px;
     border-radius: 8px;
 
@@ -99,79 +210,4 @@ form {
 #backButton:hover {
     background-color: rgb(241, 234, 220);
     transform: translateX(-2px);
-}
-
-#NEWTASKBOX textarea {
-    padding: 12px 14px;
-    border: 1px solid rgb(220, 215, 205);
-    border-radius: 8px;
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 14px;
-    background-color: rgb(248, 244, 235);
-    transition: all 0.15s;
-    width: 100%;
-    box-sizing: border-box;
-
-    /* Textarea-specific */
-    min-height: 120px;
-    resize: vertical;
-    /* user can drag to resize, only vertically */
-    font-family: 'Inter Tight', sans-serif;
-    /* important - default is monospace */
-}
-
-#NEWTASKBOX textarea:focus {
-    outline: none;
-    border-color: rgb(255, 91, 31);
-    background-color: white;
-}
-
-#Quantity {
-    width: 2px;
-
-}
-
-#submit {
-    margin-top: 190px;
-    margin-bottom: 8;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-
-    height: 44px;
-
-    padding: 0 16px;
-    box-sizing: border-box;
-    border-radius: 10px;
-
-
-    background-color: rgb(255, 91, 31);
-    color: white;
-
-    text-decoration: none;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 500;
-    /* less bold */
-    font-size: 14px;
-    /* smaller, matches menu items */
-    letter-spacing: 0.01em;
-
-    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
-
-    cursor: pointer;
-    transition: all 0.15s;
-
-}
-
-#submit:hover {
-    background-color: rgb(230, 75, 20);
-    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
-    transform: translateY(-1px);
-}
-
-#submit:active {
-    transform: translateY(-10px);
 }
