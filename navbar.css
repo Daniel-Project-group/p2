@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.SideBar {
+    display: flex;
+    flex-direction: column;
+
+    flex: 0 0 250px;
+    width: 250px;
+    min-height: 100vh;
+
+    background-color: rgb(240, 235, 225);
+    padding: 20px;
+    border-right: 2px solid rgb(205, 204, 204);
+}
+
+.SideBar h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#Logo {}
+
+hr {
+    margin-top: 20px;
+    border-top: 1px solid rgb(205, 204, 204);
+}
+
+h5 {
+    color: rgb(163, 163, 163);
+}
+
+.SideBarButton {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    /* top/bottom 8px, left/right 16px */
+    box-sizing: border-box;
+    height: 30px;
+    color: black;
+    border-radius: 7px;
+    gap: 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.SideBarButton:hover {
+    background-color: rgb(221, 216, 205);
+    cursor: pointer;
+
+}
+
+
+.sidebarbuttonActive {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    /* top/bottom 8px, left/right 16px */
+    box-sizing: border-box;
+    height: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 7px;
+    gap: 10px;
+    text-decoration: none;
+
+
+}
+
+#AddTask {
+    margin-top: auto;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+
+    height: 44px;
+
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+
+    background-color: rgb(255, 91, 31);
+    color: white;
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    /* less bold */
+    font-size: 14px;
+    /* smaller, matches menu items */
+    letter-spacing: 0.01em;
+
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.25);
+
+    cursor: pointer;
+    transition: all 0.15s;
+}
