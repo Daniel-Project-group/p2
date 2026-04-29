@@ -9,5 +9,15 @@
     "username": "booster",
     "email": "brormand@hotmail.dk",
     "password": "$2b$10$z/vzs9gBG0RtPIb4YFSul.kHFUwj0FhDJqPWrLbMjnICFOQ0IE0Gi"
+  },
+  {
+    "username": "anton",
+    "email": "anton@gmail.com",
+    "password": "$2b$10$ZquX1O2XFLlDl5vXc6YTcuF.IOd0JsvuxRSkex90/3oBaajWvqqbi"
+  },
+  {
+    "username": "kat",
+    "email": "kat.email@gmail.com",
+    "password": "$2b$10$nbL8iVG4yiHobm4dFWnwcOOCobgv116lTC34uVpXhphyC/.mrBnJq"
   }
 ]

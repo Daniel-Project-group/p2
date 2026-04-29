@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', async function (event) {
 
         if (response.ok) {
             localStorage.setItem('username', data.username);
-            window.location.href = 'HomePage.html';
+            window.location.href = 'PreHomePage.html';
         } else {
             document.getElementById("Error").textContent = data.message;
         }

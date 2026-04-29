@@ -21,8 +21,15 @@
                     <textarea type="text" name="description" id="TaskDescription"> </textarea>
 
                     <label for="Quantity">Number of people </label>
-                    <input type="number" id="Quantity">
-                    <input type="checkbox">
+                    <input type="number" id="Quantity" value="1" min="1" max="20">
+                    <div style=" display: flex; flex-direction: row; margin-top: 10px;">
+                        <label>learning oriented</label>
+                        <input type="radio">
+                        <label>earning oriented</label>
+                        <input type="radio">
+                        <label>learning oriented</label>
+                        <input type="radio">
+                    </div>
                     <div id="submit">submit task</div>
                 </div>
 
