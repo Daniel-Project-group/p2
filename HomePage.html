@@ -56,12 +56,66 @@
                         <path d="M2 6h12M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4"
                             stroke-linecap="round" />
                     </svg> Calander</a>
-                <a id="AddTask">+ Add Task</a>
+                <a href="PendingTask.html" class="SideBarButton"> <svg width="16" height="16" viewBox="0 0 16 16"
+                        fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4" />
+                        <path d="M8 4.5V8L10 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg> Pending Task </a>
+                <a id="AddTask" href="NewTask.html">+ Add Task</a>
             </div>
         </main>
     </header>
+
     <main id="Content">
-        <h1>Welcome Back, Daniel </h1>
+        <div id="topbar">
+            <div id="profile">
+                <span id="userInitials">DB</span>
+
+                <div id="dropdown">
+                    <div class="dropdown-header">
+                        <div id="dropdownUsername">Username</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+
+        </div>
+        <h1 id="welcomeText">Welcome Back </h1>
+        <div id="kpi-row">
+            <div class="OpenTask">
+                <h6> My open Task</h6>
+                <p>4</p>
+            </div>
+            <div class="OpenTask">
+                <h6> Progress</h6>
+                <p>67%</p>
+            </div>
+            <div class="OpenTask">
+                <h6> Days to deadline</h6>
+                <p>23</p>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('logoutBtn').addEventListener('click', function (event) {
+                event.preventDefault();
+                localStorage.removeItem('username');
+                window.location.href = 'signin.html';
+            });
+            const username = localStorage.getItem("username");
+            if (username) {
+                document.getElementById("welcomeText").textContent = `Welcome Back ${username}`;
+                document.getElementById("userInitials").textContent = username.substring(0, 2).toLocaleUpperCase();
+                document.getElementById("dropdownUsername").textContent = username;
+            }
+            else {
+                window.location.href = "signin.html";
+            }
+        </script>
+
     </main>
 </body>
 

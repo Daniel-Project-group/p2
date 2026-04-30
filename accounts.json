@@ -1,14 +1,23 @@
 [
+  {},
   {
+    "username": "daniel2310dk",
     "email": "danieldk2310@gmail.com",
-    "password": "$2b$10$93J1s52qRYfmBz5qqpkt4.VrEaKqqcWOvfMjoxX9.Dr3ULTr0eBmW"
+    "password": "$2b$10$yanDt8afgHQ2CXfvCiMKSeIXBKWTTXmqumNMcx7TiqMAahGTBsjK."
   },
   {
-    "email": "test@gmai.com",
-    "password": "$2b$10$0tfAUhsX6RX7B41vDWy38.l.itd0Q6WG.7Mv37bRc.GlLz5dB/h1q"
+    "username": "booster",
+    "email": "brormand@hotmail.dk",
+    "password": "$2b$10$z/vzs9gBG0RtPIb4YFSul.kHFUwj0FhDJqPWrLbMjnICFOQ0IE0Gi"
   },
   {
-    "email": "danieldk23100@gmail.com",
-    "password": "$2b$10$J6dAqzi/Ckd/ugL4mWKgYOmBw4y8W.AUSqzmNswiW3CsmevpfUGUm"
+    "username": "anton",
+    "email": "anton@gmail.com",
+    "password": "$2b$10$ZquX1O2XFLlDl5vXc6YTcuF.IOd0JsvuxRSkex90/3oBaajWvqqbi"
+  },
+  {
+    "username": "kat",
+    "email": "kat.email@gmail.com",
+    "password": "$2b$10$nbL8iVG4yiHobm4dFWnwcOOCobgv116lTC34uVpXhphyC/.mrBnJq"
   }
 ]

@@ -8,82 +8,120 @@ const fs = require('fs');
 const app = express();
 const PORT = 3000;
 
-// Middleware - tells Express to handle JSON and allow requests from our HTML pages
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// A simple test route - just to check the server works
+// A simple test route
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
-// Signup route - this runs when someone submits the signup form
-app.post('/signup', async (req, res) => {
-    // Get the email and password from the request
-    const { email, password } = req.body;
 
-    // Check that email and password were sent
-    if (!email || !password) {
-        return res.status(400).json({ message: 'Email and password are required' });
+// Signup route
+app.post('/signup', async (req, res) => {
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+        return res.status(400).json({ message: 'Username, email, and password are required' });
     }
 
-    // Read the existing accounts file (or start with empty array if it doesn't exist)
     let accounts = [];
     if (fs.existsSync('accounts.json')) {
         const data = fs.readFileSync('accounts.json', 'utf-8');
         accounts = JSON.parse(data);
     }
 
-    // Check if this email is already registered
+    // Check if email is already registered
     const existingUser = accounts.find(account => account.email === email);
     if (existingUser) {
         return res.status(400).json({ message: 'An account with this email already exists' });
     }
 
-    // Hash the password (encrypt it so we never store plain passwords)
+    // Check if username is taken
+    const existingUsername = accounts.find(account => account.username === username);
+    if (existingUsername) {
+        return res.status(400).json({ message: 'This username is already taken' });
+    }
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Add the new account
-    accounts.push({ email: email, password: hashedPassword });
+    accounts.push({ username: username, email: email, password: hashedPassword });
 
-    // Save the updated accounts back to the file
+    // Save to file
     fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
 
-    // Send a success response
     res.json({ message: 'Account created successfully!' });
 });
-// Login route - this runs when someone submits the login form
+
+// Login route
 app.post('/login', async (req, res) => {
-    // Get the email and password from the request
     const { email, password } = req.body;
 
-    // Check that email and password were sent
     if (!email || !password) {
         return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    // Check if the accounts file exists
     if (!fs.existsSync('accounts.json')) {
         return res.status(400).json({ message: 'No accounts found. Please sign up first.' });
     }
 
-    // Read the accounts file
     const data = fs.readFileSync('accounts.json', 'utf-8');
     const accounts = JSON.parse(data);
 
-    // Find the user with this email
     const user = accounts.find(account => account.email === email);
     if (!user) {
         return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Compare the password with the stored hashed password
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (!passwordMatches) {
         return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Success!
-    res.json({ message: 'Login successful! Welcome back.' });
+    // Send back username so frontend can save it
+    res.json({
+        message: 'Login successful! Welcome back.',
+        username: user.username
+    });
+});
+// Create new task route
+app.post('/newtask', (req, res) => {
+    const { title, description, quantity, duedate, oriented, createdBy } = req.body;
+
+    // Validate required fields
+    if (!title || !duedate || !oriented || !createdBy) {
+        return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
+    }
+
+    // Read existing tasks (or start empty)
+    let tasks = [];
+    if (fs.existsSync('tasks.json')) {
+        const data = fs.readFileSync('tasks.json', 'utf-8');
+        tasks = JSON.parse(data);
+    }
+
+    // Create new task object
+    const newTask = {
+        id: Date.now(),                    // unique ID (timestamp)
+        title: title,
+        description: description,
+        quantity: parseInt(quantity) || 1,
+        duedate: duedate,
+        oriented: oriented,
+        createdBy: createdBy,
+        status: 'pending',                 // for project leader to confirm later
+        createdAt: new Date().toISOString()
+    };
+
+    // Add to array
+    tasks.push(newTask);
+
+    // Save to file
+    fs.writeFileSync('tasks.json', JSON.stringify(tasks, null, 2));
+
+    res.json({ message: 'Task created successfully!', task: newTask });
 });
 // Start the server
 app.listen(PORT, () => {

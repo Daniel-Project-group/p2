@@ -20,7 +20,8 @@ p {
     position: relative;
     width: 300px;
     height: auto;
-    background-color: rgb(240, 235, 225);
+    background-color: rgb(241, 234, 220);
+
     box-shadow: 4px 10px 5px rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     margin: 50px auto;
@@ -32,6 +33,7 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0px;
     background-color: rgb(200, 195, 183);
+
 }
 
 #Welcome {
@@ -126,4 +128,12 @@ a:hover {
 
 #Logo {
     margin-left: 85px;
+}
+
+#Error {
+    color: red;
+    font-size: 0.7em;
+    margin-left: 10px;
+    text-align: center;
+    margin-top: -20px;
 }

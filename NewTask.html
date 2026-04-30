@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="newtask.js" defer></script>
+    <link rel="stylesheet" href="HomePage.css">
+    <link rel="stylesheet" href="NewTask.css">
+</head>
+
+<body>
+    <main>
+
+        <div id="NEWTASKBOX">
+            <p>Create New Task</p>
+            <hr>
+
+            <form id="taskForm">
+                <div class="form-group">
+                    <label class="LABEL" for="TaskTitle">Task Title</label>
+                    <input type="text" name="title" id="TaskTitle" placeholder="e.g. Write project documentation">
+                </div>
+
+                <div class="form-group">
+                    <label class="LABEL" for="TaskDescription">Description</label>
+                    <textarea name="description" id="TaskDescription"
+                        placeholder="Describe what needs to be done..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="LABEL" for="Quantity">Number of people</label>
+                        <input type="number" id="Quantity" name="quantity" value="1" min="1" max="20">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="LABEL" for="DueDate">Due Date</label>
+                        <input type="date" id="DueDate" name="duedate">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="LABEL">Task Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="oriented" value="learning">
+                            <span>Learning oriented</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="oriented" value="interest">
+                            <span>Interest oriented</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="oriented" value="competence">
+                            <span>Competence oriented</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit">Submit Task</button>
+            </form>
+        </div>
+        <a href="HomePage.html" id="backButton">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+            Back
+        </a>
+    </main>
+</body>
+
+</html>
