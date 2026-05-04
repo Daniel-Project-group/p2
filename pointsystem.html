@@ -101,11 +101,69 @@ input[type="range"] {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    font-size: 12px;
+    color: #666;
 }
 
 #value {
-margin-top: 10px;
-font-weight: bold;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.progress-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+
+    height: 100%;
+    width: 0%;
+    background: #ff5b1f;
+    transition: width 0.3s ease;
+
+}
+
+#progressText {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.buttons {
+margin-top: 20px;
+display: flex;
+gap: 10px;
+
+}
+
+button {
+
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+#backBtn {
+
+    background: #ddd;
+    
+}
+
+#nextBtn {
+
+    background: #ff5b1f;
+    color: white;
 }
 
 </style>
@@ -167,51 +225,171 @@ font-weight: bold;
 
 <div class="container">
 
-<div class="question">
-    <h3> Report writing  </h3>
+<div class="progress-wrapper">
+
+
+<div class="progress-bar">
+
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<p id="progressText"></p>
+</div>
+
+
+<div id="questionBox">
+
+
+
+    <h3> On a scale from 1-10, rate the competence</h3>
+  
+    <h1 id="title"> </h1>
 
     <p> Proficiency  </p>
-    <input type="range" class="sliders" value="5">
-    <p class="value">5</p>
+    <input type="range" min="1" max="10" value="5" id="profSlider">
+    <div class="labels">
 
-<p> Interest  </p>
-    <input type="range" class="sliders" value="5">
-    <p class="value">5</p>
+<span>1</span>
+<span>10</span>
+</div>
+    <p id="profValue">5</p>
+
+
+
+<p> Interest </p>
+    <input type="range" min="1" max="10" value="5" id="intSlider">
+   
+    <div class="labels">
+
+<span>1</span>
+<span>10</span>
+</div>
+    <p id="intValue">5</p>
+    </div>
+
+    <div class="buttons">
+<button id="backBtn">Back</button>
+
+<button id="nextBtn">Next</button>
     </div>
 
 
-<div class="question">
-    <h3> Algorithm  </h3>
-    
-    <p> Proficiency  </p>
-        <input type="range" class="sliders" value="5">
-        <p class="value">5</p>
 
-        <p> Interest  </p>
-        <input type="range" class="sliders" value="5">
-        <p class="value">5</p>
+</div>
 
-         </div>
-          </div>
 
 <script> 
 
-const sliders = document.querySelectorAll("slider");
+const competences = [
+
+    "Report Writing",
+    "Algorithms",
+    "Web development"
+
+];
 
 
-sliders.forEach(slider => {
+let index = 0;
 
-const valueDisplay = slider.nextElementSibling;
+const title = document.getElementById("title");
 
-slider.addEventListener("input", () => {
+const profSlider = document.getElementById("profSlider");
+const profValue = document.getElementById("profValue");
 
-valueDisplay.textContent = slider.value;
+const intSlider = document.getElementById("intSlider");
+const intValue = document.getElementById("intValue");
+
+const nextBtn = document.getElementById("nextBtn");
+
+const backBtn = document.getElementById("backBtn");
+
+const answers = [];
+
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+
+function loadQuestion () {
+title.textContent = competences[index];
+
+
+if (answers[index]) {
+profSlider.value = answers[index].proficiency;
+intSlider.value = answers[index].interest;
+
+profValue.textContent = answers[index].proficiency;
+intValue.textContent = answers[index].interest;
+
+} else { 
+
+profSlider.value = 5;
+intSlider.value = 5;
+
+
+profValue.textContent = 5;
+intValue.textContent = 5;
+}
+
+const percent = ((index + 1) / competences.length) * 100;
+progressFill.style.width = percent + "%";
+
+progressText.textContent = `${index + 1} / ${competences.length}`;
+
+backBtn.disabled = index === 0;
+if (index === competences.length - 1) {
+    nextBtn.textContent = "Finish";
+}else{ 
+    nextBtn.textContent = "Next";
+
+}
+
+}
+
+profSlider.addEventListener("input", () => {
+
+    profValue.textContent = profSlider.value;
 });
 
-});
-      
-    
 
+intSlider.addEventListener("input", () => {
+
+    intValue.textContent = intSlider.value;
+});
+
+
+nextBtn.addEventListener("click", () => {
+
+    answers[index] = {
+        competence: competences[index],
+        proficiency: profSlider.value,
+        interest: intSlider.value
+    };
+
+index++;
+
+if (index < competences.length) {
+    loadQuestion();
+} else { 
+    console.log("Final DATA:", answers);
+
+    document.getElementById("questionBox").innerHTML = "<h2> Competence profilings are saved  </h2>";
+    nextBtn.style.display = "none";
+    backBtn.style.display = "none";
+
+}
+
+
+
+    });
+    backBtn.addEventListener("click", () => {
+    if (index > 0) {
+        index--;
+        loadQuestion();
+    }
+
+});
+
+    loadQuestion();
 </script>
 
 
