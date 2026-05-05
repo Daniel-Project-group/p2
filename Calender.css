@@ -5,7 +5,7 @@
     min-height: 100vh;
 }
 
-.MainContent {
+.Content {
     flex: 1;
     min-width: 0;
     padding: 40px;
@@ -118,7 +118,7 @@ font-family:  'Inter Tight', sans-serif;
 }
 
 .Calender th{
-    background-color: gb(240, 235, 225);
+    background-color: rgb(240, 235, 225);
     color: rgba(0, 0, 0, 0.65);
     font-size: 13px;
     font-weight: 600;

@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta data -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Page title -->
-    <title>Document</title>
 
-    <!-- CSS -->
+    <title>calender</title>
+
+
+     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="Calender.css">
+    <link rel="stylesheet" href="calender.css">
 </head>
 
 <body>
 
-    <!-- Content goes here -->
-
 <div class ="Layout">
 
-    <nav class ="SideBar">
- 
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
+     <nav class="SideBar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
                     <style>
                         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&amp;display=swap');
 
@@ -45,34 +42,65 @@
                         <rect x="2" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                         <rect x="9" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                     </svg> Dashboard </a>
-                <a href="" class="SideBarButton"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <circle cx="5" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4" />
-                        <path d="M1.5 13c0-2 1.5-3.5 3.5-3.5s3.5 1.5 3.5 3.5" stroke="currentColor" stroke-width="1.4"
-                            stroke-linecap="round" />
-                        <circle cx="11" cy="6" r="2" stroke="currentColor" stroke-width="1.4" />
-                        <path d="M9 13c0-1.5 1-2.5 2.5-2.5S14 11.5 14 13" stroke="currentColor" stroke-width="1.4"
-                            stroke-linecap="round" />
-                    </svg> Group Tasks</a>
-
-                <a href="" class="SideBarButton">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 4h10M3 8h10M3 12h7" stroke="currentColor" stroke-width="1.4"
-                            stroke-linecap="round" />
-                    </svg>
-                    My Tasks
                 </a>
-                <a class="SideBarButton"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <a href ="calender.html" class ="SideBarButton"> 
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <rect x="2" y="3" width="12" height="11" rx="1" stroke="currentColor" stroke-width="1.4" />
                         <path d="M2 6h12M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.4"
                             stroke-linecap="round" />
                     </svg> Calender</a>
-                <a id="AddTask" href="NewTask.html">+ Add Task</a>
-    
-    </nav>
+
+                <a href ="competence-profile.html "class="SideBarButton"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                </svg> Competence profile</a>      
+
+                <a class="SideBarButton"> 
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 3h9M4 8h9M4 13h9" stroke="currentColor" stroke-width="1.4"
+                            stroke-linecap="round" />
+                            <circle cx="2" cy="3" r="1" fill="currentColor" />
+                            <circle cx="2" cy="8" r="1" fill="currentColor" />
+                             <circle cx="2" cy="13" r="1" fill="currentColor" />
+                </svg> Sprint overview</a>
+             
+
+                <a class="SideBarButton"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
+                        <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/>
+                     </svg> Generate sprint</a>
 
 
-<main class="MainContent">
+                 <a href = "pending-task.html" class="SideBarButton"> 
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4" />
+                    <path d="M8 4.5V8L10 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                     </svg> Pending tasks</a>
 
+
+                 
+
+                <a id="AddTask" href="NewTask.html">+ Add task</a>
+
+            
+                    </nav>
+
+<main class="Content">
+    <div id="topbar">
+            <div id="profile">
+                <span id="userInitials">DB</span>
+
+                <div id="dropdown">
+                    <div class="dropdown-header">
+                        <div id="dropdownUsername">Username</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+            </div>
+            
     <header class="DashboardHeader">
         <div>
             <h1>Assignments due</h1>
@@ -281,7 +309,6 @@
 
 </div>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

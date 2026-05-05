@@ -1,0 +1,282 @@
+body {
+    background-color: rgb(252, 250, 246);
+    color: rgb(20, 20, 15);
+}
+
+.PageHeader {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(255, 91, 31);
+    margin: 0 0 10px;
+}
+
+.HeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.PageHeader h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 58px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.subtitle {
+    max-width: 650px;
+    margin: 16px 0 0;
+    color: rgba(0, 0, 0, 0.58);
+    font-size: 19px;
+    line-height: 1.45;
+}
+
+.PrimaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background-color: rgb(255, 91, 31);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.18);
+    transition: all 0.15s;
+}
+
+.PrimaryButton:hover {
+    background-color: rgb(230, 75, 20);
+    transform: translateY(-1px);
+}
+
+.KpiGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.KpiCard,
+.PanelCard,
+.BoardPanel {
+    background-color: white;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 18px;
+}
+
+.KpiCard {
+    padding: 22px;
+}
+
+.KpiCard h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0;
+}
+
+.KpiCard p {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    line-height: 1;
+    margin: 18px 0 8px;
+    letter-spacing: -0.04em;
+}
+
+.KpiCard span {
+    display: block;
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.KpiCard.warning {
+    border-color: rgba(255, 91, 31, 0.45);
+    background-color: rgb(255, 247, 240);
+}
+
+.OverviewGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+    align-items: start;
+}
+
+.BoardPanel,
+.PanelCard {
+    padding: 24px;
+}
+
+.SidePanel {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.SectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.SectionHeader h2 {
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.SectionHeader p {
+    margin: 6px 0 0;
+    color: rgba(0, 0, 0, 0.55);
+    line-height: 1.4;
+}
+
+.SectionHeader.compact {
+    margin-bottom: 18px;
+}
+
+.BoardColumns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.BoardColumn {
+    background-color: rgb(250, 248, 244);
+    border: 1px solid rgb(232, 228, 220);
+    border-radius: 16px;
+    padding: 14px;
+    min-height: 520px;
+}
+
+.BoardColumn h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.BoardColumn h3 span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgb(240, 235, 225);
+    font-size: 12px;
+}
+
+.TaskCard {
+    background-color: white;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.TaskCard.active {
+    border-left: 4px solid rgb(255, 91, 31);
+}
+
+.TaskCard.done {
+    opacity: 0.72;
+}
+
+.TaskTopline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.TaskTopline strong {
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+.TaskTopline span {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 7px;
+    border-radius: 999px;
+    background-color: rgb(241, 234, 220);
+}
+
+.TaskCard p {
+    color: rgba(0, 0, 0, 0.58);
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 10px 0 14px;
+}
+
+.TaskMeta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 13px;
+}
+
+.MemberLoad {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.LoadRow {
+    display: grid;
+    grid-template-columns: 64px 1fr 32px;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.LoadBar {
+    height: 10px;
+    border-radius: 999px;
+    background-color: rgb(241, 234, 220);
+    overflow: hidden;
+}
+
+.LoadBar div {
+    height: 100%;
+    border-radius: 999px;
+    background-color: rgb(255, 91, 31);
+}
+
+.NoteList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.NoteList li {
+    padding: 13px 0;
+    border-top: 1px solid rgb(225, 221, 213);
+    color: rgba(0, 0, 0, 0.72);
+    line-height: 1.45;
+}
+
+.NoteList li:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+

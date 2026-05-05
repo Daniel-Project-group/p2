@@ -1,11 +1,101 @@
-* {
-    box-sizing: border-box;
+
+
+.Content {
+    margin-left: 250px;
+    /* same width as sidebar */
+    padding: 40px;
+
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
+#topbar {
+    display: flex;
+    justify-content: flex-end;
+    /* push to right */
+    align-items: center;
+    padding: 16px 32px;
+}
+
+
+
+#profile {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #14140f;
+    color: rgb(241, 234, 220);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.15s;
+    position: relative;
+}
+
+#dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    padding: 8px;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s, visibility 0.15s;
+
+    cursor: default;
+    color: #14140f;
+    font-weight: 400;
+    z-index: 100;
+}
+
+#profile:hover #dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-header {
+    padding: 10px 12px;
+}
+
+#dropdownUsername {
+    font-weight: 600;
+    font-size: 14px;
+    color: #14140f;
+}
+
+
+.dropdown-divider {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.08);
+    margin: 6px 0;
+}
+
+
+.dropdown-item {
+    display: block;
+    padding: 10px 12px;
+    color: #14140f;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(241, 234, 220);
+}
+
+.dropdown-item.logout {
+    color: rgb(220, 50, 50);
+}
+
+.dropdown-item.logout:hover {
+    background-color: rgba(220, 50, 50, 0.08);
 }
 
 
@@ -13,14 +103,19 @@ body {
     display: flex;
     flex-direction: column;
 
-    flex: 0 0 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
     width: 250px;
     min-height: 100vh;
 
     background-color: rgb(240, 235, 225);
     padding: 20px;
     border-right: 2px solid rgb(205, 204, 204);
+    color: rgb(163, 163, 163);
 }
+
 
 .SideBar h5 {
     font-family: 'JetBrains Mono', monospace;
@@ -35,17 +130,12 @@ body {
 
 #Logo {}
 
-hr {
+.SideBar hr {
     margin-top: 20px;
     border-top: 1px solid rgb(205, 204, 204);
 }
 
-h5 {
-    color: rgb(163, 163, 163);
-}
-
 .SideBarButton {
-    font-family: 'Inter Tight', sans-serif;
     font-weight: 400;
     font-size: 14px;
     display: flex;
@@ -69,7 +159,6 @@ h5 {
 
 
 .sidebarbuttonActive {
-    font-family: 'Inter Tight', sans-serif;
     font-weight: 400;
     font-size: 14px;
     display: flex;
@@ -108,7 +197,6 @@ h5 {
     color: white;
 
     text-decoration: none;
-    font-family: 'Inter Tight', sans-serif;
     font-weight: 500;
     /* less bold */
     font-size: 14px;
@@ -120,3 +208,15 @@ h5 {
     cursor: pointer;
     transition: all 0.15s;
 }
+
+#AddTask:hover {
+    background-color: rgb(230, 75, 20);
+    box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
+    transform: translateY(-1px);
+}
+
+#AddTask:active {
+    transform: translateY(-10px);
+}
+
+

@@ -9,5 +9,10 @@
     "username": "booster",
     "email": "brormand@hotmail.dk",
     "password": "$2b$10$z/vzs9gBG0RtPIb4YFSul.kHFUwj0FhDJqPWrLbMjnICFOQ0IE0Gi"
+  },
+  {
+    "username": "anton",
+    "email": "anton123@gmail.com",
+    "password": "$2b$10$PGVGKQrh5IwFrVwz2bDTROSn3JV6cxH9WNjKiypywzjgiJ3j.t/uO"
   }
 ]

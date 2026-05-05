@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title> HomePage</title>
-
+    
+    <title>sprint-generate</title>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="HomePage.css">
-    <title> HomePage</title>
-</head>
+    <link rel="stylesheet" href="sprint-generate.css">
 
-<body>
-    <header>
-            <nav class="SideBar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
+  </head>
+  <body>
+
+    <nav class="SideBar">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
                     <style>
                         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&amp;display=swap');
 
@@ -40,7 +37,7 @@
                         <rect x="2" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                         <rect x="9" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                     </svg> Dashboard </a>
-
+                
                 <a href ="calender.html" class ="SideBarButton"> 
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <rect x="2" y="3" width="12" height="11" rx="1" stroke="currentColor" stroke-width="1.4" />
@@ -51,9 +48,9 @@
                 <a href ="competence-profile.html "class="SideBarButton"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                </svg> Competence profile </a>      
+                </svg> Competence profile</a>      
 
-                <a href="sprint-overview.html" class="SideBarButton"> 
+                <a class="SideBarButton"> 
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M4 3h9M4 8h9M4 13h9" stroke="currentColor" stroke-width="1.4"
                             stroke-linecap="round" />
@@ -61,27 +58,24 @@
                             <circle cx="2" cy="8" r="1" fill="currentColor" />
                              <circle cx="2" cy="13" r="1" fill="currentColor" />
                 </svg> Sprint overview</a>
-             
-
-                <a href="sprint-generate.html" class="SideBarButton"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
-                        <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/>
-                     </svg> Generate sprint</a>
 
                 <a href = "pending-task.html" class="SideBarButton"> 
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4" />
                     <path d="M8 4.5V8L10 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-                     </svg> Pending tasks</a>     
+                     </svg> Pending tasks</a>
+             
+
+                <a class="SideBarButton"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
+                        <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/>
+                     </svg> Generate sprint</a>
                  
 
                 <a id="AddTask" href="NewTask.html">+ Add task</a>
+    </nav>
 
-            
-                    </nav>
-    </header>
-
-    <main class = "Content">
+    <main class="Content">
         <div id="topbar">
             <div id="profile">
                 <span id="userInitials">DB</span>
@@ -96,43 +90,12 @@
                 </div>
             </div>
 
-        </div>
-        <h1 id="welcomeText">Welcome Back </h1>
-        <div id="kpi-row">
-            <div class="OpenTask">
-                <h6> My open Task</h6>
-                <p>4</p>
-            </div>
-            <div class="OpenTask">
-                <h6> Progress</h6>
-                <p>67%</p>
-            </div>
-            <div class="OpenTask">
-                <h6> Days to deadline</h6>
-                <p>23</p>
-            </div>
-        </div>
 
-        <script>
-            document.getElementById('logoutBtn').addEventListener('click', function (event) {
-                event.preventDefault();
-                localStorage.removeItem('username');
-                window.location.href = 'signin.html';
-            });
-            const username = localStorage.getItem("username");
-            if (username) {
-                document.getElementById("welcomeText").textContent = `Welcome Back ${username}`;
-                document.getElementById("userInitials").textContent = username.substring(0, 2).toLocaleUpperCase();
-                document.getElementById("dropdownUsername").textContent = username;
-            }
-            else {
-                window.location.href = "signin.html";
-            }
-        </script>
 
     </main>
-</body>
 
 
 
+    <script src="index.js"></script>
+  </body>
 </html>
