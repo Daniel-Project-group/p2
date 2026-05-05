@@ -161,11 +161,8 @@ font-family:  'Inter Tight', sans-serif;
 }
 
 .DateNumber{
-
     position: absolute;
     top: 0px;
     left: 10px;
     z-index: 2;
-
-
 }

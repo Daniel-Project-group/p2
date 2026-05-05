@@ -220,3 +220,32 @@
 }
 
 
+#backButton {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+
+    background-color: white;
+    color: rgb(255, 91, 31);
+
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+#backButton:hover {
+    background-color: rgb(241, 234, 220);
+    transform: translateX(-2px);
+}
+
