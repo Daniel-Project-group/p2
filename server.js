@@ -86,7 +86,43 @@ app.post('/login', async (req, res) => {
         username: user.username
     });
 });
+// Create new task route
+app.post('/newtask', (req, res) => {
+    const { title, description, quantity, duedate, oriented, createdBy } = req.body;
 
+    // Validate required fields
+    if (!title || !duedate || !oriented || !createdBy) {
+        return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
+    }
+
+    // Read existing tasks (or start empty)
+    let tasks = [];
+    if (fs.existsSync('tasks.json')) {
+        const data = fs.readFileSync('tasks.json', 'utf-8');
+        tasks = JSON.parse(data);
+    }
+
+    // Create new task object
+    const newTask = {
+        id: Date.now(),                    // unique ID (timestamp)
+        title: title,
+        description: description,
+        quantity: parseInt(quantity) || 1,
+        duedate: duedate,
+        oriented: oriented,
+        createdBy: createdBy,
+        status: 'pending',                 // for project leader to confirm later
+        createdAt: new Date().toISOString()
+    };
+
+    // Add to array
+    tasks.push(newTask);
+
+    // Save to file
+    fs.writeFileSync('tasks.json', JSON.stringify(tasks, null, 2));
+
+    res.json({ message: 'Task created successfully!', task: newTask });
+});
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
