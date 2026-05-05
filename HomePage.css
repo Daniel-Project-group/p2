@@ -50,6 +50,13 @@ header {
     margin: 0;
 }
 
+main {
+    background-color: rgb(241, 234, 220);
+    min-height: 100vh;
+    padding: 40px;
+    margin: 0;
+}
+
 #kpi-row {
     display: flex;
     flex-direction: row;
