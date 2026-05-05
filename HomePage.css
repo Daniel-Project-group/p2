@@ -1,3 +1,19 @@
+import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
+
+body {
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    padding: 20px;
+    z-index: 20;
+    background: transparent;
+    box-shadow: none;
+}
 
 .OpenTask {
 
