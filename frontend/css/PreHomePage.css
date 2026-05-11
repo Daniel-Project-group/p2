@@ -13,7 +13,7 @@ main a {
     text-decoration: none;
 }
 
-#AddTask {
+.AddTask {
 
 
     display: flex;
@@ -51,6 +51,13 @@ main a {
 
 }
 
+.ButtonContainer{
+    display: flex;
+    flex-direction:column;
+    gap: 15px;
+
+}
+
 #AddTask:hover {
     background-color: rgb(230, 75, 20);
     box-shadow: 0 4px 12px rgba(255, 91, 31, 0.35);
@@ -63,7 +70,7 @@ main a {
 }
 
 
-#BOX1 {
+.BOX1 {
     display: inline-block;
     position: relative;
     width: 200px;

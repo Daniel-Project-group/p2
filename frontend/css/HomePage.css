@@ -1,4 +1,4 @@
-import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
 
 body {
     margin: 0;
@@ -51,7 +51,6 @@ header {
 }
 
 main {
-    background-color: rgb(241, 234, 220);
     min-height: 100vh;
     padding: 40px;
     margin: 0;
