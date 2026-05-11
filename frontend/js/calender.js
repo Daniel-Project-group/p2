@@ -41,10 +41,31 @@ fetch('http://localhost:3000/sprints')
 
     sprints.forEach(sprint => {
       const dueDate = document.getElementById(sprint.enddate);
-
+      
       if (dueDate) {
         dueDate.classList.add('sprint-due');
         dueDate.innerHTML += `<p class="sprint-label">${sprint.title}</p>`;
+
+        const endDate = new Date(sprint.enddate);
+        const today = new Date();
+        
+        document.querySelectorAll('.calendar-day')
+          .forEach(day => {
+            //Gets the current date
+            const dayDate = new Date(day.id);
+
+            /*Checks if the you are over the duedate and highlights
+            the days you are overdue*/
+            if (endDate < today && dayDate >= endDate && dayDate <= today) {
+              day.classList.add('sprint-overdue-range');
+
+            } else if (dayDate > today && dayDate < endDate) {
+              day.classList.add('sprint-range');
+            }
+            
+          });
+        
+
       }
     });
   });

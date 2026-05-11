@@ -136,6 +136,16 @@
     background-color: rgb(250, 248, 244);
 }
 
+.sprint-range {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+.sprint-overdue-range {
+    background-color: rgba(220, 50, 50, 0.3);
+    border: 1px solid rgba(220, 50, 50, 0.8) !important;
+}
+
 .sprint-due {
     background-color: rgba(20, 20, 15, 0.04);
     border: 2px solid black !important;
