@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Group</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/joinTeam.css">
+</head>
+
+<body>
+    <main class="page-container">
+
+        <section class="form-box">
+            <h1>Join Group</h1>
+            <p>Enter the group ID given by your project group.</p>
+
+            <form id="joinGroupForm">
+                <label for="groupId">Group ID</label>
+                <input 
+                    type="text" 
+                    id="groupId" 
+                    name="groupId" 
+                    placeholder="Example: group-001"
+                    required
+                >
+
+                <button id ="joinButton" type="submit">Join group</button>
+            </form>
+        </section>
+
+    </main>
+
+    <script src="../js/joinGroup.js"></script>
+</body>
+</html>

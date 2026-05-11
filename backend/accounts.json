@@ -24,5 +24,15 @@
     "username": "Magda",
     "email": "magda@gmail.com",
     "password": "$2b$10$roxXfj7CDoGlwwhLUyohROzkenRHxb.6a3l6yVUAq6GC/5L9Hf2Vi"
+  },
+  {
+    "username": "anton1",
+    "email": "anton@gmail.com",
+    "password": "$2b$10$nwrZVyDWQgg9j/2USdmwpenYUB/MEC28y/RkUUFx7313g.m.8ZArW"
+  },
+  {
+    "username": "anni",
+    "email": "anton1234@gmail.com",
+    "password": "$2b$10$rMLg9ggWEtudRiowzuAPKujBdSjfWpndt9stX/8LmhArihOdXvCpG"
   }
 ]

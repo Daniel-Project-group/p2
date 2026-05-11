@@ -1,13 +1,57 @@
 [
   {
-    "id": 1777469887691,
-    "title": "test",
-    "description": "daokdajd",
-    "quantity": 1,
-    "duedate": "2026-10-23",
+    "id": 1778405390643,
+    "title": "Algorithm part",
+    "description": "We need to make the three approaches: Brute force, Hungarian and Linear programming",
+    "quantity": 3,
+    "duedate": "2025-06-30",
     "oriented": "competence",
-    "createdBy": "daniel2310dk",
+    "createdBy": "anton",
     "status": "pending",
-    "createdAt": "2026-04-29T13:38:07.691Z"
+    "createdAt": "2026-05-10T09:29:50.643Z"
+  },
+  {
+    "id": 1778405834025,
+    "title": "dsocj",
+    "description": "socijoi",
+    "quantity": 1,
+    "duedate": "2026-07-30",
+    "oriented": "learning",
+    "createdBy": "anton",
+    "status": "pending",
+    "createdAt": "2026-05-10T09:37:14.025Z"
+  },
+  {
+    "id": 1778405953726,
+    "title": "sdv",
+    "description": "sewv",
+    "quantity": 1,
+    "duedate": "2026-05-10",
+    "oriented": "learning",
+    "createdBy": "anton",
+    "status": "pending",
+    "createdAt": "2026-05-10T09:39:13.726Z"
+  },
+  {
+    "id": 1778405968893,
+    "title": "ser098gjv",
+    "description": "+isfdjb",
+    "quantity": 5,
+    "duedate": "2026-05-10",
+    "oriented": "competence",
+    "createdBy": "anton",
+    "status": "pending",
+    "createdAt": "2026-05-10T09:39:28.893Z"
+  },
+  {
+    "id": 1778406068044,
+    "title": "wefj",
+    "description": "ae+i0vj",
+    "quantity": 4,
+    "duedate": "2026-05-10",
+    "oriented": "competence",
+    "createdBy": "anton",
+    "status": "pending",
+    "createdAt": "2026-05-10T09:41:08.044Z"
   }
 ]
