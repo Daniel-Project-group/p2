@@ -24,5 +24,10 @@
     "username": "Magda",
     "email": "magda@gmail.com",
     "password": "$2b$10$roxXfj7CDoGlwwhLUyohROzkenRHxb.6a3l6yVUAq6GC/5L9Hf2Vi"
+  },
+  {
+    "username": "Malthesigma",
+    "email": "Sigma@alpha.beta",
+    "password": "$2b$10$HTTSNJuMdCIDgGNdgtHVduu7IdXod.JtKmQS1Jlm4G9g3DTRr/4BG"
   }
 ]
