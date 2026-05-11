@@ -12,35 +12,8 @@
 </head>
 
 <body>
-    <nav class="SideBar">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&amp;display=swap');
-
-                .wordmark {
-                    font-family: 'Fraunces', Georgia, serif;
-                    font-weight: 500;
-                    font-size: 22px;
-                    letter-spacing: -0.02em;
-                    fill: #14140f;
-                }
-            </style>
-            <circle cx="11" cy="16" r="11" fill="#14140f" />
-            <circle cx="11" cy="16" r="6" fill="#ff5b1f" />
-            <text x="32" y="23" class="wordmark">Delegate</text>
-        </svg>
-
-        <hr>
-        <h5>Workspace</h5>
-
-        <a href="HomePage.html" class="SideBarButton">Dashboard</a>
-        <a href="calender.html" class="SideBarButton">Calendar</a>
-        <a href="competence-profile.html" class="SideBarButton">Competence profile</a>
-        <a href="sprint-overview.html" class="sidebarbuttonActive">Sprint overview</a>
-        <a href="sprint-generate.html" class="SideBarButton">Generate sprint</a>
-
-        <a id="AddTask" href="NewTask.html">+ Add task</a>
-    </nav>
+    <div id="sidebar"></div>
+    <script src="../js/navbar.js"></script>
 
     <main class="Content">
         <div id="topbar">
