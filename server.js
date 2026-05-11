@@ -104,14 +104,14 @@ app.post('/newtask', (req, res) => {
 
     // Create new task object
     const newTask = {
-        id: Date.now(),                    // unique ID (timestamp)
+        id: Date.now(),
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
         oriented: oriented,
         createdBy: createdBy,
-        status: 'pending',                 // for project leader to confirm later
+        status: 'pending',
         createdAt: new Date().toISOString()
     };
 
@@ -123,7 +123,46 @@ app.post('/newtask', (req, res) => {
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
-// Start the server
+
+app.post('/savecompetence', (req, res) => {
+    const { username, ratings } = req.body;
+
+
+    if (!username || !ratings) {
+        return res.status(400).json({ message: 'Username and ratings are required' });
+    }
+
+    let profiles = [];
+    if (fs.existsSync('competences.json')) {
+        const data = fs.readFileSync('competences.json', 'utf-8');
+        if (data.trim()) {
+            profiles = JSON.parse(data);
+        }
+    }
+
+
+    const existingIndex = profiles.findIndex(p => p.username === username);
+
+    const profileData = {
+        username: username,
+        ratings: ratings,
+        updatedAt: new Date().toISOString()
+    };
+
+    if (existingIndex !== -1) {
+
+        profiles[existingIndex] = profileData;
+    } else {
+
+        profiles.push(profileData);
+    }
+
+    // Save to file
+    fs.writeFileSync('competences.json', JSON.stringify(profiles, null, 2));
+
+    res.json({ message: 'Competence profile saved!' });
+});
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
