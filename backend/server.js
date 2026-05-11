@@ -206,6 +206,14 @@ app.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
+app.get('/sprints', (req, res) => {
+    let sprints = [];
+    if (fs.existsSync('sprints.json')) {
+        sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+    }
+    res.json(sprints);
+});
+
 //Creates a new sprint
 app.post('/newsprint', (req, res) => {
     console.log('newsprint hit!', req.body);

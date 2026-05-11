@@ -21,15 +21,35 @@ for (let i = 0; i < firstDay; i++) {
 for (let i = 1; i <= daysInMonth; i++) {
   //Checks if its the current date, and if gives it a new class
   if (currentDate.getDate() === i){
-    calenderHTML += `<div class="calendar-day current-day">
+    calenderHTML += `<div class="calendar-day current-day"
+      id="${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
       <p class="DateNumber">${i}</p></div>`;
   } else {
-    calenderHTML += `<div class="calendar-day">
-    <p class="DateNumber">${i}</p></div>`;
+    calenderHTML += `<div class="calendar-day"
+      id="${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
+      <p class="DateNumber">${i}</p></div>`;
   }
 }
 
 //Adds the HTML to the page
 document.querySelector('#calendarGrid')
   .innerHTML = calenderHTML;
+
+fetch('http://localhost:3000/sprints')
+  .then(res => res.json())
+  .then(sprints => {
+
+    sprints.forEach(sprint => {
+      const dueDate = document.getElementById(sprint.enddate);
+
+      if (dueDate) {
+        dueDate.classList.add('sprint-due');
+        dueDate.innerHTML += `<p class="sprint-label">${sprint.title}</p>`;
+      }
+    });
+  });
+
+  
+
+ 
 
