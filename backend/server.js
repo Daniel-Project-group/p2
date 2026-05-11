@@ -159,11 +159,11 @@ app.post('/groupJoin', (req,res) => {
 
 // Create new task route
 app.post('/newtask', (req, res) => {
-    const { group,title, description, quantity, duedate, oriented, createdBy } = req.body;
+    const { group, title, description, quantity, duedate, createdBy } = req.body;
 
     // Validate required fields
-    if (!title || !duedate || !oriented || !createdBy) {
-        return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
+    if (!title || !duedate || !createdBy) {
+        return res.status(400).json({ message: 'Title, due date, and creator are required' });
     }
 
     // Read existing tasks (or start empty)
@@ -191,7 +191,6 @@ app.post('/newtask', (req, res) => {
         description: description,
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
-        oriented: oriented,
         createdBy: createdBy,
         sprintId: currentSprintId,
         status: 'pending',                 // for project leader to confirm later
