@@ -166,3 +166,41 @@ font-family:  'Inter Tight', sans-serif;
     left: 10px;
     z-index: 2;
 }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 14px;
+    overflow: hidden;
+    font-family: 'Inter Tight', sans-serif;
+    background-color: white;
+}
+
+.calendar-header {
+    background-color: rgb(240, 235, 225);
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px;
+    border: 1px solid rgb(225, 220, 210);
+    text-align: center;
+}
+
+.calendar-day {
+    position: relative;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid rgb(225, 220, 210);
+    vertical-align: top;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.calendar-day-empty {
+    height: 100px;
+    border: 1px solid rgb(225, 220, 210);
+    background-color: rgb(250, 248, 244);
+}
