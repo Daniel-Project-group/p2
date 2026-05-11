@@ -34,5 +34,15 @@
     "username": "anni",
     "email": "anton1234@gmail.com",
     "password": "$2b$10$rMLg9ggWEtudRiowzuAPKujBdSjfWpndt9stX/8LmhArihOdXvCpG"
+  },
+  {
+    "username": "Tobber",
+    "email": "tobber@gmail.com",
+    "password": "$2b$10$SHAJIePYZihn/ztrnQD5geeHquS9h0LsPZQk8VvnoRrFVRLMy6Hg."
+  },
+  {
+    "username": "Tob",
+    "email": "tobr@gmail.com",
+    "password": "$2b$10$7Y6UYqSRTmo2O2H7oQyqweyUalKnkHJz963JmCKehKBcNvpHvomnS"
   }
 ]
