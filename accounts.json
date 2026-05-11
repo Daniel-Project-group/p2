@@ -19,5 +19,10 @@
     "username": "kat",
     "email": "kat.email@gmail.com",
     "password": "$2b$10$nbL8iVG4yiHobm4dFWnwcOOCobgv116lTC34uVpXhphyC/.mrBnJq"
+  },
+  {
+    "username": "test",
+    "email": "test@outlook.dk",
+    "password": "$2b$10$Qb2evL86vN9joWawBLdW3uy2Dlf9kE0DzRZlU.WPFCe/n/aSC/Tt6"
   }
 ]
