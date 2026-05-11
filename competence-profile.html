@@ -1,20 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> HomePage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="HomePage.css">
-    <title> HomePage</title>
+<title> Competence Profile </title>
+
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="competence-profile.css">
+
 </head>
 
 <body>
-    <header>
+
             <nav class="SideBar">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
                     <style>
@@ -34,7 +36,7 @@
                 </svg>
                 <hr>
                 <h5>Workspace</h5>
-                <a href="" class="sidebarbuttonActive"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <a href="Homepage.html" class="SideBarButton"> <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <rect x="2" y="2" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                         <rect x="9" y="2" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
                         <rect x="2" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.4" />
@@ -48,12 +50,12 @@
                             stroke-linecap="round" />
                     </svg> Calender</a>
 
-                <a href ="competence-profile.html "class="SideBarButton"> 
+                <a href ="competence-profile.html "class="sidebarbuttonActive"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                </svg> Competence profile </a>      
+                </svg> Competence profile</a>      
 
-                <a href="sprint-overview.html" class="SideBarButton"> 
+                <a class="SideBarButton"> 
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M4 3h9M4 8h9M4 13h9" stroke="currentColor" stroke-width="1.4"
                             stroke-linecap="round" />
@@ -63,76 +65,198 @@
                 </svg> Sprint overview</a>
              
 
-                <a href="sprint-generate.html" class="SideBarButton"> 
+                <a class="SideBarButton"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
                         <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/>
                      </svg> Generate sprint</a>
+
 
                 <a href = "pending-task.html" class="SideBarButton"> 
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4" />
                     <path d="M8 4.5V8L10 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-                     </svg> Pending tasks</a>     
+                     </svg> Pending tasks</a>
                  
 
                 <a id="AddTask" href="NewTask.html">+ Add task</a>
 
             
                     </nav>
-    </header>
 
-    <main class = "Content">
-        <div id="topbar">
-            <div id="profile">
-                <span id="userInitials">DB</span>
 
-                <div id="dropdown">
-                    <div class="dropdown-header">
-                        <div id="dropdownUsername">Username</div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
-                </div>
-            </div>
 
-        </div>
-        <h1 id="welcomeText">Welcome Back </h1>
-        <div id="kpi-row">
-            <div class="OpenTask">
-                <h6> My open Task</h6>
-                <p>4</p>
-            </div>
-            <div class="OpenTask">
-                <h6> Progress</h6>
-                <p>67%</p>
-            </div>
-            <div class="OpenTask">
-                <h6> Days to deadline</h6>
-                <p>23</p>
-            </div>
-        </div>
+<div class="Content">
 
-        <script>
-            document.getElementById('logoutBtn').addEventListener('click', function (event) {
-                event.preventDefault();
-                localStorage.removeItem('username');
-                window.location.href = 'signin.html';
-            });
-            const username = localStorage.getItem("username");
-            if (username) {
-                document.getElementById("welcomeText").textContent = `Welcome Back ${username}`;
-                document.getElementById("userInitials").textContent = username.substring(0, 2).toLocaleUpperCase();
-                document.getElementById("dropdownUsername").textContent = username;
-            }
-            else {
-                window.location.href = "signin.html";
-            }
-        </script>
+<div class="container">
 
-    </main>
+<div class="progress-wrapper">
+
+
+<div class="progress-bar">
+
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<p id="progressText"></p>
+</div>
+
+
+<div id="questionBox">
+
+
+
+    <h3> On a scale from 1-10, rate the competence</h3>
+  
+    <h1 id="title"> </h1>
+
+    <p> Proficiency  </p>
+    <input type="range" min="1" max="10" value="5" id="profSlider">
+    <div class="labels">
+
+<span>1</span>
+<span>10</span>
+</div>
+    <p id="profValue">5</p>
+
+
+
+<p> Interest </p>
+    <input type="range" min="1" max="10" value="5" id="intSlider">
+   
+    <div class="labels">
+
+<span>1</span>
+<span>10</span>
+</div>
+    <p id="intValue">5</p>
+    </div>
+
+    <div class="buttons">
+<button id="backBtn">Back</button>
+
+<button id="nextBtn">Next</button>
+    </div>
+
+
+
+</div>
+
+
+<script> 
+
+const competences = [
+
+    "Report Writing",
+    "Algorithms",
+    "Web development"
+
+];
+
+
+let index = 0;
+
+const title = document.getElementById("title");
+
+const profSlider = document.getElementById("profSlider");
+const profValue = document.getElementById("profValue");
+
+const intSlider = document.getElementById("intSlider");
+const intValue = document.getElementById("intValue");
+
+const nextBtn = document.getElementById("nextBtn");
+
+const backBtn = document.getElementById("backBtn");
+
+const answers = [];
+
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+
+function loadQuestion () {
+title.textContent = competences[index];
+
+
+if (answers[index]) {
+profSlider.value = answers[index].proficiency;
+intSlider.value = answers[index].interest;
+
+profValue.textContent = answers[index].proficiency;
+intValue.textContent = answers[index].interest;
+
+} else { 
+
+profSlider.value = 5;
+intSlider.value = 5;
+
+
+profValue.textContent = 5;
+intValue.textContent = 5;
+}
+
+const percent = ((index + 1) / competences.length) * 100;
+progressFill.style.width = percent + "%";
+
+progressText.textContent = `${index + 1} / ${competences.length}`;
+
+backBtn.disabled = index === 0;
+if (index === competences.length - 1) {
+    nextBtn.textContent = "Finish";
+}else{ 
+    nextBtn.textContent = "Next";
+
+}
+
+}
+
+profSlider.addEventListener("input", () => {
+
+    profValue.textContent = profSlider.value;
+});
+
+
+intSlider.addEventListener("input", () => {
+
+    intValue.textContent = intSlider.value;
+});
+
+
+nextBtn.addEventListener("click", () => {
+
+    answers[index] = {
+        competence: competences[index],
+        proficiency: profSlider.value,
+        interest: intSlider.value
+    };
+
+index++;
+
+if (index < competences.length) {
+    loadQuestion();
+} else { 
+    console.log("Final DATA:", answers);
+
+    document.getElementById("questionBox").innerHTML = "<h2> Competence profilings are saved  </h2>";
+    nextBtn.style.display = "none";
+    backBtn.style.display = "none";
+
+}
+
+
+
+    });
+    backBtn.addEventListener("click", () => {
+    if (index > 0) {
+        index--;
+        loadQuestion();
+    }
+
+});
+
+    loadQuestion();
+</script>
+
+
 </body>
-
-
 
 </html>

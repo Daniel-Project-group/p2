@@ -1,0 +1,310 @@
+body {
+    background-color: rgb(252, 250, 246);
+    color: rgb(20, 20, 15);
+}
+
+.PageHeader {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(255, 91, 31);
+    margin: 0 0 10px;
+}
+
+.HeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.PageHeader h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 58px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.subtitle {
+    max-width: 680px;
+    margin: 16px 0 0;
+    color: rgba(0, 0, 0, 0.58);
+    font-size: 19px;
+    line-height: 1.45;
+}
+
+.GeneratorLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 24px;
+    align-items: start;
+}
+
+.GeneratorForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.FormPanel,
+.PreviewPanel {
+    background-color: white;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.PanelHeader {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.PanelHeader span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 15);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+}
+
+.PanelHeader h2,
+.PreviewHeader h2 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+}
+
+.PanelHeader p,
+.PreviewHeader p {
+    margin: 6px 0 0;
+    color: rgba(0, 0, 0, 0.55);
+    line-height: 1.45;
+}
+
+.FormGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.FormGrid label,
+.TaskInputRow input,
+.TaskInputRow select,
+.FormGrid input,
+.FormGrid select {
+    font-family: 'Inter Tight', sans-serif;
+}
+
+.FormGrid label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid rgb(220, 215, 205);
+    border-radius: 10px;
+    background-color: rgb(250, 248, 244);
+    padding: 12px 14px;
+    font-size: 14px;
+    color: rgb(20, 20, 15);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: rgb(255, 91, 31);
+    background-color: white;
+}
+
+.ChipGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.Chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 999px;
+    background-color: rgb(250, 248, 244);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.Chip input {
+    width: auto;
+    accent-color: rgb(255, 91, 31);
+}
+
+.TaskInputList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.TaskInputRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px 82px;
+    gap: 10px;
+}
+
+.ConstraintGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.ToggleRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 14px;
+    background-color: rgb(250, 248, 244);
+    border: 1px solid rgb(225, 221, 213);
+    color: rgba(0, 0, 0, 0.72);
+    line-height: 1.4;
+}
+
+.ToggleRow input {
+    width: auto;
+    margin-top: 2px;
+    accent-color: rgb(255, 91, 31);
+}
+
+.ButtonRow {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.PrimaryButton,
+.SecondaryButton,
+.GhostButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.PrimaryButton {
+    border: none;
+    background-color: rgb(255, 91, 31);
+    color: white;
+    box-shadow: 6px 10px 3px rgba(255, 91, 31, 0.18);
+}
+
+.SecondaryButton,
+.GhostButton {
+    border: 1px solid rgb(225, 221, 213);
+    background-color: white;
+    color: rgb(20, 20, 15);
+}
+
+.PrimaryButton:hover,
+.SecondaryButton:hover,
+.GhostButton:hover {
+    transform: translateY(-1px);
+}
+
+.PrimaryButton:hover {
+    background-color: rgb(230, 75, 20);
+}
+
+.PreviewPanel {
+    position: sticky;
+    top: 24px;
+}
+
+.PreviewHeader {
+    margin-bottom: 18px;
+}
+
+.MemberCard {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 16px;
+    background-color: rgb(250, 248, 244);
+}
+
+.MemberCard.highlighted {
+    border-color: rgba(255, 91, 31, 0.55);
+    background-color: rgb(255, 247, 240);
+}
+
+.MemberCard h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.MemberCard p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.58);
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.MemberCard strong {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background-color: white;
+}
+
+.LogicBox {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgb(225, 221, 213);
+}
+
+.LogicBox h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.LogicBox ol {
+    margin: 0;
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.68);
+    line-height: 1.7;
+}

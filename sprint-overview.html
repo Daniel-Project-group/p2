@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprint overview</title>
+
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="sprint-overview.css">
+</head>
+
+<body>
+    <nav class="SideBar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 32" width="180" height="32" id="Logo">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500&amp;display=swap');
+
+                .wordmark {
+                    font-family: 'Fraunces', Georgia, serif;
+                    font-weight: 500;
+                    font-size: 22px;
+                    letter-spacing: -0.02em;
+                    fill: #14140f;
+                }
+            </style>
+            <circle cx="11" cy="16" r="11" fill="#14140f" />
+            <circle cx="11" cy="16" r="6" fill="#ff5b1f" />
+            <text x="32" y="23" class="wordmark">Delegate</text>
+        </svg>
+
+        <hr>
+        <h5>Workspace</h5>
+
+        <a href="HomePage.html" class="SideBarButton">Dashboard</a>
+        <a href="calender.html" class="SideBarButton">Calendar</a>
+        <a href="competence-profile.html" class="SideBarButton">Competence profile</a>
+        <a href="sprint-overview.html" class="sidebarbuttonActive">Sprint overview</a>
+        <a href="sprint-generate.html" class="SideBarButton">Generate sprint</a>
+
+        <a id="AddTask" href="NewTask.html">+ Add task</a>
+    </nav>
+
+    <main class="Content">
+        <div id="topbar">
+            <div id="profile">
+                <span id="userInitials">DB</span>
+
+                <div id="dropdown">
+                    <div class="dropdown-header">
+                        <div id="dropdownUsername">Username</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <header class="PageHeader">
+            <p class="eyebrow">Current sprint</p>
+
+            <div class="HeaderRow">
+                <div>
+                    <h1>Sprint overview</h1>
+                    <p class="subtitle">
+                        Track task ownership, workload balance and sprint progress before the next supervision meeting.
+                    </p>
+                </div>
+
+                <a href="sprint-generate.html" class="PrimaryButton">Generate new sprint</a>
+            </div>
+        </header>
+
+        <section class="KpiGrid">
+            <article class="KpiCard">
+                <h3>Progress</h3>
+                <p>68%</p>
+                <span>17 of 25 workload points completed</span>
+            </article>
+
+            <article class="KpiCard">
+                <h3>Open tasks</h3>
+                <p>8</p>
+                <span>3 tasks require reassignment</span>
+            </article>
+
+            <article class="KpiCard">
+                <h3>Deadline</h3>
+                <p>6 days</p>
+                <span>Report hand-in is approaching</span>
+            </article>
+
+            <article class="KpiCard warning">
+                <h3>Workload risk</h3>
+                <p>High</p>
+                <span>One member has 42% of remaining work</span>
+            </article>
+        </section>
+
+        <section class="OverviewGrid">
+            <section class="BoardPanel">
+                <div class="SectionHeader">
+                    <div>
+                        <h2>Task board</h2>
+                        <p>Static example data. Later this becomes generated from JavaScript.</p>
+                    </div>
+                </div>
+
+                <div class="BoardColumns">
+                    <div class="BoardColumn">
+                        <h3>To do <span>3</span></h3>
+
+                        <article class="TaskCard">
+                            <div class="TaskTopline">
+                                <strong>Finalize interview questions</strong>
+                                <span>3 pts</span>
+                            </div>
+                            <p>Prepare questions for user testing and supervision feedback.</p>
+                            <div class="TaskMeta">
+                                <span>Research</span>
+                                <span>Emma</span>
+                            </div>
+                        </article>
+
+                        <article class="TaskCard">
+                            <div class="TaskTopline">
+                                <strong>Define optimization constraints</strong>
+                                <span>5 pts</span>
+                            </div>
+                            <p>Clarify workload caps and competence requirements.</p>
+                            <div class="TaskMeta">
+                                <span>Algorithm</span>
+                                <span>Anton</span>
+                            </div>
+                        </article>
+
+                        <article class="TaskCard">
+                            <div class="TaskTopline">
+                                <strong>Write evaluation plan</strong>
+                                <span>2 pts</span>
+                            </div>
+                            <p>Describe how the prototype should be tested with students.</p>
+                            <div class="TaskMeta">
+                                <span>Report</span>
+                                <span>Sofie</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="BoardColumn">
+                        <h3>In progress <span>3</span></h3>
+
+                        <article class="TaskCard active">
+                            <div class="TaskTopline">
+                                <strong>Implement sidebar layout</strong>
+                                <span>4 pts</span>
+                            </div>
+                            <p>Make navigation consistent across dashboard pages.</p>
+                            <div class="TaskMeta">
+                                <span>Frontend</span>
+                                <span>Victor</span>
+                            </div>
+                        </article>
+
+                        <article class="TaskCard active">
+                            <div class="TaskTopline">
+                                <strong>Create competence profile</strong>
+                                <span>4 pts</span>
+                            </div>
+                            <p>Build static survey view before connecting JSON question banks.</p>
+                            <div class="TaskMeta">
+                                <span>UX</span>
+                                <span>Emma</span>
+                            </div>
+                        </article>
+
+                        <article class="TaskCard active">
+                            <div class="TaskTopline">
+                                <strong>Problem analysis section</strong>
+                                <span>3 pts</span>
+                            </div>
+                            <p>Connect design motivation to student collaboration problems.</p>
+                            <div class="TaskMeta">
+                                <span>Report</span>
+                                <span>Anton</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="BoardColumn">
+                        <h3>Done <span>2</span></h3>
+
+                        <article class="TaskCard done">
+                            <div class="TaskTopline">
+                                <strong>PACT analysis draft</strong>
+                                <span>3 pts</span>
+                            </div>
+                            <p>Initial People, Activities, Context and Technologies section.</p>
+                            <div class="TaskMeta">
+                                <span>Design</span>
+                                <span>Sofie</span>
+                            </div>
+                        </article>
+
+                        <article class="TaskCard done">
+                            <div class="TaskTopline">
+                                <strong>Dashboard wireframe</strong>
+                                <span>2 pts</span>
+                            </div>
+                            <p>Basic page layout for task overview and group navigation.</p>
+                            <div class="TaskMeta">
+                                <span>UI</span>
+                                <span>Victor</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="SidePanel">
+                <section class="PanelCard">
+                    <div class="SectionHeader compact">
+                        <div>
+                            <h2>Workload</h2>
+                            <p>Remaining points per member.</p>
+                        </div>
+                    </div>
+
+                    <div class="MemberLoad">
+                        <div class="LoadRow">
+                            <span>Anton</span>
+                            <div class="LoadBar"><div style="width: 84%"></div></div>
+                            <strong>12</strong>
+                        </div>
+
+                        <div class="LoadRow">
+                            <span>Emma</span>
+                            <div class="LoadBar"><div style="width: 58%"></div></div>
+                            <strong>8</strong>
+                        </div>
+
+                        <div class="LoadRow">
+                            <span>Victor</span>
+                            <div class="LoadBar"><div style="width: 46%"></div></div>
+                            <strong>6</strong>
+                        </div>
+
+                        <div class="LoadRow">
+                            <span>Sofie</span>
+                            <div class="LoadBar"><div style="width: 38%"></div></div>
+                            <strong>5</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="PanelCard">
+                    <div class="SectionHeader compact">
+                        <div>
+                            <h2>Supervision notes</h2>
+                            <p>Topics to clarify in the meeting.</p>
+                        </div>
+                    </div>
+
+                    <ul class="NoteList">
+                        <li>Should the algorithm prioritize learning goals or current competence?</li>
+                        <li>How should the leader override generated assignments?</li>
+                        <li>What minimum prototype interaction is required for the report?</li>
+                    </ul>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <script>
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            document.getElementById("userInitials").textContent = username.substring(0, 2).toUpperCase();
+            document.getElementById("dropdownUsername").textContent = username;
+        }
+
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                localStorage.removeItem("username");
+                window.location.href = "signin.html";
+            });
+        }
+    </script>
+</body>
+
+</html>
