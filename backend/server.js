@@ -16,7 +16,6 @@ const PORT = 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(cookieParser());
 const sessions = new Map();
 
@@ -174,6 +173,16 @@ app.post('/newtask', (req, res) => {
         tasks = JSON.parse(data);
     }
 
+    //Gets the current sprint ID and adds it to the task
+    let currentSprintId = null;
+        if (fs.existsSync('sprints.json')) {
+            const sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+            //Gets the newest sprint in the file
+            if (sprints.length > 0) {
+                currentSprintId = sprints[sprints.length - 1].id;
+            }
+        }
+
     // Create new task object
     const newTask = {
         id: Date.now(), 
@@ -184,6 +193,7 @@ app.post('/newtask', (req, res) => {
         duedate: duedate,
         oriented: oriented,
         createdBy: createdBy,
+        sprintId: currentSprintId,
         status: 'pending',                 // for project leader to confirm later
         createdAt: new Date().toISOString()
     };
@@ -196,6 +206,31 @@ app.post('/newtask', (req, res) => {
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
+
+//Creates a new sprint
+app.post('/newsprint', (req, res) => {
+    console.log('newsprint hit!', req.body);
+    const { title, description, enddate } = req.body;
+    let sprints = [];
+    if (fs.existsSync('sprints.json')) {
+        sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+    }
+    
+    const newSprint = {
+    id: Date.now(),
+    title,
+    description,
+    enddate,
+    createdAt: new Date().toISOString()
+};
+
+    sprints.push(newSprint);
+    fs.writeFileSync('sprints.json', JSON.stringify(sprints, null, 2));
+
+    res.json({ message: 'Sprint created!', sprint: newSprint });
+});
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
