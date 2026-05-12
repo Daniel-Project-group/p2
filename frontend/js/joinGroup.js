@@ -1,36 +1,32 @@
+const groupIdInput = document.querySelector('#groupId');
+const joinButton   = document.querySelector('#joinButton');
 
-// We only need the group id as user has already been created
-// Queryselector for the group name
-const groupId = document.querySelector('#groupId');
+joinButton.addEventListener('click', async function () {
+    const username  = localStorage.getItem('username');
+    const groupCode = groupIdInput.value.trim();
 
-// Button
-const joinButton = document.querySelector('#joinButton');
+    joinButton.disabled    = true;
+    joinButton.textContent = 'Joining...';
 
-// Button click event
-joinButton.addEventListener("click", async function(){
+    try {
+        const response = await fetch('http://localhost:3000/groupJoin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ groupCode, username })
+        });
+        const data = await response.json();
 
-// We retrieve value of whatever groupId and Button contain
-// Define these values, such we can store it in a newly object
-
-const id = groupId.value;
-
-// Object
-const groupData = {
-groupCode: id
-};
-
-// Now we send the data to Node.js server
-
-try {
-    const response = await fetch('http://localhost:3000/groupJoin',{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({groupCode: id}) // This is the body we send
-    });
-    const data = await response.json();
-
-} catch(error){
-    console.error("Group not found")
-}
-
+        if (response.ok) {
+            localStorage.setItem('groupCode', groupCode);
+            window.location.href = '../html/competence-profile.html';
+        } else {
+            joinButton.disabled    = false;
+            joinButton.textContent = 'Join group';
+            alert(data.message || 'Failed to join group');
+        }
+    } catch (error) {
+        console.error('Could not join group', error);
+        joinButton.disabled    = false;
+        joinButton.textContent = 'Join group';
+    }
 });
