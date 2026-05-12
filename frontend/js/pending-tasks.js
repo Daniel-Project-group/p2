@@ -8,9 +8,9 @@ function renderPendingTasks() {
 
     let pendingTaskHTML = '';
 
-    pendingTasks.forEach(task => {
+    pendingTasks.forEach((task, index) => {
       pendingTaskHTML += `
-      <div class="pending-card" id="pending-card-${task.id}">
+      <div class="pending-card" id="pending-card-${task.id}" style="animation-delay: ${index * 0.1}s">
         <h3>${task.title}</h3>
         <p class="pending-description">${task.description}</p>
         <p class="pending-creator">Suggested by: <strong>${task.createdBy}</strong></p>
