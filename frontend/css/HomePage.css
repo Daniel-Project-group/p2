@@ -17,7 +17,7 @@ header {
 
 .OpenTask {
 
-    position: relative;
+   position: relative;
 
     margin: 0;
     height: 120px;
@@ -41,8 +41,8 @@ header {
 .OpenTask p {
 
     position: absolute;
-
-    top: 60px;
+    
+    top: 70px;
     font-family: 'Fraunces', serif;
     font-size: 36px;
     font-weight: 400;
