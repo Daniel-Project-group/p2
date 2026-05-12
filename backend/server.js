@@ -299,6 +299,23 @@ app.get('/sprint-tasks', (req, res) => {
     res.json(sprintTasks);
 });
 
+//Gets pending tasks
+app.get('/pending-tasks', (req, res) => {
+    const tasks = readJSON(DB.tasks);
+
+    let pendingTasks = [];
+
+    tasks.forEach(task => {
+        if (task.status === 'pending') {
+            pendingTasks.push(task);
+        }
+    });
+
+    res.json(pendingTasks);
+});
+
+
+
 //Creates a new sprint
 app.post('/newsprint', (req, res) => {
     const { title, description, enddate } = req.body;
