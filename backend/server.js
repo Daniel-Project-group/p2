@@ -210,6 +210,7 @@ app.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
+//Gets all the current sprints
 app.get('/sprints', (req, res) => {
     let sprints = [];
     if (fs.existsSync(dataPath('sprints.json'))) {
@@ -218,9 +219,41 @@ app.get('/sprints', (req, res) => {
     res.json(sprints);
 });
 
+//Gets the tasks in a sprint
+app.get('/sprint-tasks', (req, res) => {
+    let sprints = [];
+    let tasks = [];
+    if (fs.existsSync(dataPath('sprints.json'))) {
+        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
+    }
+    if (fs.existsSync(dataPath('tasks.json'))) {
+        tasks = JSON.parse(fs.readFileSync(dataPath('tasks.json'), 'utf-8'));
+    }
+
+    //Makes sure there are sprints in the file
+    if (sprints.length === 0) {
+        return res.json([]);
+    }
+
+    //Gets the latest sprint
+    const newestSprint = sprints[sprints.length - 1]
+
+    let sprintTasks = [];
+
+    //Pushes every task with the matching sprintId 
+    // to sprint tasks
+    tasks.forEach(task => {
+        if (task.sprintId === newestSprint.id) {
+            sprintTasks.push(task);
+        }
+    });
+
+    res.json(sprintTasks);
+
+});
+
 //Creates a new sprint
 app.post('/newsprint', (req, res) => {
-    console.log('newsprint hit!', req.body);
     const { title, description, enddate } = req.body;
     let sprints = [];
     if (fs.existsSync(dataPath('sprints.json'))) {
