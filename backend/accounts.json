@@ -44,5 +44,10 @@
     "username": "Tob",
     "email": "tobr@gmail.com",
     "password": "$2b$10$7Y6UYqSRTmo2O2H7oQyqweyUalKnkHJz963JmCKehKBcNvpHvomnS"
+  },
+  {
+    "username": "Malthesigma",
+    "email": "Sigma@alpha.beta",
+    "password": "$2b$10$HTTSNJuMdCIDgGNdgtHVduu7IdXod.JtKmQS1Jlm4G9g3DTRr/4BG"
   }
 ]
