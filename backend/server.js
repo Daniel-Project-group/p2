@@ -19,6 +19,10 @@ app.use(express.json());
 app.use(cookieParser());
 const sessions = new Map();
 
+// Makes sure it can always find a specific file
+// no matter where the server was launched from
+const dataPath = (file) => path.join(__dirname, file);
+
 // A simple test route
 app.get('/', (req, res) => {
     res.send('Server is running!');
@@ -33,8 +37,8 @@ app.post('/signup', async (req, res) => {
     }
 
     let accounts = [];
-    if (fs.existsSync('accounts.json')) {
-        const data = fs.readFileSync('accounts.json', 'utf-8');
+    if (fs.existsSync(dataPath('accounts.json'))) {
+        const data = fs.readFileSync(dataPath('accounts.json'), 'utf-8');
         accounts = JSON.parse(data);
     }
 
@@ -57,7 +61,7 @@ app.post('/signup', async (req, res) => {
     accounts.push({ username: username, email: email, password: hashedPassword });
 
     // Save to file
-    fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
+    fs.writeFileSync(dataPath('accounts.json'), JSON.stringify(accounts, null, 2));
 
     res.json({ message: 'Account created successfully!' });
 });
@@ -70,11 +74,11 @@ app.post('/login', async (req, res) => {
         return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    if (!fs.existsSync('accounts.json')) {
+    if (!fs.existsSync(dataPath('accounts.json'))) {
         return res.status(400).json({ message: 'No accounts found. Please sign up first.' });
     }
 
-    const data = fs.readFileSync('accounts.json', 'utf-8');
+    const data = fs.readFileSync(dataPath('accounts.json'), 'utf-8');
     const accounts = JSON.parse(data);
 
     const user = accounts.find(account => account.email === email);
@@ -108,8 +112,8 @@ const {name,groupCode,username} = req.body;
     }
     // We read existing groups stored in json to add the new
     let groups = [];
-    if(fs.existsSync('group.json')){
-        const data = fs.readFileSync('group.json', 'utf-8');
+    if(fs.existsSync(dataPath('group.json'))){
+        const data = fs.readFileSync(dataPath('group.json'), 'utf-8');
         groups = JSON.parse(data);
     }
 
@@ -127,7 +131,7 @@ const {name,groupCode,username} = req.body;
     groups.push(newGroup);
 
     // Save to file
-    fs.writeFileSync('group.json', JSON.stringify(groups, null, 2)); 
+    fs.writeFileSync(dataPath('group.json'), JSON.stringify(groups, null, 2)); 
     // groups is the data going to json file Null means we dont filter or transfrom 2: format with 2 spaces indentation in json file 
 
     res.json({ message: 'Task created successfully!', groups: newGroup });
@@ -142,8 +146,8 @@ app.post('/groupJoin', (req,res) => {
 // Now the group ids in json is read
 
     let groups = [];
-    if(fs.existsSync('group.json')){
-        const data = fs.readFileSync('group.json', 'utf-8');
+    if(fs.existsSync(dataPath('group.json'))){
+        const data = fs.readFileSync(dataPath('group.json'), 'utf-8');
         groups = JSON.parse(data);
     }
 
@@ -168,15 +172,15 @@ app.post('/newtask', (req, res) => {
 
     // Read existing tasks (or start empty)
     let tasks = [];
-    if (fs.existsSync('tasks.json')) {
-        const data = fs.readFileSync('tasks.json', 'utf-8');
+    if (fs.existsSync(dataPath('tasks.json'))) {
+        const data = fs.readFileSync(dataPath('tasks.json'), 'utf-8');
         tasks = JSON.parse(data);
     }
 
     //Gets the current sprint ID and adds it to the task
     let currentSprintId = null;
-        if (fs.existsSync('sprints.json')) {
-            const sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+        if (fs.existsSync(dataPath('sprints.json'))) {
+            const sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
             //Gets the newest sprint in the file
             if (sprints.length > 0) {
                 currentSprintId = sprints[sprints.length - 1].id;
@@ -201,15 +205,15 @@ app.post('/newtask', (req, res) => {
     tasks.push(newTask);
 
     // Save to file
-    fs.writeFileSync('tasks.json', JSON.stringify(tasks, null, 2));
+    fs.writeFileSync(dataPath('tasks.json'), JSON.stringify(tasks, null, 2));
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
 app.get('/sprints', (req, res) => {
     let sprints = [];
-    if (fs.existsSync('sprints.json')) {
-        sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+    if (fs.existsSync(dataPath('sprints.json'))) {
+        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
     }
     res.json(sprints);
 });
@@ -219,8 +223,8 @@ app.post('/newsprint', (req, res) => {
     console.log('newsprint hit!', req.body);
     const { title, description, enddate } = req.body;
     let sprints = [];
-    if (fs.existsSync('sprints.json')) {
-        sprints = JSON.parse(fs.readFileSync('sprints.json', 'utf-8'));
+    if (fs.existsSync(dataPath('sprints.json'))) {
+        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
     }
     
     const newSprint = {
@@ -232,7 +236,7 @@ app.post('/newsprint', (req, res) => {
 };
 
     sprints.push(newSprint);
-    fs.writeFileSync('sprints.json', JSON.stringify(sprints, null, 2));
+    fs.writeFileSync(dataPath('sprints.json'), JSON.stringify(sprints, null, 2));
 
     res.json({ message: 'Sprint created!', sprint: newSprint });
 });
