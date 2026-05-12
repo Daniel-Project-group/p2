@@ -1,8 +1,13 @@
+
+
 // Import the packages we installed
 const express = require('express');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const crypto = require('crypto');
 
 // Create the Express app
 const app = express();
@@ -11,6 +16,9 @@ const PORT = 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(cookieParser());
+const sessions = new Map();
 
 // A simple test route
 app.get('/', (req, res) => {
@@ -79,6 +87,10 @@ app.post('/login', async (req, res) => {
     if (!passwordMatches) {
         return res.status(400).json({ message: 'Invalid email or password' });
     }
+    // A cookie is imprinted on that login
+    const sessionId = crypto.randomUUID();
+    sessions.set(sessionId, user.username);
+    res.cookie('sessionId', sessionId);
 
     // Send back username so frontend can save it
     res.json({
@@ -86,9 +98,69 @@ app.post('/login', async (req, res) => {
         username: user.username
     });
 });
+
+// Creating group route
+app.post('/groupCreate', (req,res) =>{
+const {name,groupCode,username} = req.body;
+
+// We validate the data
+    if(!name || !groupCode || !username){
+        return res.status(400).json({message: 'Name and Id required'});
+    }
+    // We read existing groups stored in json to add the new
+    let groups = [];
+    if(fs.existsSync('group.json')){
+        const data = fs.readFileSync('group.json', 'utf-8');
+        groups = JSON.parse(data);
+    }
+
+    // New group object
+    const newGroup = {
+        name: name,
+        groupCode: groupCode,
+        id: Date.now(),
+        createdAt: new Date().toISOString(),
+        members: [username] // Upon creation the given username is stored
+    }
+
+    // We add to array
+
+    groups.push(newGroup);
+
+    // Save to file
+    fs.writeFileSync('group.json', JSON.stringify(groups, null, 2)); 
+    // groups is the data going to json file Null means we dont filter or transfrom 2: format with 2 spaces indentation in json file 
+
+    res.json({ message: 'Task created successfully!', groups: newGroup });
+
+});
+
+// We make a get for group id - this needs to check is the typed group ID exists, if thats the case, we join that
+
+app.post('/groupJoin', (req,res) => {
+    const{groupCode} = req.body;
+    
+// Now the group ids in json is read
+
+    let groups = [];
+    if(fs.existsSync('group.json')){
+        const data = fs.readFileSync('group.json', 'utf-8');
+        groups = JSON.parse(data);
+    }
+
+    // We need a const/variable for when whatever input from frontend matches whats in group.json
+    const matchingGroup = groups.find(function(group){
+        return group.groupCode === groupCode;
+    })
+    if(matchingGroup){
+        // Assignment due:
+        // Here the user needs to be stored in the given groups member property array
+    }
+});
+
 // Create new task route
 app.post('/newtask', (req, res) => {
-    const { title, description, quantity, duedate, oriented, createdBy } = req.body;
+    const { group,title, description, quantity, duedate, oriented, createdBy } = req.body;
 
     // Validate required fields
     if (!title || !duedate || !oriented || !createdBy) {
@@ -104,14 +176,15 @@ app.post('/newtask', (req, res) => {
 
     // Create new task object
     const newTask = {
-        id: Date.now(),
+        id: Date.now(), 
+        groupId: group,                   // unique ID (timestamp)
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
         oriented: oriented,
         createdBy: createdBy,
-        status: 'pending',
+        status: 'pending',                 // for project leader to confirm later
         createdAt: new Date().toISOString()
     };
 
@@ -123,46 +196,7 @@ app.post('/newtask', (req, res) => {
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
-
-app.post('/savecompetence', (req, res) => {
-    const { username, ratings } = req.body;
-
-
-    if (!username || !ratings) {
-        return res.status(400).json({ message: 'Username and ratings are required' });
-    }
-
-    let profiles = [];
-    if (fs.existsSync('competences.json')) {
-        const data = fs.readFileSync('competences.json', 'utf-8');
-        if (data.trim()) {
-            profiles = JSON.parse(data);
-        }
-    }
-
-
-    const existingIndex = profiles.findIndex(p => p.username === username);
-
-    const profileData = {
-        username: username,
-        ratings: ratings,
-        updatedAt: new Date().toISOString()
-    };
-
-    if (existingIndex !== -1) {
-
-        profiles[existingIndex] = profileData;
-    } else {
-
-        profiles.push(profileData);
-    }
-
-    // Save to file
-    fs.writeFileSync('competences.json', JSON.stringify(profiles, null, 2));
-
-    res.json({ message: 'Competence profile saved!' });
-});
-
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
