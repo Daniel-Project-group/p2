@@ -21,6 +21,12 @@ app.use(cookieParser());
 
 const sessions = new Map();
 
+const DB = {
+    accounts: path.join(__dirname, 'accounts.json'),
+    groups:   path.join(__dirname, 'group.json'),
+    tasks:    path.join(__dirname, 'tasks.json'),
+};
+
 function readJSON(file) {
     if (!fs.existsSync(file)) return [];
     const data = fs.readFileSync(file, 'utf-8');
@@ -38,7 +44,7 @@ app.post('/signup', async (req, res) => {
     if (!username || !email || !password)
         return res.status(400).json({ message: 'Username, email, and password are required' });
 
-    const accounts = readJSON('accounts.json');
+    const accounts = readJSON(DB.accounts);
 
     if (accounts.find(a => a.email === email))
         return res.status(400).json({ message: 'An account with this email already exists' });
@@ -48,7 +54,7 @@ app.post('/signup', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     accounts.push({ username, email, password: hashedPassword });
-    fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
+    fs.writeFileSync(DB.accounts, JSON.stringify(accounts, null, 2));
 
     res.json({ message: 'Account created successfully!' });
 });
@@ -60,8 +66,8 @@ app.post('/login', async (req, res) => {
     if (!email || !password)
         return res.status(400).json({ message: 'Email and password are required' });
 
-    const accounts = readJSON('accounts.json');
-    const user = accounts.find(a => a.email === email);
+    const accounts = readJSON(DB.accounts);
+    const user     = accounts.find(a => a.email === email);
 
     if (!user)
         return res.status(400).json({ message: 'Invalid email or password' });
@@ -80,7 +86,7 @@ app.post('/login', async (req, res) => {
 // Get all groups a user is a member of
 app.get('/user/:username/groups', (req, res) => {
     const { username } = req.params;
-    const groups = readJSON('group.json');
+    const groups = readJSON(DB.groups);
     const userGroups = groups
         .filter(g => g.members.includes(username))
         .map(g => ({ name: g.name, groupCode: g.groupCode, programme: g.programme, semester: g.semester }));
@@ -90,7 +96,7 @@ app.get('/user/:username/groups', (req, res) => {
 // Get group info
 app.get('/group/:groupCode', (req, res) => {
     const { groupCode } = req.params;
-    const groups = readJSON('group.json');
+    const groups = readJSON(DB.groups);
     const group = groups.find(g => g.groupCode === groupCode);
 
     if (!group) return res.status(404).json({ message: 'Group not found' });
@@ -108,7 +114,7 @@ app.get('/group/:groupCode', (req, res) => {
 // Get competences for a group
 app.get('/group/:groupCode/competences', (req, res) => {
     const { groupCode } = req.params;
-    const groups = readJSON('group.json');
+    const groups = readJSON(DB.groups);
     const group = groups.find(g => g.groupCode === groupCode);
 
     if (!group) return res.status(404).json({ message: 'Group not found' });
@@ -127,7 +133,7 @@ app.post('/group/:groupCode/member-profile', (req, res) => {
     if (!username || !answers)
         return res.status(400).json({ message: 'Username and answers are required' });
 
-    const groups = readJSON('group.json');
+    const groups = readJSON(DB.groups);
     const idx = groups.findIndex(g => g.groupCode === groupCode);
 
     if (idx === -1) return res.status(404).json({ message: 'Group not found' });
@@ -141,7 +147,7 @@ app.post('/group/:groupCode/member-profile', (req, res) => {
         groups[idx].memberProfiles.push({ username, answers });
     }
 
-    fs.writeFileSync('group.json', JSON.stringify(groups, null, 2));
+    fs.writeFileSync(DB.groups, JSON.stringify(groups, null, 2));
     res.json({ message: 'Profile saved' });
 });
 
@@ -155,7 +161,7 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
     if (!curriculumUrl && !req.file)
         return res.status(400).json({ message: 'Please provide a curriculum URL or upload a PDF file' });
 
-    const existingGroups = readJSON('group.json');
+    const existingGroups = readJSON(DB.groups);
     if (existingGroups.find(g => g.groupCode === groupCode))
         return res.status(400).json({ message: `Group ID "${groupCode}" is already taken` });
 
@@ -172,7 +178,7 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
     };
 
     existingGroups.push(newGroup);
-    fs.writeFileSync('group.json', JSON.stringify(existingGroups, null, 2));
+    fs.writeFileSync(DB.groups, JSON.stringify(existingGroups, null, 2));
 
     res.json({ message: 'Group created successfully!', group: newGroup });
 
@@ -195,11 +201,11 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
 
         const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
 
-        const saved = readJSON('group.json');
+        const saved = readJSON(DB.groups);
         const idx = saved.findIndex(g => g.id === newGroup.id);
         if (idx !== -1) {
             saved[idx].competences = profile.competences;
-            fs.writeFileSync('group.json', JSON.stringify(saved, null, 2));
+            fs.writeFileSync(DB.groups, JSON.stringify(saved, null, 2));
             console.log(`Competences saved for group "${name}"`);
         }
     } catch (err) {
@@ -215,14 +221,14 @@ app.post('/groupJoin', (req, res) => {
     if (!groupCode || !username)
         return res.status(400).json({ message: 'Group ID and username are required' });
 
-    const groups = readJSON('group.json');
+    const groups = readJSON(DB.groups);
     const idx = groups.findIndex(g => g.groupCode === groupCode);
 
     if (idx === -1) return res.status(404).json({ message: 'Group not found' });
 
     if (!groups[idx].members.includes(username)) {
         groups[idx].members.push(username);
-        fs.writeFileSync('group.json', JSON.stringify(groups, null, 2));
+        fs.writeFileSync(DB.groups, JSON.stringify(groups, null, 2));
     }
 
     res.json({ message: 'Joined group successfully', groupCode });
@@ -235,7 +241,7 @@ app.post('/newtask', (req, res) => {
     if (!title || !duedate || !oriented || !createdBy)
         return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
 
-    const tasks = readJSON('tasks.json');
+    const tasks = readJSON(DB.tasks);
 
     const newTask = {
         id: Date.now(),
@@ -251,7 +257,7 @@ app.post('/newtask', (req, res) => {
     };
 
     tasks.push(newTask);
-    fs.writeFileSync('tasks.json', JSON.stringify(tasks, null, 2));
+    fs.writeFileSync(DB.tasks, JSON.stringify(tasks, null, 2));
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
