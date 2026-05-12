@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@300;400;500&family=Inter+Tight:wght@300;400;500;600&display=swap');
 
 body {
     margin: 0;
@@ -17,7 +17,7 @@ header {
 
 .OpenTask {
 
-    position: relative;
+   position: relative;
 
     margin: 0;
     height: 120px;
@@ -41,8 +41,8 @@ header {
 .OpenTask p {
 
     position: absolute;
-
-    top: 60px;
+    
+    top: 70px;
     font-family: 'Fraunces', serif;
     font-size: 36px;
     font-weight: 400;
@@ -51,7 +51,6 @@ header {
 }
 
 main {
-    background-color: rgb(241, 234, 220);
     min-height: 100vh;
     padding: 40px;
     margin: 0;

@@ -1,0 +1,56 @@
+{
+  "programme": "Computer Science",
+  "semester": 2,
+  "competences": [
+    {
+      "name": "Programming Fundamentals",
+      "competenceQuestion": "How proficient are you in programming fundamentals? (1-10)",
+      "interestQuestion": "How interested are you in programming fundamentals? (1-10)"
+    },
+    {
+      "name": "Data Structures",
+      "competenceQuestion": "How proficient are you in working with various data structures? (1-10)",
+      "interestQuestion": "How interested are you in learning more about data structures? (1-10)"
+    },
+    {
+      "name": "Algorithms",
+      "competenceQuestion": "How proficient are you in designing and analyzing algorithms? (1-10)",
+      "interestQuestion": "How interested are you in learning more about algorithms? (1-10)"
+    },
+    {
+      "name": "Object-Oriented Programming",
+      "competenceQuestion": "How proficient are you in object-oriented programming concepts? (1-10)",
+      "interestQuestion": "How interested are you in further exploring object-oriented programming? (1-10)"
+    },
+    {
+      "name": "Software Engineering Principles",
+      "competenceQuestion": "How proficient are you in software engineering principles and methodologies? (1-10)",
+      "interestQuestion": "How interested are you in learning more about software engineering? (1-10)"
+    },
+    {
+      "name": "Database Systems",
+      "competenceQuestion": "How proficient are you in designing, implementing and managing database systems? (1-10)",
+      "interestQuestion": "How interested are you in learning more about database systems? (1-10)"
+    },
+    {
+      "name": "Operating Systems",
+      "competenceQuestion": "How proficient are you in understanding and working with operating system concepts? (1-10)",
+      "interestQuestion": "How interested are you in exploring operating systems further? (1-10)"
+    },
+    {
+      "name": "Computer Networks",
+      "competenceQuestion": "How proficient are you in understanding computer networks and their protocols? (1-10)",
+      "interestQuestion": "How interested are you in learning more about computer networks? (1-10)"
+    },
+    {
+      "name": "Web Development",
+      "competenceQuestion": "How proficient are you in web development using common languages and frameworks? (1-10)",
+      "interestQuestion": "How interested are you in further exploring web development? (1-10)"
+    },
+    {
+      "name": "Mathematical Foundations",
+      "competenceQuestion": "How proficient are you in the mathematical foundations of computer science? (1-10)",
+      "interestQuestion": "How interested are you in deepening your understanding of mathematical foundations? (1-10)"
+    }
+  ]
+}
