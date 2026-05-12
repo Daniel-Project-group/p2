@@ -34,7 +34,7 @@
   },
   {
     "id": 1778504694774,
-    "title": "Sprint Test 2",
+    "title": "Task Test 2",
     "description": "Fobber",
     "quantity": 2,
     "duedate": "2026-05-14",
@@ -65,5 +65,16 @@
     "sprintId": 1778502444327,
     "status": "pending",
     "createdAt": "2026-05-12T08:47:45.934Z"
+  },
+  {
+    "id": 1778582694576,
+    "title": "Hello",
+    "description": "Den 4. task",
+    "quantity": 2,
+    "duedate": "2026-05-20",
+    "createdBy": "Tobber",
+    "sprintId": 1778502444327,
+    "status": "pending",
+    "createdAt": "2026-05-12T10:44:54.576Z"
   }
 ]

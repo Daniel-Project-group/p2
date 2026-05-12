@@ -70,7 +70,23 @@ fetch('http://localhost:3000/sprints')
     });
   });
 
-  
+fetch('http://localhost:3000/sprint-tasks')
+  .then(res => res.json())
+  .then(sprintsTasks => {
+    console.log(sprintsTasks.length)
+    document.querySelector('#js-task-amount')
+      .innerHTML = sprintsTasks.length;
+
+    let tasksHTML = '';
+
+    sprintsTasks.forEach(task => {
+      tasksHTML += `<li>${task.title}</li>`;
+    });
+
+    document.querySelector('#js-remaning-tasks')
+      .innerHTML = tasksHTML;
+
+  });
 
  
 
