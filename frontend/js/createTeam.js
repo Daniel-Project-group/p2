@@ -8,6 +8,12 @@ const groupId = document.querySelector('#groupId');
 // Button
 const groupButton = document.querySelector('#createGroupButton');
 
+// Semester
+const groupSemester = document.querySelector('#semester')
+
+// Degree
+const groupDegree = dovument.querySelector('#degree')
+
 // Now we make the function for when clicken the button
 // On the event we want to store whatever groupName and groupId contains
 
