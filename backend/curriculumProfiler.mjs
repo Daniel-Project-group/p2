@@ -1,111 +1,125 @@
 import ollama from 'ollama';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const CACHE_DIR = './cache';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const CACHE_DIR  = path.join(__dirname, 'cache');
 
 if (!fs.existsSync(CACHE_DIR)) {
   fs.mkdirSync(CACHE_DIR);
 }
 
+const MODEL = 'mistral';
+
 async function fetchCurriculum(url) {
   const response = await fetch(url);
-  const html = await response.text();
-
-  const cleaned = html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  return cleaned.slice(0, 6000);
+  const html     = await response.text();
+  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 8000);
 }
 
-async function generateProfileFromCurriculum(programme, semester, curriculumText) {
+// Step 1: extract just the course names for the given semester from the curriculum text
+async function extractCourseNames(semester, curriculumText) {
   const prompt = `
-You are an academic assistant helping build a competence profile for university students.
+You are reading a university curriculum document.
+Extract all course or module names that belong to semester ${semester}.
+Also include courses from earlier semesters (1 to ${semester - 1}) since students have already studied those.
 
-Below is the curriculum for semester ${semester} of the "${programme}" programme at Aalborg University.
-Your job is to:
-1. Generate a list of 6-10 competences derived directly from this curriculum
-2. For each competence, write one question to assess skill level (answered 1-10)
-3. For each competence, write one question to assess interest level (answered 1-10)
-
-This student is on semester ${semester}, meaning they have completed semesters 1 through ${semester - 1}.
-Calibrate question depth to reflect their cumulative experience, not just the current semester.
-
-Return ONLY a valid JSON object in this exact format, with no explanation or markdown:
-{
-  "programme": "${programme}",
-  "semester": ${semester},
-  "competences": [
-    {
-      "name": "Short competence name (2-4 words)",
-      "competenceQuestion": "Specific question about their skill level in this area (answered 1-10)",
-      "interestQuestion": "Specific question about their interest in this area (answered 1-10)"
-    }
-  ]
-}
-
-Rules:
-- Competence names should be short (2-4 words) and specific to this programme
-- Questions should be specific to what ${programme} students actually study
-- All output must be in English
-- Only return the JSON, nothing else
+Return ONLY a JSON array of course names in English, nothing else. Example:
+["Algorithms and Data Structures", "Web Programming", "Linear Algebra"]
 
 Curriculum text:
-${curriculumText}
+${curriculumText.slice(0, 8000)}
 `;
 
   const response = await ollama.chat({
-    model: 'llama3.2',
+    model: MODEL,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
     options: { num_ctx: 4096 },
     keep_alive: '10m'
   });
 
-  return JSON.parse(response.message.content);
+  try {
+    const parsed = JSON.parse(response.message.content);
+    // handle both ["course"] and {"courses": ["course"]} responses
+    return Array.isArray(parsed) ? parsed : Object.values(parsed)[0];
+  } catch {
+    return [];
+  }
 }
 
-async function generateProfileFromKnowledge(programme, semester) {
+// Step 2: generate competences from the list of course names
+async function generateCompetencesFromCourses(programme, semester, courseNames) {
   const prompt = `
-You are an academic assistant helping build a competence profile for university students.
+You are building a competence profile for a "${programme}" student at Aalborg University on semester ${semester}.
 
-Generate a competence profile for a student studying "${programme}" at Aalborg University,
-currently on semester ${semester}.
+Based on these courses they have studied up to and including semester ${semester}:
+${courseNames.join(', ')}
 
-Use your knowledge of what students typically study in this programme.
-This student has completed semesters 1 through ${semester - 1}, so calibrate questions
-to reflect their cumulative knowledge up to and including semester ${semester}.
+Generate 6-10 practical competences that reflect what this student can actually do.
+Each competence should map directly to one or more of the courses above.
 
-Generate 6-10 competences that are highly relevant to "${programme}" students.
-For each competence write one skill question and one interest question (both answered 1-10).
-
-Return ONLY a valid JSON object in this exact format, with no explanation or markdown:
+Return ONLY a valid JSON object in this exact format, no markdown:
 {
   "programme": "${programme}",
   "semester": ${semester},
   "competences": [
     {
-      "name": "Short competence name (2-4 words)",
-      "competenceQuestion": "Specific question about their skill level (answered 1-10)",
-      "interestQuestion": "Specific question about their interest in this area (answered 1-10)"
+      "name": "Short name (2-4 words)",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
     }
   ]
 }
 
 Rules:
-- Competence names should be short (2-4 words) and specific to ${programme}
-- Questions should reflect the level of a semester ${semester} student
+- Competence names must be short (2-4 words) and specific — e.g. "Algorithms & Data Structures", "Web Programming", "Report Writing"
 - All output must be in English
 - Only return the JSON, nothing else
 `;
 
   const response = await ollama.chat({
-    model: 'llama3.2',
+    model: MODEL,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
-    options: { num_ctx: 4096 },
+    options: { num_ctx: 2048 },
+    keep_alive: '10m'
+  });
+
+  return JSON.parse(response.message.content);
+}
+
+// Fallback: no curriculum provided, use LLM general knowledge
+async function generateFromKnowledge(programme, semester) {
+  const prompt = `
+Generate a competence profile for a "${programme}" student at Aalborg University on semester ${semester}.
+Use your knowledge of what this programme typically covers up to semester ${semester}.
+
+Return ONLY a valid JSON object, no markdown:
+{
+  "programme": "${programme}",
+  "semester": ${semester},
+  "competences": [
+    {
+      "name": "Short name (2-4 words)",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    }
+  ]
+}
+
+Rules:
+- 6-10 competences, short names (2-4 words), specific to the programme
+- All output in English
+- Only return the JSON
+`;
+
+  const response = await ollama.chat({
+    model: MODEL,
+    messages: [{ role: 'user', content: prompt }],
+    format: 'json',
+    options: { num_ctx: 2048 },
     keep_alive: '10m'
   });
 
@@ -113,7 +127,7 @@ Rules:
 }
 
 export async function getCompetenceProfile(programme, semester, curriculumUrl = null, curriculumText = null) {
-  const key = `${programme.toLowerCase().replace(/\s+/g, '-')}-${semester}`;
+  const key       = `${programme.toLowerCase().replace(/\s+/g, '-')}-${semester}`;
   const cachePath = path.join(CACHE_DIR, `${key}.json`);
 
   if (fs.existsSync(cachePath)) {
@@ -123,17 +137,22 @@ export async function getCompetenceProfile(programme, semester, curriculumUrl = 
 
   let profile;
 
-  if (curriculumText) {
-    console.log(`Generating competence profile from provided text for ${key}...`);
-    profile = await generateProfileFromCurriculum(programme, semester, curriculumText.slice(0, 6000));
-  } else if (curriculumUrl) {
-    console.log(`Fetching curriculum for ${key} from ${curriculumUrl}...`);
-    const text = await fetchCurriculum(curriculumUrl);
-    console.log(`Generating competence profile from curriculum...`);
-    profile = await generateProfileFromCurriculum(programme, semester, text);
+  if (curriculumText || curriculumUrl) {
+    let text = curriculumText;
+    if (!text) {
+      console.log(`Fetching curriculum from ${curriculumUrl}...`);
+      text = await fetchCurriculum(curriculumUrl);
+    }
+
+    console.log(`Step 1 — extracting course names for semester ${semester}...`);
+    const courseNames = await extractCourseNames(semester, text);
+    console.log(`Found courses: ${courseNames.join(', ')}`);
+
+    console.log(`Step 2 — generating competences from course names...`);
+    profile = await generateCompetencesFromCourses(programme, semester, courseNames);
   } else {
-    console.log(`No curriculum source for ${key}, using LLM knowledge...`);
-    profile = await generateProfileFromKnowledge(programme, semester);
+    console.log(`No curriculum provided, using LLM knowledge...`);
+    profile = await generateFromKnowledge(programme, semester);
   }
 
   console.log('Generated profile:', JSON.stringify(profile, null, 2));
