@@ -6,9 +6,11 @@ const path        = require('path');
 const cookieParser = require('cookie-parser');
 const crypto      = require('crypto');
 const multer      = require('multer');
-const pdfjsLib    = require('pdfjs-dist/legacy/build/pdf.js');
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+let pdfjsLib;
+import('pdfjs-dist/legacy/build/pdf.mjs').then(mod => {
+    pdfjsLib = mod;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+});
 
 const app    = express();
 const PORT   = 3000;
