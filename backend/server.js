@@ -268,7 +268,9 @@ app.listen(PORT, async () => {
     // Pre-warm both models so they're loaded in memory before a user needs them
     try {
         const { Ollama } = await import('ollama');
-        const client = new Ollama();
+        const client = new Ollama({
+            fetch: (url, options) => fetch(url, { ...options, signal: AbortSignal.timeout(300_000) })
+        });
         await Promise.all([
             client.generate({ model: 'qwen2.5:3b', prompt: 'hi', keep_alive: '10m' }),
             client.generate({ model: 'mistral',    prompt: 'hi', keep_alive: '10m' })
