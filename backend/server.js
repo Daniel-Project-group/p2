@@ -1,202 +1,260 @@
-
-
-// Import the packages we installed
-const express = require('express');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
+const express     = require('express');
+const bcrypt      = require('bcrypt');
+const cors        = require('cors');
+const fs          = require('fs');
+const path        = require('path');
 const cookieParser = require('cookie-parser');
-const crypto = require('crypto');
+const crypto      = require('crypto');
+const multer      = require('multer');
+const pdfjsLib    = require('pdfjs-dist/legacy/build/pdf.js');
 
-// Create the Express app
-const app = express();
-const PORT = 3000;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '';
 
-// Middleware
+const app    = express();
+const PORT   = 3000;
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(cookieParser());
+
 const sessions = new Map();
 
-// A simple test route
+function readJSON(file) {
+    if (!fs.existsSync(file)) return [];
+    const data = fs.readFileSync(file, 'utf-8');
+    return data.trim() ? JSON.parse(data) : [];
+}
+
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
-// Signup route
+// Signup
 app.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password)
         return res.status(400).json({ message: 'Username, email, and password are required' });
-    }
 
-    let accounts = [];
-    if (fs.existsSync('accounts.json')) {
-        const data = fs.readFileSync('accounts.json', 'utf-8');
-        accounts = JSON.parse(data);
-    }
+    const accounts = readJSON('accounts.json');
 
-    // Check if email is already registered
-    const existingUser = accounts.find(account => account.email === email);
-    if (existingUser) {
+    if (accounts.find(a => a.email === email))
         return res.status(400).json({ message: 'An account with this email already exists' });
-    }
 
-    // Check if username is taken
-    const existingUsername = accounts.find(account => account.username === username);
-    if (existingUsername) {
+    if (accounts.find(a => a.username === username))
         return res.status(400).json({ message: 'This username is already taken' });
-    }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Add the new account
-    accounts.push({ username: username, email: email, password: hashedPassword });
-
-    // Save to file
+    accounts.push({ username, email, password: hashedPassword });
     fs.writeFileSync('accounts.json', JSON.stringify(accounts, null, 2));
 
     res.json({ message: 'Account created successfully!' });
 });
 
-// Login route
+// Login
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password)
         return res.status(400).json({ message: 'Email and password are required' });
-    }
 
-    if (!fs.existsSync('accounts.json')) {
-        return res.status(400).json({ message: 'No accounts found. Please sign up first.' });
-    }
+    const accounts = readJSON('accounts.json');
+    const user = accounts.find(a => a.email === email);
 
-    const data = fs.readFileSync('accounts.json', 'utf-8');
-    const accounts = JSON.parse(data);
-
-    const user = accounts.find(account => account.email === email);
-    if (!user) {
+    if (!user)
         return res.status(400).json({ message: 'Invalid email or password' });
-    }
 
     const passwordMatches = await bcrypt.compare(password, user.password);
-    if (!passwordMatches) {
+    if (!passwordMatches)
         return res.status(400).json({ message: 'Invalid email or password' });
-    }
-    // A cookie is imprinted on that login
+
     const sessionId = crypto.randomUUID();
     sessions.set(sessionId, user.username);
     res.cookie('sessionId', sessionId);
 
-    // Send back username so frontend can save it
+    res.json({ message: 'Login successful! Welcome back.', username: user.username });
+});
+
+// Get all groups a user is a member of
+app.get('/user/:username/groups', (req, res) => {
+    const { username } = req.params;
+    const groups = readJSON('group.json');
+    const userGroups = groups
+        .filter(g => g.members.includes(username))
+        .map(g => ({ name: g.name, groupCode: g.groupCode, programme: g.programme, semester: g.semester }));
+    res.json({ groups: userGroups });
+});
+
+// Get group info
+app.get('/group/:groupCode', (req, res) => {
+    const { groupCode } = req.params;
+    const groups = readJSON('group.json');
+    const group = groups.find(g => g.groupCode === groupCode);
+
+    if (!group) return res.status(404).json({ message: 'Group not found' });
+
     res.json({
-        message: 'Login successful! Welcome back.',
-        username: user.username
+        name: group.name,
+        groupCode: group.groupCode,
+        programme: group.programme,
+        semester: group.semester,
+        members: group.members,
+        hasCompetences: !!group.competences
     });
 });
 
-// Creating group route
-app.post('/groupCreate', (req,res) =>{
-const {name,groupCode,username} = req.body;
+// Get competences for a group
+app.get('/group/:groupCode/competences', (req, res) => {
+    const { groupCode } = req.params;
+    const groups = readJSON('group.json');
+    const group = groups.find(g => g.groupCode === groupCode);
 
-// We validate the data
-    if(!name || !groupCode || !username){
-        return res.status(400).json({message: 'Name and Id required'});
-    }
-    // We read existing groups stored in json to add the new
-    let groups = [];
-    if(fs.existsSync('group.json')){
-        const data = fs.readFileSync('group.json', 'utf-8');
-        groups = JSON.parse(data);
+    if (!group) return res.status(404).json({ message: 'Group not found' });
+
+    if (!group.competences)
+        return res.status(202).json({ message: 'Competences are still being generated, try again shortly' });
+
+    res.json({ competences: group.competences.map(c => c.name) });
+});
+
+// Save a member's competence profile answers
+app.post('/group/:groupCode/member-profile', (req, res) => {
+    const { groupCode } = req.params;
+    const { username, answers } = req.body;
+
+    if (!username || !answers)
+        return res.status(400).json({ message: 'Username and answers are required' });
+
+    const groups = readJSON('group.json');
+    const idx = groups.findIndex(g => g.groupCode === groupCode);
+
+    if (idx === -1) return res.status(404).json({ message: 'Group not found' });
+
+    if (!groups[idx].memberProfiles) groups[idx].memberProfiles = [];
+
+    const existing = groups[idx].memberProfiles.findIndex(p => p.username === username);
+    if (existing !== -1) {
+        groups[idx].memberProfiles[existing] = { username, answers };
+    } else {
+        groups[idx].memberProfiles.push({ username, answers });
     }
 
-    // New group object
+    fs.writeFileSync('group.json', JSON.stringify(groups, null, 2));
+    res.json({ message: 'Profile saved' });
+});
+
+// Create group
+app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
+    const { name, groupCode, username, programme, semester, curriculumUrl } = req.body;
+
+    if (!name || !groupCode || !username || !programme || !semester)
+        return res.status(400).json({ message: 'Name, group ID, username, programme, and semester are required' });
+
+    if (!curriculumUrl && !req.file)
+        return res.status(400).json({ message: 'Please provide a curriculum URL or upload a PDF file' });
+
+    const existingGroups = readJSON('group.json');
+    if (existingGroups.find(g => g.groupCode === groupCode))
+        return res.status(400).json({ message: `Group ID "${groupCode}" is already taken` });
+
     const newGroup = {
-        name: name,
-        groupCode: groupCode,
+        name,
+        groupCode,
         id: Date.now(),
         createdAt: new Date().toISOString(),
-        members: [username] // Upon creation the given username is stored
+        members: [username],
+        programme,
+        semester: parseInt(semester),
+        curriculumUrl: curriculumUrl || null,
+        competences: null
+    };
+
+    existingGroups.push(newGroup);
+    fs.writeFileSync('group.json', JSON.stringify(existingGroups, null, 2));
+
+    res.json({ message: 'Group created successfully!', group: newGroup });
+
+    // Generate competences in the background
+    const pdfBuffer = req.file ? req.file.buffer : null;
+    try {
+        const { getCompetenceProfile } = await import('./curriculumProfiler.mjs');
+        let extractedText = null;
+        if (pdfBuffer) {
+            const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) });
+            const doc = await loadingTask.promise;
+            const pages = [];
+            for (let i = 1; i <= doc.numPages; i++) {
+                const page = await doc.getPage(i);
+                const content = await page.getTextContent();
+                pages.push(content.items.map(item => item.str).join(' '));
+            }
+            extractedText = pages.join('\n');
+        }
+
+        const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
+
+        const saved = readJSON('group.json');
+        const idx = saved.findIndex(g => g.id === newGroup.id);
+        if (idx !== -1) {
+            saved[idx].competences = profile.competences;
+            fs.writeFileSync('group.json', JSON.stringify(saved, null, 2));
+            console.log(`Competences saved for group "${name}"`);
+        }
+    } catch (err) {
+        console.error('Failed to generate competences:', err.message);
     }
-
-    // We add to array
-
-    groups.push(newGroup);
-
-    // Save to file
-    fs.writeFileSync('group.json', JSON.stringify(groups, null, 2)); 
-    // groups is the data going to json file Null means we dont filter or transfrom 2: format with 2 spaces indentation in json file 
-
-    res.json({ message: 'Task created successfully!', groups: newGroup });
-
 });
 
-// We make a get for group id - this needs to check is the typed group ID exists, if thats the case, we join that
+// Join group
+app.post('/groupJoin', (req, res) => {
+    const { groupCode, username } = req.body;
 
-app.post('/groupJoin', (req,res) => {
-    const{groupCode} = req.body;
-    
-// Now the group ids in json is read
+    if (!groupCode || !username)
+        return res.status(400).json({ message: 'Group ID and username are required' });
 
-    let groups = [];
-    if(fs.existsSync('group.json')){
-        const data = fs.readFileSync('group.json', 'utf-8');
-        groups = JSON.parse(data);
+    const groups = readJSON('group.json');
+    const idx = groups.findIndex(g => g.groupCode === groupCode);
+
+    if (idx === -1) return res.status(404).json({ message: 'Group not found' });
+
+    if (!groups[idx].members.includes(username)) {
+        groups[idx].members.push(username);
+        fs.writeFileSync('group.json', JSON.stringify(groups, null, 2));
     }
 
-    // We need a const/variable for when whatever input from frontend matches whats in group.json
-    const matchingGroup = groups.find(function(group){
-        return group.groupCode === groupCode;
-    })
-    if(matchingGroup){
-        // Assignment due:
-        // Here the user needs to be stored in the given groups member property array
-    }
+    res.json({ message: 'Joined group successfully', groupCode });
 });
 
-// Create new task route
+// Create new task
 app.post('/newtask', (req, res) => {
-    const { group,title, description, quantity, duedate, oriented, createdBy } = req.body;
+    const { group, title, description, quantity, duedate, oriented, createdBy } = req.body;
 
-    // Validate required fields
-    if (!title || !duedate || !oriented || !createdBy) {
+    if (!title || !duedate || !oriented || !createdBy)
         return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
-    }
 
-    // Read existing tasks (or start empty)
-    let tasks = [];
-    if (fs.existsSync('tasks.json')) {
-        const data = fs.readFileSync('tasks.json', 'utf-8');
-        tasks = JSON.parse(data);
-    }
+    const tasks = readJSON('tasks.json');
 
-    // Create new task object
     const newTask = {
-        id: Date.now(), 
-        groupId: group,                   // unique ID (timestamp)
-        title: title,
-        description: description,
+        id: Date.now(),
+        groupId: group,
+        title,
+        description,
         quantity: parseInt(quantity) || 1,
-        duedate: duedate,
-        oriented: oriented,
-        createdBy: createdBy,
-        status: 'pending',                 // for project leader to confirm later
+        duedate,
+        oriented,
+        createdBy,
+        status: 'pending',
         createdAt: new Date().toISOString()
     };
 
-    // Add to array
     tasks.push(newTask);
-
-    // Save to file
     fs.writeFileSync('tasks.json', JSON.stringify(tasks, null, 2));
 
     res.json({ message: 'Task created successfully!', task: newTask });
 });
-// Start the server
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
