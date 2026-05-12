@@ -1,4 +1,8 @@
-fetch('http://localhost:3000/pending-tasks')
+
+renderPendingTasks();
+
+function renderPendingTasks() {
+  fetch('http://localhost:3000/pending-tasks')
   .then(res => res.json())
   .then(pendingTasks => {
 
@@ -24,6 +28,8 @@ fetch('http://localhost:3000/pending-tasks')
     addEvent('accept');
     addEvent('reject');
   });
+  
+}
 
   function addEvent(status) {
   document.querySelectorAll(`.${status}-btn`)
@@ -36,7 +42,8 @@ fetch('http://localhost:3000/pending-tasks')
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: Number(cardId) })
-    });
+    })
+    .then(() => renderPendingTasks());
   })
   });
   }

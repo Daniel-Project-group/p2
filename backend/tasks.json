@@ -1,50 +1,5 @@
 [
   {
-    "id": 1777469887691,
-    "title": "test",
-    "description": "daokdajd",
-    "quantity": 1,
-    "duedate": "2026-10-23",
-    "oriented": "competence",
-    "createdBy": "daniel2310dk",
-    "status": "pending",
-    "createdAt": "2026-04-29T13:38:07.691Z"
-  },
-  {
-    "id": 1778407623287,
-    "title": "dsrpvij",
-    "description": "sdpvo i",
-    "quantity": 1,
-    "duedate": "2026-05-30",
-    "oriented": "learning",
-    "createdBy": "anton1",
-    "status": "pending",
-    "createdAt": "2026-05-10T10:07:03.287Z"
-  },
-  {
-    "id": 1778504587411,
-    "title": "Sprint Test",
-    "description": "Daniel need to lock in",
-    "quantity": 2,
-    "duedate": "2026-05-28",
-    "oriented": "learning",
-    "createdBy": "Tobber",
-    "status": "pending",
-    "createdAt": "2026-05-11T13:03:07.411Z"
-  },
-  {
-    "id": 1778504694774,
-    "title": "Task Test 2",
-    "description": "Fobber",
-    "quantity": 2,
-    "duedate": "2026-05-14",
-    "oriented": "interest",
-    "createdBy": "Tobber",
-    "sprintId": 1778502444327,
-    "status": "pending",
-    "createdAt": "2026-05-11T13:04:54.774Z"
-  },
-  {
     "id": 1778508846224,
     "title": "Lets create this",
     "description": "WHW",
@@ -52,29 +7,31 @@
     "duedate": "2026-05-28",
     "createdBy": "Tobber",
     "sprintId": 1778502444327,
-    "status": "pending",
+    "status": "accepted",
     "createdAt": "2026-05-11T14:14:06.224Z"
   },
   {
-    "id": 1778575665934,
-    "title": "Hello my fellos",
-    "description": "We need to see this",
-    "quantity": 7,
-    "duedate": "2026-05-13",
+    "id": 1778595850101,
+    "title": "Unc",
+    "description": "skal køre bus",
+    "quantity": 1,
+    "duedate": "2026-05-21",
+    "oriented": null,
     "createdBy": "Tobber",
     "sprintId": 1778502444327,
     "status": "pending",
-    "createdAt": "2026-05-12T08:47:45.934Z"
+    "createdAt": "2026-05-12T14:24:10.101Z"
   },
   {
-    "id": 1778582694576,
-    "title": "Hello",
-    "description": "Den 4. task",
-    "quantity": 2,
-    "duedate": "2026-05-20",
+    "id": 1778595957113,
+    "title": "Emil",
+    "description": "Skal spille lol",
+    "quantity": 1,
+    "duedate": "2026-05-28",
+    "oriented": null,
     "createdBy": "Tobber",
     "sprintId": 1778502444327,
     "status": "pending",
-    "createdAt": "2026-05-12T10:44:54.576Z"
+    "createdAt": "2026-05-12T14:25:57.113Z"
   }
 ]

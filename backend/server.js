@@ -240,8 +240,8 @@ app.post('/groupJoin', (req, res) => {
 app.post('/newtask', (req, res) => {
     const { group, title, description, quantity, duedate, oriented, createdBy } = req.body;
 
-    if (!title || !duedate || !oriented || !createdBy)
-        return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
+    if (!title || !duedate || !createdBy)
+        return res.status(400).json({ message: 'Title, due date, and creator are required' });
 
     const tasks = readJSON(DB.tasks);
 
@@ -291,7 +291,7 @@ app.get('/sprint-tasks', (req, res) => {
     let sprintTasks = [];
 
     tasks.forEach(task => {
-        if (task.sprintId === newestSprint.id) {
+        if (task.sprintId === newestSprint.id && task.status === 'accepted') {
             sprintTasks.push(task);
         }
     });
@@ -312,6 +312,37 @@ app.get('/pending-tasks', (req, res) => {
     });
 
     res.json(pendingTasks);
+});
+
+//Changes a task status to accepted.
+app.post('/task-accept', (req, res) => {
+    const { id } = req.body;
+    const tasks = readJSON(DB.tasks);
+
+    //Changes the task status for the task with the same ID
+    tasks.forEach(task => {
+        if (task.id === id) {
+            task.status = 'accepted';
+        }
+    });
+    //Updates the server memeory 
+    fs.writeFileSync(DB.tasks, JSON.stringify(tasks, null, 2));
+
+    res.json({ message: 'Task accepted' });
+});
+
+//Rejects a task and removes it
+app.post('/task-reject', (req, res) => {
+    const { id } = req.body;
+    let  tasks = readJSON(DB.tasks);
+
+    //Filters away the task with the same ID
+    tasks = tasks.filter(task => task.id !== id)
+
+    //Updates the server memeory 
+    fs.writeFileSync(DB.tasks, JSON.stringify(tasks, null, 2));
+
+    res.json({ message: 'Task removed' });
 });
 
 
