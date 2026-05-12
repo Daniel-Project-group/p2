@@ -204,6 +204,7 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
         }
     } catch (err) {
         console.error('Failed to generate competences:', err.message);
+        if (err.cause) console.error('Caused by:', err.cause);
     }
 });
 
