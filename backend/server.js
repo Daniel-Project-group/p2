@@ -272,7 +272,7 @@ app.listen(PORT, async () => {
             fetch: (url, options) => fetch(url, { ...options, signal: AbortSignal.timeout(300_000) })
         });
         await Promise.all([
-            client.generate({ model: 'qwen2.5:3b', prompt: 'hi', keep_alive: '10m' }),
+            client.generate({ model: 'qwen2.5:1.5b', prompt: 'hi', keep_alive: '10m' }),
             client.generate({ model: 'mistral',    prompt: 'hi', keep_alive: '10m' })
         ]);
         console.log('Models pre-warmed and ready.');

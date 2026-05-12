@@ -15,8 +15,8 @@ if (!fs.existsSync(CACHE_DIR)) {
   fs.mkdirSync(CACHE_DIR);
 }
 
-const MODEL_FAST = 'qwen2.5:3b'; // used for simple extraction tasks
-const MODEL_GOOD = 'mistral';    // used for reasoning/generation tasks
+const MODEL_FAST = 'qwen2.5:1.5b'; // used for simple extraction tasks
+const MODEL_GOOD = 'mistral';      // used for reasoning/generation tasks
 
 async function fetchCurriculum(url) {
   const response = await fetch(url);
@@ -34,15 +34,15 @@ Also include courses from earlier semesters (1 to ${semester - 1}) since student
 Return ONLY a JSON array of course names in English, nothing else. Example:
 ["Algorithms and Data Structures", "Web Programming", "Linear Algebra"]
 
-Curriculum text:
-${curriculumText.slice(0, 8000)}
+Curriculum table of contents:
+${curriculumText.slice(0, 2000)}
 `;
 
   const response = await ollama.chat({
     model: MODEL_FAST,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
-    options: { num_ctx: 4096 },
+    options: { num_ctx: 1024 },
     keep_alive: '10m'
   });
 
