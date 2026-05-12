@@ -262,6 +262,19 @@ app.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server running at http://localhost:${PORT}`);
+
+    // Pre-warm both models so they're loaded in memory before a user needs them
+    try {
+        const { Ollama } = await import('ollama');
+        const client = new Ollama();
+        await Promise.all([
+            client.generate({ model: 'qwen2.5:3b', prompt: 'hi', keep_alive: '10m' }),
+            client.generate({ model: 'mistral',    prompt: 'hi', keep_alive: '10m' })
+        ]);
+        console.log('Models pre-warmed and ready.');
+    } catch (err) {
+        console.warn('Model pre-warm failed (non-fatal):', err.message);
+    }
 });

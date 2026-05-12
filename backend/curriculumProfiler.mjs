@@ -1,7 +1,12 @@
-import ollama from 'ollama';
+import { Ollama } from 'ollama';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+// 5 minute timeout — large models take a while to load on first call
+const ollama = new Ollama({
+  fetch: (url, options) => fetch(url, { ...options, signal: AbortSignal.timeout(300_000) })
+});
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CACHE_DIR  = path.join(__dirname, 'cache');
@@ -10,7 +15,8 @@ if (!fs.existsSync(CACHE_DIR)) {
   fs.mkdirSync(CACHE_DIR);
 }
 
-const MODEL = 'mistral';
+const MODEL_FAST = 'qwen2.5:3b'; // used for simple extraction tasks
+const MODEL_GOOD = 'mistral';    // used for reasoning/generation tasks
 
 async function fetchCurriculum(url) {
   const response = await fetch(url);
@@ -33,7 +39,7 @@ ${curriculumText.slice(0, 8000)}
 `;
 
   const response = await ollama.chat({
-    model: MODEL,
+    model: MODEL_FAST,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
     options: { num_ctx: 4096 },
@@ -80,7 +86,7 @@ Rules:
 `;
 
   const response = await ollama.chat({
-    model: MODEL,
+    model: MODEL_GOOD,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
     options: { num_ctx: 2048 },
@@ -116,7 +122,7 @@ Rules:
 `;
 
   const response = await ollama.chat({
-    model: MODEL,
+    model: MODEL_GOOD,
     messages: [{ role: 'user', content: prompt }],
     format: 'json',
     options: { num_ctx: 2048 },
