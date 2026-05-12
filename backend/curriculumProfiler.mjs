@@ -48,8 +48,17 @@ ${curriculumText.slice(0, 2000)}
 
   try {
     const parsed = JSON.parse(response.message.content);
-    // handle both ["course"] and {"courses": ["course"]} responses
-    return Array.isArray(parsed) ? parsed : Object.values(parsed)[0];
+    console.log('Step 1 raw output:', JSON.stringify(parsed));
+
+    if (Array.isArray(parsed)) return parsed;
+
+    // search for the first array value in the object
+    for (const val of Object.values(parsed)) {
+      if (Array.isArray(val)) return val;
+      // model returned a comma-separated string instead of an array
+      if (typeof val === 'string') return val.split(',').map(s => s.trim()).filter(Boolean);
+    }
+    return [];
   } catch {
     return [];
   }
@@ -154,8 +163,13 @@ export async function getCompetenceProfile(programme, semester, curriculumUrl = 
     const courseNames = await extractCourseNames(semester, text);
     console.log(`Found courses: ${courseNames.join(', ')}`);
 
-    console.log(`Step 2 — generating competences from course names...`);
-    profile = await generateCompetencesFromCourses(programme, semester, courseNames);
+    if (courseNames.length === 0) {
+      console.log('No courses found, falling back to LLM knowledge...');
+      profile = await generateFromKnowledge(programme, semester);
+    } else {
+      console.log(`Step 2 — generating competences from course names...`);
+      profile = await generateCompetencesFromCourses(programme, semester, courseNames);
+    }
   } else {
     console.log(`No curriculum provided, using LLM knowledge...`);
     profile = await generateFromKnowledge(programme, semester);
