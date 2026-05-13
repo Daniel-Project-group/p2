@@ -25,19 +25,8 @@ groupButton.addEventListener('click', async function () {
     if (url)  formData.append('curriculumUrl',  url);
     if (file) formData.append('curriculumFile', file);
 
-<<<<<<< HEAD
-// Semester
-const groupSemester = document.querySelector('#semester')
-
-// Degree
-const groupDegree = dovument.querySelector('#degree')
-
-// Now we make the function for when clicken the button
-// On the event we want to store whatever groupName and groupId contains
-=======
     groupButton.disabled    = true;
     groupButton.textContent = 'Creating group...';
->>>>>>> origin/Tobber
 
     try {
         const response = await fetch('http://localhost:3000/groupCreate', {
