@@ -1,13 +1,31 @@
+const groupName        = document.querySelector('#groupName');
+const groupId          = document.querySelector('#groupId');
+const programmeInput   = document.querySelector('#programme');
+const semesterInput    = document.querySelector('#semester');
+const curriculumUrlInput  = document.querySelector('#curriculumUrl');
+const curriculumFileInput = document.querySelector('#curriculumFile');
+const groupButton      = document.querySelector('#createGroupButton');
 
-// Queryselector for the group name
-const groupName = document.querySelector('#groupName');
+groupButton.addEventListener('click', async function () {
+    const username = localStorage.getItem('username');
+    const file = curriculumFileInput.files[0];
+    const url  = curriculumUrlInput.value.trim();
 
-// For group id
-const groupId = document.querySelector('#groupId');
+    if (!url && !file) {
+        alert('Please provide a curriculum URL or upload a PDF file');
+        return;
+    }
 
-// Button
-const groupButton = document.querySelector('#createGroupButton');
+    const formData = new FormData();
+    formData.append('name',      groupName.value);
+    formData.append('groupCode', groupId.value);
+    formData.append('username',  username);
+    formData.append('programme', programmeInput.value);
+    formData.append('semester',  semesterInput.value);
+    if (url)  formData.append('curriculumUrl',  url);
+    if (file) formData.append('curriculumFile', file);
 
+<<<<<<< HEAD
 // Semester
 const groupSemester = document.querySelector('#semester')
 
@@ -16,33 +34,29 @@ const groupDegree = dovument.querySelector('#degree')
 
 // Now we make the function for when clicken the button
 // On the event we want to store whatever groupName and groupId contains
+=======
+    groupButton.disabled    = true;
+    groupButton.textContent = 'Creating group...';
+>>>>>>> origin/Tobber
 
-groupButton.addEventListener("click", async function(){
+    try {
+        const response = await fetch('http://localhost:3000/groupCreate', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
 
-// We retrieve value of whatever groupId and Button contain
-// Define these values, such we can store it in a newly object
-
-const group = groupName.value;
-const id = groupId.value;
-
-// Object
-const groupData = {
-name: group,
-groupCode: id
-};
-
-// Now we send the data to Node.js server
-
-try {
-    const response = await fetch('http://localhost:3000/groupCreate',{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ name: group, groupCode: id}) // This is the body we send
-    });
-    const data = await response.json();
-
-} catch(error){
-    console.error("Couldn't create grop")
-}
-
+        if (response.ok) {
+            localStorage.setItem('groupCode', groupId.value);
+            window.location.href = '../html/competence-profile.html';
+        } else {
+            groupButton.disabled    = false;
+            groupButton.textContent = 'Create group';
+            alert(data.message || 'Failed to create group');
+        }
+    } catch (error) {
+        console.error("Couldn't create group", error);
+        groupButton.disabled    = false;
+        groupButton.textContent = 'Create group';
+    }
 });

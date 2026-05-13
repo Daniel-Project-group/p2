@@ -1,0 +1,43 @@
+[
+  {
+    "username": "daniel2310dk",
+    "ratings": [
+      {
+        "competence": "Report Writing",
+        "proficiency": "4",
+        "interest": "5"
+      },
+      {
+        "competence": "Programming",
+        "proficiency": "5",
+        "interest": "5"
+      },
+      {
+        "competence": "Web Development",
+        "proficiency": "7",
+        "interest": "3"
+      },
+      {
+        "competence": "Mathematics",
+        "proficiency": "5",
+        "interest": "5"
+      },
+      {
+        "competence": "Design",
+        "proficiency": "5",
+        "interest": "5"
+      },
+      {
+        "competence": "Communication",
+        "proficiency": "5",
+        "interest": "5"
+      },
+      {
+        "competence": "Time Management",
+        "proficiency": "5",
+        "interest": "5"
+      }
+    ],
+    "updatedAt": "2026-05-11T11:53:02.546Z"
+  }
+]
