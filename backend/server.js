@@ -1,19 +1,15 @@
-const express     = require('express');
-const bcrypt      = require('bcrypt');
-const cors        = require('cors');
-const fs          = require('fs');
-const path        = require('path');
+const express = require('express');
+const bcrypt = require('bcrypt');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const cookieParser = require('cookie-parser');
-const crypto      = require('crypto');
-const multer      = require('multer');
-let pdfjsLib;
-import('pdfjs-dist/legacy/build/pdf.mjs').then(mod => {
-    pdfjsLib = mod;
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '';
-});
+const crypto = require('crypto');
+const multer = require('multer');
+const pdfParse = require('pdf-parse-fork');
 
-const app    = express();
-const PORT   = 3000;
+const app = express();
+const PORT = 3000;
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
 
 app.use(cors());
@@ -24,9 +20,9 @@ const sessions = new Map();
 
 const DB = {
     accounts: path.join(__dirname, 'accounts.json'),
-    groups:   path.join(__dirname, 'group.json'),
-    tasks:    path.join(__dirname, 'tasks.json'),
-    sprints:  path.join(__dirname, 'sprints.json'),
+    groups: path.join(__dirname, 'group.json'),
+    tasks: path.join(__dirname, 'tasks.json'),
+    sprints: path.join(__dirname, 'sprints.json'),
 };
 
 function readJSON(file) {
@@ -69,7 +65,7 @@ app.post('/login', async (req, res) => {
         return res.status(400).json({ message: 'Email and password are required' });
 
     const accounts = readJSON(DB.accounts);
-    const user     = accounts.find(a => a.email === email);
+    const user = accounts.find(a => a.email === email);
 
     if (!user)
         return res.status(400).json({ message: 'Invalid email or password' });
@@ -183,22 +179,15 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
     fs.writeFileSync(DB.groups, JSON.stringify(existingGroups, null, 2));
 
     res.json({ message: 'Group created successfully!', group: newGroup });
-
     // Generate competences in the background
-    const pdfBuffer = req.file ? req.file.buffer : null;
     try {
         const { getCompetenceProfile } = await import('./curriculumProfiler.mjs');
         let extractedText = null;
-        if (pdfBuffer) {
-            const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) });
-            const doc = await loadingTask.promise;
-            const pages = [];
-            for (let i = 1; i <= doc.numPages; i++) {
-                const page = await doc.getPage(i);
-                const content = await page.getTextContent();
-                pages.push(content.items.map(item => item.str).join(' '));
-            }
-            extractedText = pages.join('\n');
+        if (req.file) {
+            console.log('Extracting text from uploaded PDF...');
+            const pdfData = await pdfParse(req.file.buffer);
+            extractedText = pdfData.text;
+            console.log(`Extracted ${extractedText.length} characters from PDF`);
         }
 
         const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
@@ -325,7 +314,7 @@ app.post('/task-accept', (req, res) => {
             task.status = 'accepted';
         }
     });
-    //Updates the server memeory 
+    //Updates the server memeory
     fs.writeFileSync(DB.tasks, JSON.stringify(tasks, null, 2));
 
     res.json({ message: 'Task accepted' });
@@ -339,7 +328,7 @@ app.post('/task-reject', (req, res) => {
     //Filters away the task with the same ID
     tasks = tasks.filter(task => task.id !== id)
 
-    //Updates the server memeory 
+    //Updates the server memeory
     fs.writeFileSync(DB.tasks, JSON.stringify(tasks, null, 2));
 
     res.json({ message: 'Task removed' });
