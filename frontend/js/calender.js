@@ -22,8 +22,8 @@ const daysInMonth = new Date(year, month + 1, 0)
 let calenderHTML = '';
 
 //Set the current month
-document.querySelector('#current-month')
-  .innerHTML = months[month];
+document.querySelector('#current-year-month')
+  .innerHTML = `${months[month]} ${displayYear}`;
 
 //Creates empty div's before the first day comes
 for (let i = 0; i < firstDay; i++) {
@@ -59,35 +59,32 @@ function changeHTMLDates(year, month) {
 
     sprints.forEach(sprint => {
       const dueDate = document.getElementById(sprint.enddate);
-      
+
       if (dueDate) {
         dueDate.classList.add('sprint-due');
         dueDate.innerHTML += `<p class="sprint-label">${sprint.title}</p>`;
-
-        const endDate = new Date(sprint.enddate);
-        const today = new Date();
-        
-        document.querySelectorAll('.calendar-day')
-          .forEach(day => {
-
-            
-            //Gets the current date
-            const dayDate = new Date(day.id);
-
-            /*Checks if the you are over the duedate and highlights
-            the days you are overdue*/
-            if (endDate < today && dayDate >= endDate && dayDate <= today) {
-              day.classList.add('sprint-overdue-range');
-
-            } else if (dayDate > today && dayDate < endDate) {
-              day.classList.add('sprint-range');
-            }
-            
-          });
       }
+
+      const endDate = new Date(sprint.enddate);
+      const today = new Date();
+
+
+      //Highlights the other days either red or green
+      //Depending on if you are over or under the due date
+      document.querySelectorAll('.calendar-day')
+        .forEach(day => {
+          const dayDate = new Date(day.id);
+
+          if (endDate < today && dayDate >= endDate && dayDate <= today) {
+            day.classList.add('sprint-overdue-range');
+          } else if (dayDate > today && dayDate < endDate) {
+            day.classList.add('sprint-range');
+          }
+        });
     });
   });
 
+//Adds the tasks to the display
 fetch('http://localhost:3000/sprint-tasks')
   .then(res => res.json())
   .then(sprintsTasks => {
