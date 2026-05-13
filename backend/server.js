@@ -9,13 +9,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 
-// Route imports 
+// Route auth imports 
+const authRoute = require('./routes/auth/authRoute');
 
-const authRoute = require('./routes authRoute');
-const taskRoute = require('./routes taskRoute');
-const profileRoute = require('./routes profileRoute');
-const groupRoute = require('./routes groupRoute');
-const sprintRoute = require('./routes sprintRoute');
+// Route imports
+const taskRoute = require('./routes/taskRoute');
+const groupRoute = require('./routes/groupRoute');
+const sprintRoute = require('./routes/sprintRoute');
+const userProfile = require('./route/userProfile');
+const competenceList = require('/routes/competenceRoute');
 
 
 // Create the Express app
@@ -32,19 +34,24 @@ app.use(express.json());
 app.use(cookieParser());
 const sessions = new Map();
 
+// Actual route uses
+// Auth
+app.use('/auth', authRoute);
+// Protected
+app.use('/tasks', taskRoute);
+app.use('/groups', groupRoute);
+app.use('/sprints', sprintRoute);
+app.use('/profiles', userProfile);
+app.use('/competences', competenceList);
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+
 
 // A simple test route
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
-
-app.use('/auth', authRoute);
-app.use('/tasks', taskRoute);
-app.use('/profiles', profileRoute);
-app.use('/groups', groupRoute);
-app.use('/sprints', sprintRoute);
-
-app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Start the server
 app.listen(PORT, () => {
