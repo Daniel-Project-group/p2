@@ -1,174 +1,60 @@
 [
   {
-    "name": "p2 Group 4",
-    "groupCode": "dat2-2026v3",
-    "id": 1778585114941,
-    "createdAt": "2026-05-12T11:25:14.941Z",
+    "name": "p2000",
+    "groupCode": "group0001",
+    "id": 1778673822180,
+    "createdAt": "2026-05-13T12:03:42.180Z",
     "members": [
-      "Malthe3"
+      "daniel2310dk"
     ],
-    "programme": "Computer Science",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "p2 Group 4",
-    "groupCode": "dat2-2026v4",
-    "id": 1778585623488,
-    "createdAt": "2026-05-12T11:33:43.488Z",
-    "members": [
-      "Malthe3"
-    ],
-    "programme": "Computer Science",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "p2 Group 6",
-    "groupCode": "dat2-2026v12",
-    "id": 1778586329038,
-    "createdAt": "2026-05-12T11:45:29.038Z",
-    "members": [
-      "Malthe3"
-    ],
-    "programme": "Computer Science",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "p2 Group 6",
-    "groupCode": "dat2-2026v13",
-    "id": 1778586832661,
-    "createdAt": "2026-05-12T11:53:52.661Z",
-    "members": [
-      "Malthe3"
-    ],
-    "programme": "Computer Science",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "p2 Group 6",
-    "groupCode": "dat2-2026v14",
-    "id": 1778586997864,
-    "createdAt": "2026-05-12T11:56:37.864Z",
-    "members": [
-      "Malthe3"
-    ],
-    "programme": "Computer Science",
+    "programme": "Computer science",
     "semester": 2,
     "curriculumUrl": null,
     "competences": [
       {
-        "name": "Programming Fundamentals",
-        "competenceQuestion": "How proficient are you in programming fundamentals? (1-10)",
-        "interestQuestion": "How interested are you in programming fundamentals? (1-10)"
+        "name": "Programming Skills",
+        "competenceQuestion": "How proficient are you in programming languages and software development? (1-10)",
+        "interestQuestion": "How interested are you in programming and software development? (1-10)"
       },
       {
-        "name": "Data Structures",
-        "competenceQuestion": "How proficient are you in working with various data structures? (1-10)",
-        "interestQuestion": "How interested are you in learning more about data structures? (1-10)"
-      },
-      {
-        "name": "Algorithms",
+        "name": "Algorithms Design",
         "competenceQuestion": "How proficient are you in designing and analyzing algorithms? (1-10)",
-        "interestQuestion": "How interested are you in learning more about algorithms? (1-10)"
+        "interestQuestion": "How interested are you in algorithm design and optimization? (1-10)"
       },
       {
-        "name": "Object-Oriented Programming",
-        "competenceQuestion": "How proficient are you in object-oriented programming concepts? (1-10)",
-        "interestQuestion": "How interested are you in further exploring object-oriented programming? (1-10)"
-      },
-      {
-        "name": "Software Engineering Principles",
-        "competenceQuestion": "How proficient are you in software engineering principles and methodologies? (1-10)",
-        "interestQuestion": "How interested are you in learning more about software engineering? (1-10)"
-      },
-      {
-        "name": "Database Systems",
-        "competenceQuestion": "How proficient are you in designing, implementing and managing database systems? (1-10)",
-        "interestQuestion": "How interested are you in learning more about database systems? (1-10)"
-      },
-      {
-        "name": "Operating Systems",
-        "competenceQuestion": "How proficient are you in understanding and working with operating system concepts? (1-10)",
-        "interestQuestion": "How interested are you in exploring operating systems further? (1-10)"
-      },
-      {
-        "name": "Computer Networks",
-        "competenceQuestion": "How proficient are you in understanding computer networks and their protocols? (1-10)",
-        "interestQuestion": "How interested are you in learning more about computer networks? (1-10)"
+        "name": "Report Writing",
+        "competenceQuestion": "How proficient are you in writing technical reports and documentation? (1-10)",
+        "interestQuestion": "How interested are you in technical writing and communication? (1-10)"
       },
       {
         "name": "Web Development",
-        "competenceQuestion": "How proficient are you in web development using common languages and frameworks? (1-10)",
-        "interestQuestion": "How interested are you in further exploring web development? (1-10)"
+        "competenceQuestion": "How proficient are you in web programming and development frameworks? (1-10)",
+        "interestQuestion": "How interested are you in web development and design? (1-10)"
       },
       {
-        "name": "Mathematical Foundations",
-        "competenceQuestion": "How proficient are you in the mathematical foundations of computer science? (1-10)",
-        "interestQuestion": "How interested are you in deepening your understanding of mathematical foundations? (1-10)"
-      }
-    ],
-    "memberProfiles": [
+        "name": "Project Management",
+        "competenceQuestion": "How proficient are you in managing and coordinating group projects? (1-10)",
+        "interestQuestion": "How interested are you in project management and leadership? (1-10)"
+      },
       {
-        "username": "Malthe3",
-        "answers": [
-          {
-            "competence": "Programming Fundamentals",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Data Structures",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Algorithms",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Object-Oriented Programming",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Software Engineering Principles",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Database Systems",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Operating Systems",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Computer Networks",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Web Development",
-            "proficiency": 5,
-            "interest": 5
-          },
-          {
-            "competence": "Mathematical Foundations",
-            "proficiency": 5,
-            "interest": 5
-          }
-        ]
+        "name": "Problem Analysis",
+        "competenceQuestion": "How proficient are you in analyzing and solving complex problems? (1-10)",
+        "interestQuestion": "How interested are you in problem-solving and critical thinking? (1-10)"
+      },
+      {
+        "name": "Database Design",
+        "competenceQuestion": "How proficient are you in designing and implementing databases? (1-10)",
+        "interestQuestion": "How interested are you in database systems and management? (1-10)"
+      },
+      {
+        "name": "Group Work",
+        "competenceQuestion": "How proficient are you in collaborating and working effectively in groups? (1-10)",
+        "interestQuestion": "How interested are you in team collaboration and communication? (1-10)"
+      },
+      {
+        "name": "Literature Review",
+        "competenceQuestion": "How proficient are you in conducting literature reviews and research? (1-10)",
+        "interestQuestion": "How interested are you in research and academic writing? (1-10)"
       }
     ]
   }

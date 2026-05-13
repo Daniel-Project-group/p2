@@ -1,26 +1,46 @@
-import { Ollama } from 'ollama';
+import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// 5 minute timeout — large models take a while to load on first call
-const ollama = new Ollama({
-  fetch: (url, options) => fetch(url, { ...options, signal: AbortSignal.timeout(300_000) })
-});
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CACHE_DIR  = path.join(__dirname, 'cache');
+const CACHE_DIR = path.join(__dirname, 'cache');
 
 if (!fs.existsSync(CACHE_DIR)) {
   fs.mkdirSync(CACHE_DIR);
 }
 
-const MODEL_FAST = 'qwen2.5:1.5b'; // used for simple extraction tasks
-const MODEL_GOOD = 'mistral';      // used for reasoning/generation tasks
+// Groq models - much faster than the old Ollama setup
+const MODEL_FAST = 'llama-3.1-8b-instant';     // used for simple extraction tasks
+const MODEL_GOOD = 'llama-3.3-70b-versatile';  // used for reasoning/generation tasks
+
+// Helper function: call Groq API and return parsed JSON
+async function callGroq(model, prompt) {
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: model,
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' }
+    })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(`Groq API error: ${JSON.stringify(data)}`);
+  }
+
+  return JSON.parse(data.choices[0].message.content);
+}
 
 async function fetchCurriculum(url) {
   const response = await fetch(url);
-  const html     = await response.text();
+  const html = await response.text();
   return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 8000);
 }
 
@@ -31,23 +51,15 @@ You are reading a university curriculum document.
 Extract all course or module names that belong to semester ${semester}.
 Also include courses from earlier semesters (1 to ${semester - 1}) since students have already studied those.
 
-Return ONLY a JSON array of course names in English, nothing else. Example:
-["Algorithms and Data Structures", "Web Programming", "Linear Algebra"]
+Return ONLY a JSON object with a "courses" array of course names in English. Example:
+{"courses": ["Algorithms and Data Structures", "Web Programming", "Linear Algebra"]}
 
 Curriculum table of contents:
 ${curriculumText.slice(0, 2000)}
 `;
 
-  const response = await ollama.chat({
-    model: MODEL_FAST,
-    messages: [{ role: 'user', content: prompt }],
-    format: 'json',
-    options: { num_ctx: 1024 },
-    keep_alive: '10m'
-  });
-
   try {
-    const parsed = JSON.parse(response.message.content);
+    const parsed = await callGroq(MODEL_FAST, prompt);
     console.log('Step 1 raw output:', JSON.stringify(parsed));
 
     if (Array.isArray(parsed)) return parsed;
@@ -59,7 +71,8 @@ ${curriculumText.slice(0, 2000)}
       if (typeof val === 'string') return val.split(',').map(s => s.trim()).filter(Boolean);
     }
     return [];
-  } catch {
+  } catch (error) {
+    console.error('Error extracting course names:', error.message);
     return [];
   }
 }
@@ -89,20 +102,17 @@ Return ONLY a valid JSON object in this exact format, no markdown:
 }
 
 Rules:
-- Competence names must be short (2-4 words) and specific — e.g. "Algorithms & Data Structures", "Web Programming", "Report Writing"
+- Generate a balanced mix of:
+  * Technical/subject competences (e.g. "Programming", "Algorithms")  
+  * Project work competences (e.g. "Report Writing", "Problem Analysis", "Group Work")
+  * Research competences (e.g. "Literature Review", "Methodology")
+- Competence names must be short (2-4 words) and specific
+- Include at least 2-3 project/report related competences
 - All output must be in English
 - Only return the JSON, nothing else
-`;
+  `;
 
-  const response = await ollama.chat({
-    model: MODEL_GOOD,
-    messages: [{ role: 'user', content: prompt }],
-    format: 'json',
-    options: { num_ctx: 2048 },
-    keep_alive: '10m'
-  });
-
-  return JSON.parse(response.message.content);
+  return await callGroq(MODEL_GOOD, prompt);
 }
 
 // Fallback: no curriculum provided, use LLM general knowledge
@@ -130,19 +140,11 @@ Rules:
 - Only return the JSON
 `;
 
-  const response = await ollama.chat({
-    model: MODEL_GOOD,
-    messages: [{ role: 'user', content: prompt }],
-    format: 'json',
-    options: { num_ctx: 2048 },
-    keep_alive: '10m'
-  });
-
-  return JSON.parse(response.message.content);
+  return await callGroq(MODEL_GOOD, prompt);
 }
 
 export async function getCompetenceProfile(programme, semester, curriculumUrl = null, curriculumText = null) {
-  const key       = `${programme.toLowerCase().replace(/\s+/g, '-')}-${semester}`;
+  const key = `${programme.toLowerCase().replace(/\s+/g, '-')}-${semester}`;
   const cachePath = path.join(CACHE_DIR, `${key}.json`);
 
   if (fs.existsSync(cachePath)) {

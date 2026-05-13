@@ -1,17 +1,15 @@
-const express     = require('express');
-const bcrypt      = require('bcrypt');
-const cors        = require('cors');
-const fs          = require('fs');
-const path        = require('path');
+const express = require('express');
+const bcrypt = require('bcrypt');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const cookieParser = require('cookie-parser');
-const crypto      = require('crypto');
-const multer      = require('multer');
-const pdfjsLib    = require('pdfjs-dist/legacy/build/pdf.js');
+const crypto = require('crypto');
+const multer = require('multer');
+const pdfParse = require('pdf-parse-fork');
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '';
-
-const app    = express();
-const PORT   = 3000;
+const app = express();
+const PORT = 3000;
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
 
 app.use(cors());
@@ -23,8 +21,8 @@ const sessions = new Map();
 
 const DB = {
     accounts: path.join(__dirname, 'accounts.json'),
-    groups:   path.join(__dirname, 'group.json'),
-    tasks:    path.join(__dirname, 'tasks.json'),
+    groups: path.join(__dirname, 'group.json'),
+    tasks: path.join(__dirname, 'tasks.json'),
 };
 
 function readJSON(file) {
@@ -67,7 +65,7 @@ app.post('/login', async (req, res) => {
         return res.status(400).json({ message: 'Email and password are required' });
 
     const accounts = readJSON(DB.accounts);
-    const user     = accounts.find(a => a.email === email);
+    const user = accounts.find(a => a.email === email);
 
     if (!user)
         return res.status(400).json({ message: 'Invalid email or password' });
@@ -181,22 +179,15 @@ app.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
     fs.writeFileSync(DB.groups, JSON.stringify(existingGroups, null, 2));
 
     res.json({ message: 'Group created successfully!', group: newGroup });
-
     // Generate competences in the background
-    const pdfBuffer = req.file ? req.file.buffer : null;
     try {
         const { getCompetenceProfile } = await import('./curriculumProfiler.mjs');
         let extractedText = null;
-        if (pdfBuffer) {
-            const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfBuffer) });
-            const doc = await loadingTask.promise;
-            const pages = [];
-            for (let i = 1; i <= doc.numPages; i++) {
-                const page = await doc.getPage(i);
-                const content = await page.getTextContent();
-                pages.push(content.items.map(item => item.str).join(' '));
-            }
-            extractedText = pages.join('\n');
+        if (req.file) {
+            console.log('Extracting text from uploaded PDF...');
+            const pdfData = await pdfParse(req.file.buffer);
+            extractedText = pdfData.text;
+            console.log(`Extracted ${extractedText.length} characters from PDF`);
         }
 
         const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
@@ -262,21 +253,7 @@ app.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
-
-    // Pre-warm both models so they're loaded in memory before a user needs them
-    try {
-        const { Ollama } = await import('ollama');
-        const client = new Ollama({
-            fetch: (url, options) => fetch(url, { ...options, signal: AbortSignal.timeout(300_000) })
-        });
-        await Promise.all([
-            client.generate({ model: 'qwen2.5:1.5b', prompt: 'hi', keep_alive: '10m' }),
-            client.generate({ model: 'mistral',    prompt: 'hi', keep_alive: '10m' })
-        ]);
-        console.log('Models pre-warmed and ready.');
-    } catch (err) {
-        console.warn('Model pre-warm failed (non-fatal):', err.message);
-    }
+    console.log('Using Groq API for AI features');
 });
