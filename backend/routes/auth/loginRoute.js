@@ -47,3 +47,5 @@ router.post('/', async (req, res) => {
         username: user.username
     });
 });
+
+module.exports = router;

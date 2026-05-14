@@ -48,3 +48,5 @@ router.post('/user-profile', async (req, res) => {
 });
 
 // Not finished at all - implement cookies before doing anything
+
+module.exports = router;

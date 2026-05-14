@@ -6,3 +6,5 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 
 const dataPath = (file) => path.join(__dirname, "../json", file);
+
+module.exports = router;

@@ -14,3 +14,5 @@ const dataPath = (file) => path.join(__dirname, "../json", file);
 
 // This file should contain the array of LLM generated keywords
 // Per that speciic curicculum
+
+module.exports = router;

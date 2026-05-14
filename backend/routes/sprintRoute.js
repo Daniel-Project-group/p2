@@ -73,3 +73,6 @@ router.get('/sprint-tasks', (req, res) => {
     res.json(sprintTasks);
 
 });
+
+module.exports = router;
+

@@ -16,8 +16,8 @@ const authRoute = require('./routes/auth/authRoute');
 const taskRoute = require('./routes/taskRoute');
 const groupRoute = require('./routes/groupRoute');
 const sprintRoute = require('./routes/sprintRoute');
-const userProfile = require('./route/userProfile');
-const competenceList = require('/routes/competenceRoute');
+const userProfile = require('./routes/userProfile');
+const competenceList = require('./routes/competenceRoute');
 
 
 // Create the Express app

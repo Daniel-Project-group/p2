@@ -17,8 +17,8 @@ const loginRoute = require('./loginRoute');
 const signupRoute = require('./signupRoute');
 const logoutRoute = require('./logoutRoute');
 
-router.use('/login', loginRoute);
-router.use('/signup', signupRoute);
+router.use('login', loginRoute);
+router.use('signup', signupRoute);
 router.use('logout',logoutRoute);
 
 module.exports = router;

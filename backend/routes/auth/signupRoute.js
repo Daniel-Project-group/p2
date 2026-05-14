@@ -46,3 +46,5 @@ router.post('/signup', async (req, res) => {
 
     res.json({ message: 'Account created successfully!' });
 });
+
+module.exports = router;

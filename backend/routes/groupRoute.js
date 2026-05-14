@@ -69,3 +69,6 @@ router.post('/groupJoin', (req,res) => {
         // Here the user needs to be stored in the given groups member property array
     }
 });
+
+module.exports = router;
+
