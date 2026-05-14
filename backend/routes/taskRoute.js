@@ -36,26 +36,27 @@ router.post('/newtask', (req, res) => {
             }
         }
 
-    // Create new task object
+    //create newTask object, where quantity is amount of members on task and oriented is distribution mode. If quantity cannot be parsed default to 1.
     const newTask = {
         id: Date.now(), 
-        groupId: group,                   // unique ID (timestamp)
+        groupId: group,                  
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
         createdBy: createdBy,
         sprintId: currentSprintId,
-        status: 'pending',                 // for project leader to confirm later
+        status: 'pending',               
         createdAt: new Date().toISOString()
     };
 
-    // Add to array
+    //Push task to tasks array
     tasks.push(newTask);
 
-    // Save to file
+    //Write updated tasks in JSON format to file
     fs.writeFileSync(dataPath('tasks.json'), JSON.stringify(tasks, null, 2));
 
+    // send response that task was created succesfully along with task
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 

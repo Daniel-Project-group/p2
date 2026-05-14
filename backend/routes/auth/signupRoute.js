@@ -9,10 +9,10 @@ const router = express.Router();
 // We cd up to json folder when referencing dataPath
 const dataPath = (file) => path.join(__dirname, "../json", file);
 
-// Signup route
+// Signup post route that is asynchronious due to waiting for hashing of password
 router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
-
+//If there missing any of the fields, return a 400 (bad request) error with message saying all three are required
     if (!username || !email || !password) {
         return res.status(400).json({ message: 'Username, email, and password are required' });
     }
@@ -35,15 +35,15 @@ router.post('/signup', async (req, res) => {
         return res.status(400).json({ message: 'This username is already taken' });
     }
 
-    // Hash the password
+    //await hashed password using bcrypt.hash with 10 salt rounds
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Add the new account
+    // Push account to accounts array using hashedPassword as password
     accounts.push({ username: username, email: email, password: hashedPassword });
 
-    // Save to file
+    //Write updated account arrray back to the file with 2 space indentation
     fs.writeFileSync(dataPath('accounts.json'), JSON.stringify(accounts, null, 2));
-
+    // Send a succes response that account was created succesfully
     res.json({ message: 'Account created successfully!' });
 });
 
