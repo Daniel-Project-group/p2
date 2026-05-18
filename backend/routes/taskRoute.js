@@ -53,4 +53,5 @@ router.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
+//export the router
 module.exports = router;
