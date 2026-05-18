@@ -1,77 +1,56 @@
-import ollama from 'ollama';
+//Imports the .env making all variables in it avaliable here
+import 'dotenv/config';
+//Fast model, since picking picking relevant is a quite simple task that does not need a lot of computation
+const MODEL_FAST = 'llama-3.1-8b-instant';
 
-export async function validateTask(taskDescription) {
-  const trimmed = taskDescription.trim();
-
-  if (trimmed.length < 5) {
-    return { valid: false, reason: 'Task description is too short' };
-  }
-
-  const blocklist = ['war crime', 'kill', 'murder', 'drug', 'weapon', 'bomb', 'hack', 'illegal'];
-  const lower = trimmed.toLowerCase();
-  const blocked = blocklist.find(word => lower.includes(word));
-  if (blocked) {
-    return { valid: false, reason: 'This task is not appropriate for a university group project' };
-  }
-
-  return { valid: true, reason: 'Task is valid' };
-}
-
-export async function scoreTask(taskDescription, competences) {
-  const validation = await validateTask(taskDescription);
-  if (!validation.valid) {
-    throw new Error(`INVALID_TASK: ${validation.reason}`);
-  }
-
-  const prompt = `Score this task for each competence 1-10. Return JSON only.
-
-Task: "${taskDescription}"
-
-Competences: ${competences.join(', ')}
-
-Return: {"competence name": score, ...}`;
-
-  const response = await ollama.chat({
-    model: 'llama3.2',
-    messages: [{ role: 'user', content: prompt }],
-    format: 'json',
-    options: { num_ctx: 1024 }
+//async function to call Groq AI using groq API
+async function callGroq(model, prompt) {
+  //sends HTTP POST request to Groq API endpoint and await response
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    //POST cause we are also sending data to API not just retrieving
+    method: 'POST',
+    headers: {
+      //Send authorization using bearer that is standard format for sending tokens in HTTP headers
+      // process.env.GROQ_API_KEY is our Grok API key from .env file which stores secret info
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+      //tell the API we are sending JSON format
+      'Content-Type': 'application/json'
+    },
+    // Send body telling which model, message saying its user message with content as prompt text, and tell that response is JSON format.
+    body: JSON.stringify({
+      model: model,
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' }
+    })
   });
 
-  const raw = response.message.content;
+  // Parses http response as JSON
+  const data = await response.json();
 
-  try {
-    const scores = JSON.parse(raw);
-
-    for (const c of competences) {
-      if (!(c in scores)) scores[c] = 1;
-    }
-
-    const filtered = {};
-    for (const [competence, score] of Object.entries(scores)) {
-      if (score >= 3) filtered[competence] = score;
-    }
-
-    if (Object.keys(filtered).length === 0) {
-      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-      for (const [competence, score] of sorted.slice(0, 3)) {
-        filtered[competence] = score;
-      }
-    }
-
-    return filtered;
-  } catch (err) {
-    throw new Error(`Failed to parse task scores: ${err.message}\nRaw: ${raw}`);
+  //If API returns error code throw error with details of data, so one knows what went wrong
+  if (!response.ok) {
+    throw new Error(`Groq API error: ${JSON.stringify(data)}`);
   }
+
+  //Extracts response text from the API response. Here choices[0] is just first response Grok gives in case it gives multiple
+  // message.content is the text the model generated, and that is now parsed to JSON.
+  return JSON.parse(data.choices[0].message.content);
 }
 
-export async function scoreTasksBatch(tasks, competences) {
-  const results = await Promise.all(
-    tasks.map(task =>
-      scoreTask(task.description, competences)
-        .then(scores => ({ taskId: task.id, description: task.description, taskScores: scores }))
-        .catch(err => ({ taskId: task.id, description: task.description, taskScores: null, error: err.message }))
-    )
-  );
-  return results;
+
+export async function relevantCompetencesForTask(taskTitle, taskDescription, competenceNames) {
+  //The Grok model that will be used is the fast model
+
+  //Prompt for Grok to return JSON with relevant competences
+  const prompt = `This a prompt telling you what to do. You will get a task for an university group project together with a description of this task.
+  Furthermore, you will also recieve a list of competences which are relevant for the given education. Based on these competences, and the task and its description,
+  you are asked to return a JSON object containing only the names of competences that are relevant to this task, such as this {"competences": ["Report Writing", "Algorithms"]}, with the competences you deem to be relevant for the task.
+  Here is the title of the task: ${taskTitle}, here is the task description: ${taskDescription}, and here are the relevant competences: ${competenceNames}.`;
+
+  //Result from GROK in JSON format
+  const result = await callGroq(MODEL_FAST, prompt);
+
+  //return competences
+  return result.competences;
 }
+
