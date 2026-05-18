@@ -46,7 +46,6 @@
     "password": "$2b$10$VXUlsavrx1AbQfCRO3mZe.G5PtDNxXr6xcNayN5nsNS7jPbpzOW8W"
   },
   {
-<<<<<<< ours
     "username": "antonhej",
     "email": "antonio@gmail.com",
     "password": "$2b$10$al1WpC4q1t4jAPFZwWAlte2R5.RX7B1M1w3wZd8EKdBtqpYm1dqIC"
@@ -65,10 +64,5 @@
     "username": "test123",
     "email": "test@gmail.com",
     "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
-=======
-    "username": "NEWTEST123",
-    "email": "NEWTEST123@gmail.com",
-    "password": "$2b$10$dO4teLqcA/sRUdJgD5mal.2Z54cqxelYDpsZxv.Q1Q2KaLFdd2On2"
->>>>>>> theirs
   }
 ]
