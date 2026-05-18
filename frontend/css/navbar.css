@@ -1,5 +1,3 @@
-
-
 .Content {
     margin-left: 250px;
     /* same width as sidebar */
@@ -172,6 +170,10 @@
     gap: 10px;
     text-decoration: none;
     margin-top: 10px;
+<<<<<<< ours
+=======
+
+>>>>>>> theirs
 }
 
 #AddTask {
@@ -246,4 +248,3 @@
     background-color: rgb(241, 234, 220);
     transform: translateX(-2px);
 }
-

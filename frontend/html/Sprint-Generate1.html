@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../js/newsprint.js" defer></script>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/NewTask.css">
+
+</head>
+
+<body>
+    <main>
+
+        <div id="NEWTASKBOX">
+            <p>Create new sprint</p>
+            <hr>
+
+            <form id="sprintForm">
+                <div class="form-group">
+                    <label class="LABEL" for="TaskTitle">Sprint Title</label>
+                    <input type="text" name="title" id="SprintTitle" placeholder="e.g. Sprint 1 - Setup phase">
+                </div>
+
+                <div class="form-group">
+                    <label class="LABEL" for="TaskDescription">Description</label>
+                    <textarea name="description" id="TaskDescription"
+                        placeholder="Describe what needs to be done..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="LABEL">Sprint Type</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="learning">
+                            <span>Learning oriented</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="interest">
+                            <span>Interest oriented</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="type" value="competence">
+                            <span>Competence oriented</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="LABEL" for="DueDate">Due Date</label>
+                    <input type="date" id="DueDate" name="dueDate">
+                </div>
+
+
+
+                <button type="submit" id="submit">Create sprint</button>
+            </form>
+        </div>
+        <a href="HomePage.html" id="backButton">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+            Back
+        </a>
+    </main>
+</body>
+
+</html>
