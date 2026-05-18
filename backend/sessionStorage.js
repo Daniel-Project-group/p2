@@ -4,3 +4,7 @@
 // Once logged out, information here gets discarded
 
 // Hooked up by cookie id - check if correct
+
+const sessions = new Map();
+
+module.exports = sessions;

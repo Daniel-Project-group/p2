@@ -1,16 +1,15 @@
+// We get the scores for each user 
+
 // Imports
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
+
+// Helper function
+const { readJson, writeJson } = require("../utils/jsonDb");
 
 const router = express.Router();
 
-// We cd up to json folder when referencing dataPath
-const dataPath = (file) => path.join(__dirname, "../json", file);
-
-
 // POST Route to save a member's competence profile answers
-app.post('/group/:groupCode/member-profile', (req, res) => {
+router.post('/group/:groupCode/member-profile', (req, res) => {
     //destruct object to extract groupCode from req.params
     const { groupCode } = req.params;
     //destruct object to extract username and answers from req.body
@@ -20,13 +19,9 @@ app.post('/group/:groupCode/member-profile', (req, res) => {
     if (!username || !answers)
         return res.status(400).json({ message: 'Username and answers are required' });
 
-    //read group.json to load groups
-    let groups = [];
+    //read group.json to load group ---- helper
+    const groups = readJson("group.json");
 
-        if (fs.existsSync(dataPath("group.json"))) {
-            const data = fs.readFileSync(dataPath("group.json"), "utf-8");
-            groups = data.trim() ? JSON.parse(data) : [];
-}
     //save index of group that has a matching groupCode to the one from req
     const idx = groups.findIndex(g => g.groupCode === groupCode);
 
@@ -47,8 +42,10 @@ app.post('/group/:groupCode/member-profile', (req, res) => {
         groups[idx].memberProfiles.push({ username, answers });
     }
 
-    //Write updated group arrray back to the file with 2 space indentation
-    fs.writeFileSync(dataPath("group.json"), JSON.stringify(groups, null, 2));
+    //Write updated group arrray back to the file with 2 space indentation ---- helper
+    writeJson("group.json", groups)
     // send response saying profile saved
     res.json({ message: 'Profile saved' });
 });
+
+module.exports = router;

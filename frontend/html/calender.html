@@ -8,40 +8,26 @@
     <title>Calender</title>
 
 
-     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/Calender.css">
 </head>
 
 <body>
+    <div id="sidebar"></div>
+    <div id="topbar"></div>
 
 <div class="Layout">
-    <div id="sidebar"></div>
-    <script src="../js/navbar.js"></script>
 
 <main class="Content">
-    <div id="topbar">
-            <div id="profile">
-                <span id="userInitials">DB</span>
-
-                <div id="dropdown">
-                    <div class="dropdown-header">
-                        <div id="dropdownUsername">Username</div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
-                </div>
-            </div>
-            </div>
-
+   
     <header class="DashboardHeader">
         <div>
             <h1>Assignments due</h1>
             <p>Overview of upcoming tasks, deadlines and current progress.</p>
         </div>
     </header>
-
+    
     <section class="SummaryCards">
 
         <div class="SummaryCard">
@@ -80,5 +66,6 @@
 </div>
 
     <script src="../js/calender.js"></script>
+    <script src="../js/navbar.js"></script>
 </body>
 </html>

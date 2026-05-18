@@ -35,7 +35,7 @@ for (let i = 1; i <= daysInMonth; i++) {
 document.querySelector('#calendarGrid')
   .innerHTML = calenderHTML;
 
-fetch('http://localhost:3000/sprints')
+fetch('http://localhost:3000/sprints/sprints')
   .then(res => res.json())
   .then(sprints => {
 
@@ -70,7 +70,7 @@ fetch('http://localhost:3000/sprints')
     });
   });
 
-fetch('http://localhost:3000/sprint-tasks')
+fetch('http://localhost:3000/sprints/sprint-tasks')
   .then(res => res.json())
   .then(sprintsTasks => {
     console.log(sprintsTasks.length)

@@ -11,7 +11,7 @@ loginForm.addEventListener('submit', async function (event) {
 
     // Send the data to our Node.js server
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email, password: password }),
@@ -19,6 +19,7 @@ loginForm.addEventListener('submit', async function (event) {
         });
 
         const data = await response.json();
+        console.log(data);
 
         if (response.ok) {
             localStorage.setItem('username', data.username);

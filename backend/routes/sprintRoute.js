@@ -2,22 +2,19 @@
 
 // Imports
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
+
+// Helper function
+const { readJson, writeJson } = require("../utils/jsonDb");
 
 const router = express.Router();
-
-// We cd up to json folder when referencing dataPath
-const dataPath = (file) => path.join(__dirname, "../json", file);
 
 //Creates a new sprint
 router.post('/newsprint', (req, res) => {
     const { title, description, enddate } = req.body;
-    let sprints = [];
-    if (fs.existsSync(dataPath('sprints.json'))) {
-        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
-    }
-    
+
+    // Helper function reading sprints from json
+    const sprints = readJson("sprints.json");
+ 
     const newSprint = {
     id: Date.now(),
     title,
@@ -26,31 +23,27 @@ router.post('/newsprint', (req, res) => {
     createdAt: new Date().toISOString()
 };
 
+    // We push the new sprint object back into array
     sprints.push(newSprint);
-    fs.writeFileSync(dataPath('sprints.json'), JSON.stringify(sprints, null, 2));
+    // And then json with helper
+    writeJson("sprints.json", sprints);
 
     res.json({ message: 'Sprint created!', sprint: newSprint });
 });
 
 //Gets all the current sprints
 router.get('/sprints', (req, res) => {
-    let sprints = [];
-    if (fs.existsSync(dataPath('sprints.json'))) {
-        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
-    }
+
+    // Helper
+    const sprints = readJson("sprints.json");
     res.json(sprints);
 });
 
 // Read sprint route
 router.get('/sprint-tasks', (req, res) => {
-    let sprints = [];
-    let tasks = [];
-    if (fs.existsSync(dataPath('sprints.json'))) {
-        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
-    }
-    if (fs.existsSync(dataPath('tasks.json'))) {
-        tasks = JSON.parse(fs.readFileSync(dataPath('tasks.json'), 'utf-8'));
-    }
+
+    const sprints = readJson("sprints.json");
+    const tasks = readJson("tasks.json");
 
     //Makes sure there are sprints in the file
     if (sprints.length === 0) {
@@ -61,7 +54,6 @@ router.get('/sprint-tasks', (req, res) => {
     const newestSprint = sprints[sprints.length - 1]
 
     let sprintTasks = [];
-
     //Pushes every task with the matching sprintId 
     // to sprint tasks
     tasks.forEach(task => {

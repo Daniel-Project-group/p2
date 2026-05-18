@@ -2,15 +2,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const fs = require('fs');
-const path = require('path');
+
+// Helper function
+const { readJson, writeJson } = require("../../utils/jsonDb");
 
 const router = express.Router();
 
 const sessions = require('../../sessionStorage');
-
-// We cd up to json folder when referencing dataPath
-const dataPath = (file) => path.join(__dirname, "../json", file);
 
 // Login route
 router.post('/', async (req, res) => {
@@ -22,14 +20,13 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    if (!fs.existsSync(dataPath('accounts.json'))) {
+    const accounts = readJson("accounts.json");
+    if (accounts.length === 0){
         return res.status(400).json({ message: 'No accounts found. Please sign up first.' });
     }
 
-    const data = fs.readFileSync(dataPath('accounts.json'), 'utf-8');
-    const accounts = JSON.parse(data);
-
     const user = accounts.find(account => account.email === email);
+    
     //If there is no such user, then email or password must be invalid. This is deliberately vague so attackers don't know which went wrong
     if (!user) {
         return res.status(400).json({ message: 'Invalid email or password' });

@@ -44,5 +44,25 @@
     "username": "kat123456",
     "email": "pik@gmail.com",
     "password": "$2b$10$VXUlsavrx1AbQfCRO3mZe.G5PtDNxXr6xcNayN5nsNS7jPbpzOW8W"
+  },
+  {
+    "username": "antonhej",
+    "email": "antonio@gmail.com",
+    "password": "$2b$10$al1WpC4q1t4jAPFZwWAlte2R5.RX7B1M1w3wZd8EKdBtqpYm1dqIC"
+  },
+  {
+    "username": "anni123",
+    "email": "anton12345@gmail.com",
+    "password": "$2b$10$2nC3fOm/QO3iOiMn70nHWeK4StlfmPoNKFOO6E0GPGe/oo5VuFR7C"
+  },
+  {
+    "username": "anniton",
+    "email": "anton77@gmail.com",
+    "password": "$2b$10$zzdFwoDXZ1E5Djhv21D0fu5eEnrILWqokkozMd9Jw0nDGPdNskVRu"
+  },
+  {
+    "username": "test123",
+    "email": "test@gmail.com",
+    "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
   }
 ]

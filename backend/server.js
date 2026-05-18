@@ -1,13 +1,8 @@
 // import all the needed libraries
 const express = require('express');
-const bcrypt = require('bcrypt');
 const cors = require('cors');
-const fs = require('fs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const crypto = require('crypto');
-const multer = require('multer');
-const pdfParse = require('pdf-parse-fork');
 
 // Route auth imports 
 const authRoute = require('./routes/auth/authRoute');
@@ -26,14 +21,6 @@ const app = express();
 const PORT = 3000;
 
 
-// File upload handler with uploaded files being stored in RAM with 20MB limit
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
-
-
-// Makes sure it can always find a specific file
-// no matter where the server was launched from
-const dataPath = (file) => path.join(__dirname, 'json', file);
-
 // Middleware
 // Enables cors to allow frontend to make request to backend even if not on same port
 app.use(cors());
@@ -44,8 +31,8 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 //  Parses cookies from incoming requests
 app.use(cookieParser());
 
-// In memory hashmap storage for active sessions
-const sessions = new Map();
+// In memory hashmap storage for active sessions - removed for now
+//const sessions = new Map();
 
 // All route uses
 app.use('/auth', authRoute);

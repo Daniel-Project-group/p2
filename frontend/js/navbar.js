@@ -64,9 +64,27 @@ const sideBarHTML = `
 
 </nav>
 `
+const topBarHTML = `
+            <div id="profile">
+                <span id="userInitials">DB</span>
+
+                <div id="dropdown">
+                    <div class="dropdown-header">
+                        <div id="dropdownUsername">Username</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
+                </div>
+            </div>
+
+        </div>
+
+`
+
 //Adds the html to the page
 document.querySelector('#sidebar').innerHTML = sideBarHTML;
-
+document.querySelector('#topbar').innerHTML = topBarHTML;
 
 const currentPage = window.location.pathname.split('/').pop();
 
@@ -77,3 +95,53 @@ document.querySelectorAll('.SideBarButton').forEach(link => {
         link.classList.add('sidebarbuttonActive');
     }
 });
+
+const username = localStorage.getItem("username");
+
+const userInitials = document.querySelector("#userInitials");
+const dropdownUsername = document.querySelector("#dropdownUsername");
+const logoutBtn = document.querySelector("#logoutBtn");
+const welcomeText = document.querySelector("#welcomeText");
+
+// If the user insnt logged in, then they're redirected to login page
+if(!username){
+    window.location.href = "signin.html"
+}
+// We check for all the individual elements 
+// This ensures we dont return undefined values, say they were only conditioned by username
+ if (welcomeText) {
+    welcomeText.textContent = `Welcome Back ${username}`;
+}
+
+if (userInitials) {
+    userInitials.textContent = username.substring(0, 2).toUpperCase();
+}
+
+if (dropdownUsername) {
+    dropdownUsername.textContent = username;
+}
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async function(event) {
+        event.preventDefault();
+
+    try{
+        const response = await fetch('http://localhost:3000/auth/logout',{
+            method: 'POST',
+        });
+
+        const data = await response.json();
+        // If backend determines request isnt valid
+        if(!response.ok){
+            // Either backend responds or we fallback to logout fail
+            console.log(data.message || "Logout fail")
+            return;
+        }
+        localStorage.removeItem("username");
+        window.location.href = "signin.html";
+    // If the backend doesnt even respond / the request fails
+    } catch (errror){
+        console.error("Logout error:", error);
+    }
+    });
+}

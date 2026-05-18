@@ -1,4 +1,4 @@
-const username  = localStorage.getItem('username');
+const usernameCompetences  = localStorage.getItem('username');
 const groupCode = localStorage.getItem('groupCode');
 
 let competences = [];
@@ -54,10 +54,10 @@ nextBtn.addEventListener('click', async () => {
         loadQuestion();
     } else {
         nextBtn.disabled = true;
-        await fetch(`http://localhost:3000/group/${groupCode}/member-profile`, {
+        await fetch(`http://localhost:3000/profiles/group/${groupCode}/member-profile`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, answers })
+            body: JSON.stringify({ usernameCompetences, answers })
         });
         questionBox.innerHTML = `
             <h2>Competence profile saved!</h2>
@@ -89,19 +89,26 @@ async function init() {
     titleEl.textContent = 'Loading competences...';
 
     for (let attempt = 0; attempt < 20; attempt++) {
-        const res = await fetch(`http://localhost:3000/group/${groupCode}/competences`);
-        if (res.ok) {
-            const data = await res.json();
-            competences = data.competences;
-            loadQuestion();
-            return;
-        }
+        const res = await fetch(`http://localhost:3000/competences/group/${groupCode}/competences`);
+       
         if (res.status === 202) {
             titleEl.textContent = 'The AI is generating your competences, please wait...';
             await new Promise(r => setTimeout(r, 3000));
-        } else {
-            break;
+            continue;
         }
+        if (res.ok) {
+            const data = await res.json();
+
+            competences = data.competences;
+
+            if (!Array.isArray(competences) || competences.length === 0) {
+                questionBox.innerHTML = '<h2>No competences found.</h2>';
+                return;
+            }
+            loadQuestion();
+            return;
+        }
+        break;
     }
 
     questionBox.innerHTML = '<h2>Could not load competences. Please try again later.</h2>';
