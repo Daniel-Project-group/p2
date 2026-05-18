@@ -59,5 +59,10 @@
     "username": "kat123456",
     "email": "pik@gmail.com",
     "password": "$2b$10$VXUlsavrx1AbQfCRO3mZe.G5PtDNxXr6xcNayN5nsNS7jPbpzOW8W"
+  },
+  {
+    "username": "Kok",
+    "email": "kok@gmail.com",
+    "password": "$2b$10$l7Kol4PqGz/pFEqSIkTDAuVEa7wlIJP33GHLEmSNEbBsK3AgNSCBK"
   }
 ]

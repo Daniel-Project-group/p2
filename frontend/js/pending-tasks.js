@@ -1,13 +1,16 @@
 
 renderPendingTasks();
 
+//Renders the current pending tasks
 function renderPendingTasks() {
+  //Gets every task with the status "pending"
   fetch('http://localhost:3000/pending-tasks')
   .then(res => res.json())
   .then(pendingTasks => {
 
     let pendingTaskHTML = '';
 
+    //Adds every tasks to its own box in HTML
     pendingTasks.forEach((task, index) => {
       pendingTaskHTML += `
       <div class="pending-card" id="pending-card-${task.id}" style="animation-delay: ${index * 0.1}s">
@@ -30,7 +33,7 @@ function renderPendingTasks() {
   });
   
 }
-
+  //Adds the event listener to all the accept and reject buttons
   function addEvent(status) {
   document.querySelectorAll(`.${status}-btn`)
     .forEach((button) => {

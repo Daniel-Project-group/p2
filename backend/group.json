@@ -57,5 +57,116 @@
         "interestQuestion": "How interested are you in research and academic writing? (1-10)"
       }
     ]
+  },
+  {
+    "name": "Project 4",
+    "groupCode": "group-023",
+    "id": 1778682145732,
+    "createdAt": "2026-05-13T14:22:25.732Z",
+    "members": [
+      "Kok"
+    ],
+    "programme": "Computer science",
+    "semester": 2,
+    "curriculumUrl": null,
+    "competences": [
+      {
+        "name": "Programming Skills",
+        "competenceQuestion": "How proficient are you in programming languages and software development? (1-10)",
+        "interestQuestion": "How interested are you in programming and software development? (1-10)"
+      },
+      {
+        "name": "Algorithms Design",
+        "competenceQuestion": "How proficient are you in designing and analyzing algorithms? (1-10)",
+        "interestQuestion": "How interested are you in algorithm design and optimization? (1-10)"
+      },
+      {
+        "name": "Report Writing",
+        "competenceQuestion": "How proficient are you in writing technical reports and documentation? (1-10)",
+        "interestQuestion": "How interested are you in technical writing and communication? (1-10)"
+      },
+      {
+        "name": "Web Development",
+        "competenceQuestion": "How proficient are you in web programming and development frameworks? (1-10)",
+        "interestQuestion": "How interested are you in web development and design? (1-10)"
+      },
+      {
+        "name": "Project Management",
+        "competenceQuestion": "How proficient are you in managing and coordinating group projects? (1-10)",
+        "interestQuestion": "How interested are you in project management and leadership? (1-10)"
+      },
+      {
+        "name": "Problem Analysis",
+        "competenceQuestion": "How proficient are you in analyzing and solving complex problems? (1-10)",
+        "interestQuestion": "How interested are you in problem-solving and critical thinking? (1-10)"
+      },
+      {
+        "name": "Database Design",
+        "competenceQuestion": "How proficient are you in designing and implementing databases? (1-10)",
+        "interestQuestion": "How interested are you in database systems and management? (1-10)"
+      },
+      {
+        "name": "Group Work",
+        "competenceQuestion": "How proficient are you in collaborating and working effectively in groups? (1-10)",
+        "interestQuestion": "How interested are you in team collaboration and communication? (1-10)"
+      },
+      {
+        "name": "Literature Review",
+        "competenceQuestion": "How proficient are you in conducting literature reviews and research? (1-10)",
+        "interestQuestion": "How interested are you in research and academic writing? (1-10)"
+      }
+    ],
+    "memberProfiles": [
+      {
+        "username": "Kok",
+        "answers": [
+          {
+            "competence": "Programming Skills",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Algorithms Design",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Report Writing",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Web Development",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Project Management",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Problem Analysis",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Database Design",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Group Work",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Literature Review",
+            "proficiency": 5,
+            "interest": 5
+          }
+        ]
+      }
+    ]
   }
 ]

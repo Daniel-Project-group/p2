@@ -1,10 +1,13 @@
+//Gets the current date, month and year
 const currentDate = new Date();
 let displayYear = currentDate.getFullYear();
 let displayMonth = currentDate.getMonth();
 
+//Gets every month in a array to be more easily displayed
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'];
 
+//Renders the calender in the current month and year
 renderCalendar(displayYear, displayMonth);
 
 addEventListenerToButtons();
@@ -16,12 +19,13 @@ const firstDay = ((new Date(year, month, 1)
   .getDay()) + 6) % 7;
 
 //Gets the amount of days in the month
+//This works since day 0 gives you the last day of the last month
 const daysInMonth = new Date(year, month + 1, 0)
   .getDate();
 
 let calenderHTML = '';
 
-//Set the current month
+//Display the current month and year
 document.querySelector('#current-year-month')
   .innerHTML = `${months[month]} ${displayYear}`;
 
@@ -51,6 +55,7 @@ document.querySelector('#calendarGrid')
 
 changeHTMLDates(year, month);
 }
+
 
 function changeHTMLDates(year, month) {
   fetch('http://localhost:3000/sprints')
@@ -102,6 +107,7 @@ fetch('http://localhost:3000/sprint-tasks')
 
   });
 }
+
 
 function addEventListenerToButtons() {
   document.querySelector('#back-button')
