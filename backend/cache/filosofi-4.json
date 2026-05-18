@@ -1,0 +1,56 @@
+{
+  "programme": "Filosofi",
+  "semester": 4,
+  "competences": [
+    {
+      "name": "Critical Thinking",
+      "competenceQuestion": "How proficient are you in critical thinking? (1-10)",
+      "interestQuestion": "How interested are you in critical thinking? (1-10)"
+    },
+    {
+      "name": "Report Writing",
+      "competenceQuestion": "How proficient are you in report writing? (1-10)",
+      "interestQuestion": "How interested are you in report writing? (1-10)"
+    },
+    {
+      "name": "Ethics Analysis",
+      "competenceQuestion": "How proficient are you in ethics analysis? (1-10)",
+      "interestQuestion": "How interested are you in ethics analysis? (1-10)"
+    },
+    {
+      "name": "Logic Application",
+      "competenceQuestion": "How proficient are you in logic application? (1-10)",
+      "interestQuestion": "How interested are you in logic application? (1-10)"
+    },
+    {
+      "name": "Literature Review",
+      "competenceQuestion": "How proficient are you in literature review? (1-10)",
+      "interestQuestion": "How interested are you in literature review? (1-10)"
+    },
+    {
+      "name": "Problem Analysis",
+      "competenceQuestion": "How proficient are you in problem analysis? (1-10)",
+      "interestQuestion": "How interested are you in problem analysis? (1-10)"
+    },
+    {
+      "name": "Research Method",
+      "competenceQuestion": "How proficient are you in research method? (1-10)",
+      "interestQuestion": "How interested are you in research method? (1-10)"
+    },
+    {
+      "name": "Group Discussion",
+      "competenceQuestion": "How proficient are you in group discussion? (1-10)",
+      "interestQuestion": "How interested are you in group discussion? (1-10)"
+    },
+    {
+      "name": "Philosophy Paper",
+      "competenceQuestion": "How proficient are you in writing philosophy papers? (1-10)",
+      "interestQuestion": "How interested are you in writing philosophy papers? (1-10)"
+    },
+    {
+      "name": "Academic Writing",
+      "competenceQuestion": "How proficient are you in academic writing? (1-10)",
+      "interestQuestion": "How interested are you in academic writing? (1-10)"
+    }
+  ]
+}

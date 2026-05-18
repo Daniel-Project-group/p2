@@ -1,5 +1,3 @@
-
-
 .Content {
     margin-left: 250px;
     /* same width as sidebar */
@@ -164,7 +162,6 @@
     display: flex;
     align-items: center;
     padding: 10px 16px;
-    /* top/bottom 8px, left/right 16px */
     box-sizing: border-box;
     height: 30px;
     color: white;
@@ -172,7 +169,7 @@
     border-radius: 7px;
     gap: 10px;
     text-decoration: none;
-
+    margin-top: 10px;
 
 }
 
@@ -248,4 +245,3 @@
     background-color: rgb(241, 234, 220);
     transform: translateX(-2px);
 }
-
