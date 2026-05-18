@@ -227,23 +227,39 @@ app.post('/groupJoin', (req, res) => {
 
 // Create new task
 app.post('/newtask', (req, res) => {
-    const { group, title, description, quantity, duedate, oriented, createdBy } = req.body;
+    const { group, title, description, quantity, duedate, createdBy } = req.body;
 
-    if (!title || !duedate || !oriented || !createdBy)
-        return res.status(400).json({ message: 'Title, due date, task type, and creator are required' });
+    if (!title || !duedate || !createdBy)
+        return res.status(400).json({ message: 'Title, due date, and creator are required' });
+
+    // Find the active sprint for this group
+    const sprintsFile = path.join(__dirname, 'sprints.json');
+    let activeSprint = null;
+    if (fs.existsSync(sprintsFile)) {
+        const data = fs.readFileSync(sprintsFile, 'utf-8');
+        if (data.trim()) {
+            const sprints = JSON.parse(data);
+            activeSprint = sprints.find(s => s.groupCode === group && s.status === 'active');
+        }
+    }
+
+    if (!activeSprint) {
+        return res.status(400).json({ message: 'No active sprint. Please create a sprint first.' });
+    }
 
     const tasks = readJSON(DB.tasks);
 
     const newTask = {
         id: Date.now(),
         groupId: group,
+        sprintId: activeSprint.id,         // Attach to active sprint
         title,
         description,
         quantity: parseInt(quantity) || 1,
         duedate,
-        oriented,
         createdBy,
-        status: 'pending',
+        status: 'todo',                    // Changed from 'pending' to 'todo'
+        assignedTo: null,                  // assign later, with algorithm BRUH
         createdAt: new Date().toISOString()
     };
 
