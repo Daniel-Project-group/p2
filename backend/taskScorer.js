@@ -1,5 +1,5 @@
 //Imports the .env making all variables in it avaliable here
-import 'dotenv/config';
+require('dotenv').config();
 //Fast model, since picking picking relevant is a quite simple task that does not need a lot of computation
 const MODEL_FAST = 'llama-3.1-8b-instant';
 
@@ -37,8 +37,7 @@ async function callGroq(model, prompt) {
   return JSON.parse(data.choices[0].message.content);
 }
 
-
-export async function relevantCompetencesForTask(taskTitle, taskDescription, competenceNames) {
+async function relevantCompetencesForTask(taskTitle, taskDescription, competenceNames) {
   //The Grok model that will be used is the fast model
 
   //Prompt for Grok to return JSON with relevant competences
@@ -54,3 +53,4 @@ export async function relevantCompetencesForTask(taskTitle, taskDescription, com
   return result.competences;
 }
 
+module.exports = { relevantCompetencesForTask };

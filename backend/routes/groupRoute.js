@@ -76,13 +76,21 @@ router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) =>
             console.log(`Extracted ${extractedText.length} characters from PDF`);
         }
 
-        //Asynchroniously call LLLM pipeline with either text or semester and curriculumUrl combination, then store competences in profile
+        //Asynchroniously call LLM pipeline with either text or semester and curriculumUrl combination, then store competences in profile
         const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
 
         // Re-read group.json before writing. This is smart as other requests might have modified while LLM was running.
+<<<<<<< HEAD
 
         const currentGroups = readJson("group.json");
 
+=======
+        let currentGroups = [];
+        if (fs.existsSync(dataPath("group.json"))) {
+            const data = fs.readFileSync(dataPath("group.json"), "utf-8");
+            currentGroups = data.trim() ? JSON.parse(data) : [];
+}
+>>>>>>> matei-algorithm
         // save index where the id matches the id of the new group
         const idx = currentGroups.findIndex(g => g.id === newGroup.id);
         // If there is such an index
