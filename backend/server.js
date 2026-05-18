@@ -253,6 +253,91 @@ app.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
+// Create new sprint
+app.post('/createSprint', (req, res) => {
+    const { groupCode, title, description, type, dueDate, createdBy } = req.body;
+
+    // Validate required fields
+    if (!groupCode || !title || !type || !dueDate || !createdBy) {
+        return res.status(400).json({ message: 'Group code, title, sprint type, due date, and creator are required' });
+    }
+
+    // Check that the group exists
+    const groups = readJSON(DB.groups);
+    const group = groups.find(g => g.groupCode === groupCode);
+    if (!group) {
+        return res.status(404).json({ message: 'Group not found' });
+    }
+
+    // Only the group leader (first member / creator) can create sprints
+    //if (group.members[0] !== createdBy) {
+    //   return res.status(403).json({ message: 'Only the group leader can create sprints' });
+    //}
+
+    // Read existing sprints
+    const sprintsFile = path.join(__dirname, 'sprints.json');
+    let sprints = [];
+    if (fs.existsSync(sprintsFile)) {
+        const data = fs.readFileSync(sprintsFile, 'utf-8');
+        if (data.trim()) sprints = JSON.parse(data);
+    }
+
+
+    sprints.forEach(sprint => {
+        if (sprint.groupCode === groupCode && sprint.status === 'active') {
+            sprint.status = 'completed';
+            sprint.completedAt = new Date().toISOString();
+        }
+    });
+
+    // Create the new sprint
+    const newSprint = {
+        id: Date.now(),
+        groupCode,
+        title,
+        description: description || '',
+        type,
+        dueDate,
+        createdBy,
+        createdAt: new Date().toISOString(),
+        status: 'active'
+    };
+
+    sprints.push(newSprint);
+
+    // Save to file
+    fs.writeFileSync(sprintsFile, JSON.stringify(sprints, null, 2));
+
+    res.json({ message: 'Sprint created successfully!', sprint: newSprint });
+});
+
+// Get the active sprint for a group
+app.get('/group/:groupCode/active-sprint', (req, res) => {
+    const { groupCode } = req.params;
+    const sprintsFile = path.join(__dirname, 'sprints.json');
+
+    if (!fs.existsSync(sprintsFile)) {
+        return res.json({ sprint: null });
+    }
+
+    const data = fs.readFileSync(sprintsFile, 'utf-8');
+    if (!data.trim()) return res.json({ sprint: null });
+
+    const sprints = JSON.parse(data);
+    const activeSprint = sprints.find(s => s.groupCode === groupCode && s.status === 'active');
+
+    res.json({ sprint: activeSprint || null });
+});
+
+// Get all tasks for a specific sprint
+app.get('/sprint/:sprintId/tasks', (req, res) => {
+    const { sprintId } = req.params;
+
+    const tasks = readJSON(DB.tasks);
+    const sprintTasks = tasks.filter(task => task.sprintId === parseInt(sprintId));
+
+    res.json({ tasks: sprintTasks });
+});
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log('Using Groq API for AI features');
