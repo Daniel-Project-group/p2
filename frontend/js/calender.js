@@ -49,15 +49,11 @@ for (let i = 1; i <= daysInMonth; i++) {
 document.querySelector('#calendarGrid')
   .innerHTML = calenderHTML;
 
-<<<<<<< HEAD
-fetch('http://localhost:3000/sprints/sprints')
-=======
 changeHTMLDates(year, month);
 }
 
 function changeHTMLDates(year, month) {
-  fetch('http://localhost:3000/sprints')
->>>>>>> origin/Tobber
+  fetch('http://localhost:3000/sprints/sprints')
   .then(res => res.json())
   .then(sprints => {
 
@@ -88,12 +84,7 @@ function changeHTMLDates(year, month) {
     });
   });
 
-<<<<<<< HEAD
 fetch('http://localhost:3000/sprints/sprint-tasks')
-=======
-//Adds the tasks to the display
-fetch('http://localhost:3000/sprint-tasks')
->>>>>>> origin/Tobber
   .then(res => res.json())
   .then(sprintsTasks => {
     document.querySelector('#js-task-amount')
