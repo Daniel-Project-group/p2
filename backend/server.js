@@ -282,7 +282,7 @@ app.post('/createSprint', (req, res) => {
         if (data.trim()) sprints = JSON.parse(data);
     }
 
-    // If there's already an active sprint for this group, mark it as completed
+
     sprints.forEach(sprint => {
         if (sprint.groupCode === groupCode && sprint.status === 'active') {
             sprint.status = 'completed';
@@ -329,6 +329,15 @@ app.get('/group/:groupCode/active-sprint', (req, res) => {
     res.json({ sprint: activeSprint || null });
 });
 
+// Get all tasks for a specific sprint
+app.get('/sprint/:sprintId/tasks', (req, res) => {
+    const { sprintId } = req.params;
+
+    const tasks = readJSON(DB.tasks);
+    const sprintTasks = tasks.filter(task => task.sprintId === parseInt(sprintId));
+
+    res.json({ tasks: sprintTasks });
+});
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log('Using Groq API for AI features');
