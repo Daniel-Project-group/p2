@@ -3,7 +3,11 @@
     "id": 1778502444327,
     "title": "Sprint1",
     "description": "VIRK NU PLS",
+<<<<<<< HEAD:backend/json/sprints.json
     "enddate": "2026-05-05",
+=======
+    "enddate": "2026-06-20",
+>>>>>>> origin/Tobber:backend/sprints.json
     "createdAt": "2026-05-11T12:27:24.327Z"
   }
 ]

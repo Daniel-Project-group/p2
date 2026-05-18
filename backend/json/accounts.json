@@ -44,6 +44,7 @@
     "username": "kat123456",
     "email": "pik@gmail.com",
     "password": "$2b$10$VXUlsavrx1AbQfCRO3mZe.G5PtDNxXr6xcNayN5nsNS7jPbpzOW8W"
+<<<<<<< HEAD:backend/json/accounts.json
   },
   {
     "username": "antonhej",
@@ -64,5 +65,7 @@
     "username": "test123",
     "email": "test@gmail.com",
     "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
+=======
+>>>>>>> origin/Tobber:backend/accounts.json
   }
 ]

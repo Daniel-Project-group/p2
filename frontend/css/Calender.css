@@ -177,3 +177,33 @@
     color: rgb(255, 91, 31);
     font-weight: 700;
 }
+
+#current-year-month {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(20, 20, 15);
+    margin-bottom: 16px;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.calendar-nav button {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 8px;
+    background-color: rgb(250, 248, 244);
+    color: rgb(20, 20, 15);
+    cursor: pointer;
+}
+
+.calendar-nav button:hover {
+    background-color: rgb(240, 235, 225);
+}
