@@ -36,25 +36,29 @@ function renderCalendar(year, month) {
   //Creates a div with a given date in the month
   for (let i = 1; i <= daysInMonth; i++) {
 
-    //Checks if its the current date, and if gives it a new class
-    if (year === currentDate.getFullYear() &&
-        month === currentDate.getMonth() && currentDate.getDate() === i) {
-
-      calenderHTML += `<div class="calendar-day current-day"
-        id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
-        <p class="DateNumber">${i}</p></div>`;
-    } else {
-      calenderHTML += `<div class="calendar-day"
-        id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
-        <p class="DateNumber">${i}</p></div>`;
-    }
+    // Generates all the days in the given month and gives each an id
+    calenderHTML += `<div class="calendar-day"
+      id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
+      <p class="DateNumber">${i}</p></div>`;
   }
   //Adds the HTML to the page
   document.querySelector('#calendarGrid')
     .innerHTML = calenderHTML;
 
+  // Runs the functions for the highlights and the task list
   renderSprintHighlights(year, month);
   renderTaskList();
+  highlightToday();
+}
+
+function highlightToday() {
+  //Gets the Id for the current day
+  const todayId = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1)
+    .padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+
+  //Checks if any of the elements matches the Id and highlights it
+  const todayCell = document.getElementById(todayId);
+  if (todayCell) todayCell.classList.add('current-day');
 }
 
 //Makes the sprint due date highlight, and the days up to it or after it highlight.
@@ -63,17 +67,19 @@ function renderSprintHighlights(year, month) {
   .then(res => res.json())
   .then(sprints => {
 
-    const activeSprint = sprints.find(s => s.status === 'active');
+    // Gets the active sprint, and returns if none is found
+    const activeSprint = sprints.find(sprint => sprint.status === 'active');
     if (!activeSprint) return;
 
     const dueDate = document.getElementById(activeSprint.dueDate);
 
+    // Sees if the current due date for the sprint is one the page and highligts it
     if (dueDate) {
       dueDate.classList.add('sprint-due');
       dueDate.innerHTML += `<p class="sprint-label">${activeSprint.title}</p>`;
     }
 
-    const endDate = new Date(activeSprint.dueDate);
+    const sprintDueDate = new Date(activeSprint.dueDate);
     const today = new Date();
 
 
@@ -81,11 +87,11 @@ function renderSprintHighlights(year, month) {
     //Depending on if you are over or under the due date
     document.querySelectorAll('.calendar-day')
       .forEach(day => {
-        const dayDate = new Date(day.id);
+        const cellDate = new Date(day.id);
 
-        if (endDate < today && dayDate >= endDate && dayDate <= today) {
+        if (sprintDueDate < today && cellDate >= sprintDueDate && cellDate <= today) {
           day.classList.add('sprint-overdue-range');
-        } else if (dayDate > today && dayDate < endDate) {
+        } else if (cellDate > today && cellDate < sprintDueDate) {
           day.classList.add('sprint-range');
         }
       });
