@@ -7,15 +7,14 @@ const { readJson, writeJson } = require("../utils/jsonDb");
 
 const router = express.Router();
 
-const { readJson, writeJson } = require("../utils/jsonDb");
 
 // Create new task route
 router.post('/newtask', (req, res) => {
     const { group, title, description, quantity} = req.body;
 
     // Validate required fields
-    if (!title || !duedate) {
-        return res.status(400).json({ message: 'Title, due date, and creator are required' });
+    if (!title) {
+        return res.status(400).json({ message: 'Title is required' });
     }
 
     // Find the active sprint for this group — new tasks must attach to one
@@ -40,7 +39,7 @@ router.post('/newtask', (req, res) => {
     activeSprint.tasks.push(newTask);
 
     //Write updated sprint with new task in JSON format to file ---- helper again
-    writeJson("sprints.json", activeSprint);
+    writeJson("sprints.json", sprints);
 
     // send response that task was created succesfully along with task
     res.json({ message: 'Task created successfully!', task: newTask });

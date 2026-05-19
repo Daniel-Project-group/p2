@@ -86,6 +86,8 @@ router.post('/sprints/assign', async (req, res) => {
         const sprints = readJson("sprints.json");
         //Filter the sprints, and save only the ones that have groupCode variable the same as the groupCode from req body
         const activeSprint = sprints.find(s => s.groupCode === groupCode && s.status === 'active');
+        //Check if there is no active sprint and return 404 not found error if there is not
+        if (!activeSprint) return res.status(404).json({ message: 'No active sprint found' });
         //Save the tasks of that sprint
         const groupTask = activeSprint.tasks;
        
