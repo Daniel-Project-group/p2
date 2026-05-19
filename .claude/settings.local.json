@@ -8,7 +8,8 @@
       "Bash(git pull *)",
       "PowerShell(node backend/server.js)",
       "Bash(node server.js)",
-      "PowerShell(node C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\\\\server.js)"
+      "PowerShell(node C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\\\\server.js)",
+      "Bash(git fetch *)"
     ]
   }
 }

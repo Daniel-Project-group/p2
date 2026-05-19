@@ -56,7 +56,7 @@ document.querySelector('#calendarGrid')
 changeHTMLDates(year, month);
 }
 
-
+//Makes the sprint due date highlight, and the days up to it or after it highlight.
 function changeHTMLDates(year, month) {
   fetch('http://localhost:3000/sprints')
   .then(res => res.json())
@@ -121,6 +121,7 @@ function addEventListenerToButtons() {
   });
 }
 
+//Makes the the calender go one month back
 function backButton() {
   if (displayMonth === 0) {
     displayMonth = 11;
@@ -131,6 +132,7 @@ function backButton() {
   renderCalendar(displayYear, displayMonth);
 }
 
+//Makes the calender go one month forward
 function nextButton() {
   if (displayMonth === 11) {
     displayMonth = 0;
