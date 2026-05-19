@@ -31,7 +31,7 @@ router.post('/newtask', (req, res) => {
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
-        status: 'pending',               // Starts pending
+        status: 'todo',                  // Tasks go straight to todo — no pending step
         assignedTo: null,                // assigned later by algorithm
     };
 

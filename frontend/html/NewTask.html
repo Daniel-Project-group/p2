@@ -5,55 +5,73 @@
     <script src="../js/newtask.js" defer></script>
 
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/NewTask.css">
+    <link rel="stylesheet" href="../css/NewTaskBatch.css">
 
 </head>
 
 <body>
+
     <main>
 
-        <div id="NEWTASKBOX">
-            <p>Create New Task</p>
-            <hr>
+        <div class="NewTaskContainer">
 
-            <form id="taskForm">
-                <div class="form-group">
-                    <label class="LABEL" for="TaskTitle">Task Title</label>
-                    <input type="text" name="title" id="TaskTitle" placeholder="e.g. Write project documentation">
-                </div>
+            <!-- LEFT: form panel -->
+            <section id="NEWTASKBOX" class="SprintFormPanel">
+                <p id="sprintTitle">Sprint 1</p>
+                <hr>
 
-                <div class="form-group">
-                    <label class="LABEL" for="TaskDescription">Description</label>
-                    <textarea name="description" id="TaskDescription"
-                        placeholder="Describe what needs to be done..."></textarea>
-                </div>
-
-                <div class="form-row">
+                <form id="taskForm">
                     <div class="form-group">
-                        <label class="LABEL" for="Quantity">Number of people</label>
+                        <label class="LABEL" for="TaskTitle">Task Title</label>
+                        <input type="text" name="title" id="TaskTitle" placeholder="e.g. Write project documentation">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="LABEL" for="TaskDescription">Description</label>
+                        <textarea name="description" id="TaskDescription"
+                            placeholder="Describe what needs to be done..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="LABEL" for="Quantity">Number of people on this task</label>
                         <input type="number" id="Quantity" name="quantity" value="1" min="1" max="20">
                     </div>
 
-                    <div class="form-group">
-                        <label class="LABEL" for="DueDate">Due Date</label>
-                        <input type="date" id="DueDate" name="duedate">
+                    <button type="submit" id="submit">Add Task</button>
+                </form>
+            </section>
+
+            <!-- RIGHT: task cards -->
+            <section class="TaskPanel">
+                <h3 class="TaskPanelHeader">Tasks in this sprint</h3>
+                <div class="TaskGrid" id="taskGrid">
+                    <!-- Placeholder cards so you can see the layout. JS will replace these. -->
+                    <div class="TaskCard">
+                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
+                        <h4>Task 1</h4>
+                    </div>
+                    <div class="TaskCard">
+                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
+                        <h4>Task 2</h4>
+                    </div>
+                    <div class="TaskCard">
+                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
+                        <h4>Task 3</h4>
+                    </div>
+                    <div class="TaskCard">
+                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
+                        <h4>Task 4</h4>
                     </div>
                 </div>
+            </section>
 
-
-                <button type="submit" id="submit">Submit Task</button>
-            </form>
         </div>
-        <a href="HomePage.html" id="backButton">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
 
-            </svg>
-            Back
-        </a>
+        <button id="delegateBtn" class="DelegateButton">Delegate</button>
+
     </main>
+
 </body>
 
 </html>

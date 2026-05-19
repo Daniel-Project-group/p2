@@ -1,0 +1,122 @@
+/* Two-column layout: form on the left, task cards on the right */
+body {
+    margin: 0;
+}
+
+.NewTaskContainer {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 32px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* LEFT — sprint form panel (overrides NewTask.css since this page is grid-based, not centered) */
+.NewTaskContainer #NEWTASKBOX {
+    width: auto;
+    margin: 0;
+    box-shadow: 0 8px 30px rgba(255, 91, 31, 0.15);
+    transition: all 0.3s;
+}
+
+.NewTaskContainer #NEWTASKBOX p {
+    font-size: 36px;
+}
+
+/* RIGHT — task panel */
+.TaskPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.TaskPanelHeader {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+.TaskGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.TaskCard {
+    position: relative;
+    background-color: rgb(250, 248, 244);
+    border: 1px solid rgb(225, 221, 213);
+    border-radius: 12px;
+    padding: 20px 20px 16px;
+    min-height: 96px;
+    transition: all 0.15s;
+}
+
+.TaskCard:hover {
+    border-color: rgb(200, 195, 185);
+    transform: translateY(-1px);
+}
+
+.TaskCard h4 {
+    margin: 0;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(20, 20, 15);
+    padding-right: 24px;
+}
+
+.TaskCardRemove {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: rgb(170, 40, 40);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.TaskCardRemove:hover {
+    background-color: rgba(170, 40, 40, 0.08);
+}
+
+/* BOTTOM-RIGHT — delegate button */
+.DelegateButton {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    height: 56px;
+    padding: 0 32px;
+    border-radius: 12px;
+    border: 0;
+    background-color: rgb(20, 20, 15);
+    color: white;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.15s;
+    z-index: 10;
+}
+
+.DelegateButton:hover {
+    background-color: rgb(40, 40, 30);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    transform: translateY(-1px);
+}
+
+.DelegateButton:active {
+    transform: translateY(0);
+}
