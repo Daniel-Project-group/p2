@@ -11,10 +11,10 @@ const { readJson, writeJson } = require("../utils/jsonDb");
 
 // Create new task route
 router.post('/newtask', (req, res) => {
-    const { group, title, description, quantity, duedate, createdBy } = req.body;
+    const { group, title, description, quantity } = req.body;
 
     // Validate required fields
-    if (!title || !duedate || !createdBy) {
+    if (!title || !duedate) {
         return res.status(400).json({ message: 'Title, due date, and creator are required' });
     }
 
@@ -40,11 +40,9 @@ router.post('/newtask', (req, res) => {
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
-        duedate: duedate,
-        createdBy: createdBy,
-        status: 'pending',               // Starts pending — needs accept/reject before joining the sprint
+        status: 'pending',               // Starts pending
         assignedTo: null,                // assigned later by algorithm
-        createdAt: new Date().toISOString()
+
     };
 
     //Push task to tasks array
@@ -57,6 +55,7 @@ router.post('/newtask', (req, res) => {
     res.json({ message: 'Task created successfully!', task: newTask });
 });
 
+/*
 // List pending tasks for a group (suggestion inbox)
 router.get('/pending-tasks', (req, res) => {
     const { group } = req.query;
@@ -94,6 +93,7 @@ router.post('/task-reject', (req, res) => {
     writeJson("tasks.json", tasks);
     res.json({ message: 'Task rejected', task: removed });
 });
+*/
 
 //export the router
 module.exports = router;

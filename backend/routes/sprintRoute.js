@@ -35,8 +35,7 @@ router.post('/newsprint', (req, res) => {
         type: type || null,
         dueDate: deadline,
         createdBy,
-        status: 'active',
-        createdAt: new Date().toISOString()
+        status: 'active'
     };
 
     sprints.push(newSprint);
