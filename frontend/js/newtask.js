@@ -13,15 +13,19 @@ taskForm.addEventListener('submit', async function (event) {
         return;
     }
 
+    // Get which group the user is in
+    const groupCode = localStorage.getItem('groupCode');
+    if (!groupCode) {
+        alert('No group selected. Please select a group first.');
+        window.location.href = 'PreHomePage.html';
+        return;
+    }
+
     // Get all the values from the form
     const title = document.getElementById('TaskTitle').value;
     const description = document.getElementById('TaskDescription').value;
     const quantity = document.getElementById('Quantity').value;
     const duedate = document.getElementById('DueDate').value;
-
-    // Get the selected radio button (oriented)
-    const orientedRadio = document.querySelector('input[name="oriented"]:checked');
-    const oriented = orientedRadio ? orientedRadio.value : null;
 
     // Send to server
     try {
@@ -33,8 +37,8 @@ taskForm.addEventListener('submit', async function (event) {
                 description: description,
                 quantity: quantity,
                 duedate: duedate,
-                oriented: oriented,
-                createdBy: username
+                createdBy: username,
+                group: groupCode
             })
         });
 

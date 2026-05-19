@@ -16,30 +16,29 @@ router.post('/newtask', (req, res) => {
         return res.status(400).json({ message: 'Title, due date, and creator are required' });
     }
 
+    // Find the active sprint for this group — new tasks must attach to one
+    const sprints = readJson("sprints.json");
+    const activeSprint = sprints.find(s => s.groupCode === group && s.status === 'active');
+
+    if (!activeSprint) {
+        return res.status(400).json({ message: 'No active sprint. Please create a sprint first.' });
+    }
+
     // Read existing tasks (or start empty) --- Done with helper
     const tasks = readJson("tasks.json");
- 
-    //Gets the current sprint ID and adds it to the task
-    let currentSprintId = null;
-    const sprints = readJson("sprints.json");
 
-            //Gets the newest sprint in the file
-            if (sprints.length > 0) {
-                // We retrieve the latest if theres array of sprints
-                currentSprintId = sprints[sprints.length - 1].id;
-            }
-
-    //create newTask object, where quantity is amount of members on task and oriented is distribution mode. If quantity cannot be parsed default to 1.
+    //create newTask object, where quantity is amount of members on task. If quantity cannot be parsed default to 1.
     const newTask = {
-        id: Date.now(), 
-        groupId: group,                  
+        id: Date.now(),
+        groupId: group,
+        sprintId: activeSprint.id,       // Attach to active sprint
         title: title,
         description: description,
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
         createdBy: createdBy,
-        sprintId: currentSprintId,
-        status: 'pending',               
+        status: 'todo',                  // Changed from 'pending' to 'todo'
+        assignedTo: null,                // assigned later by algorithm
         createdAt: new Date().toISOString()
     };
 
