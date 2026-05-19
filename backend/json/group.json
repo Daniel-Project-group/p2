@@ -1,233 +1,35 @@
 [
   {
-    "name": "Anton",
-    "groupCode": "10",
-    "id": 1779026064385,
-    "createdAt": "2026-05-17T13:54:24.385Z",
+    "name": "P2GroupReal",
+    "groupCode": "12412",
+    "id": 1779200132124,
+    "createdAt": "2026-05-19T14:15:32.124Z",
     "members": [
-      "test123"
+      "test1234"
     ],
-    "programme": "Cs",
+    "programme": "Datalogi",
     "semester": 2,
-    "curriculumUrl": "https://www.aau.dk/uddannelser/bachelor/datalogi?utm_source=google&utm_medium=cpc&utm_campaign=AAU_Intern_Ingenior_IT_2026&utm_content=196357341720&utm_term=datalogi&gad_source=1&gad_campaignid=23626079212&gbraid=0AAAAAo5RK40RzPJ4dLHHGtRjruUXoo3uZ&gclid=Cj0KCQjwzqXQBhD2ARIsAKrIeU9IJaMW-6EVHwDzva7JBQnP2_CYvdwdzXXpyUoX9_EeCDICWrL0bmAaAuqVEALw_wcB",
-    "competences": null
-  },
-  {
-    "name": "cs",
-    "groupCode": "20",
-    "id": 1779188059479,
-    "createdAt": "2026-05-19T10:54:19.479Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 2,
-    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
-    "competences": null
-  },
-  {
-    "name": "cs",
-    "groupCode": "30",
-    "id": 1779189586208,
-    "createdAt": "2026-05-19T11:19:46.208Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
-    "competences": null
-  },
-  {
-    "name": "a",
-    "groupCode": "100",
-    "id": 1779189669818,
-    "createdAt": "2026-05-19T11:21:09.818Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
-    "competences": null
-  },
-  {
-    "name": "a",
-    "groupCode": "1000",
-    "id": 1779189741008,
-    "createdAt": "2026-05-19T11:22:21.008Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "1",
-    "groupCode": "1",
-    "id": 1779190012063,
-    "createdAt": "2026-05-19T11:26:52.063Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "1",
-    "groupCode": "12",
-    "id": 1779190718602,
-    "createdAt": "2026-05-19T11:38:38.602Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "Cs",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "aa",
-    "groupCode": "98",
-    "id": 1779190973459,
-    "createdAt": "2026-05-19T11:42:53.459Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 2,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "antons",
-    "groupCode": "97",
-    "id": 1779192028442,
-    "createdAt": "2026-05-19T12:00:28.442Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "anot",
-    "groupCode": "96",
-    "id": 1779194269758,
-    "createdAt": "2026-05-19T12:37:49.758Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "aaa",
-    "groupCode": "95",
-    "id": 1779194968013,
-    "createdAt": "2026-05-19T12:49:28.013Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "Antons",
-    "groupCode": "94",
-    "id": 1779195472960,
-    "createdAt": "2026-05-19T12:57:52.960Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "33",
-    "groupCode": "93",
-    "id": 1779195543719,
-    "createdAt": "2026-05-19T12:59:03.719Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "7",
-    "groupCode": "92",
-    "id": 1779195785042,
-    "createdAt": "2026-05-19T13:03:05.042Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "antoni",
-    "groupCode": "91",
-    "id": 1779196183644,
-    "createdAt": "2026-05-19T13:09:43.644Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "1111",
-    "groupCode": "90",
-    "id": 1779196482571,
-    "createdAt": "2026-05-19T13:14:42.571Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
-    "curriculumUrl": null,
-    "competences": null
-  },
-  {
-    "name": "199",
-    "groupCode": "89",
-    "id": 1779196601220,
-    "createdAt": "2026-05-19T13:16:41.220Z",
-    "members": [
-      "test123"
-    ],
-    "programme": "cs",
-    "semester": 1,
     "curriculumUrl": null,
     "competences": [
       {
-        "name": "Programming Skills",
-        "competenceQuestion": "How proficient are you at Programming Skills?",
-        "interestQuestion": "How interested are you in Programming Skills?"
+        "name": "Data Structures",
+        "competenceQuestion": "How proficient are you at Data Structures?",
+        "interestQuestion": "How interested are you in Data Structures?"
       },
       {
-        "name": "Data Analysis",
-        "competenceQuestion": "How proficient are you at Data Analysis?",
-        "interestQuestion": "How interested are you in Data Analysis?"
+        "name": "Web Development",
+        "competenceQuestion": "How proficient are you at Web Development?",
+        "interestQuestion": "How interested are you in Web Development?"
+      },
+      {
+        "name": "Problem Solving",
+        "competenceQuestion": "How proficient are you at Problem Solving?",
+        "interestQuestion": "How interested are you in Problem Solving?"
+      },
+      {
+        "name": "System Design",
+        "competenceQuestion": "How proficient are you at System Design?",
+        "interestQuestion": "How interested are you in System Design?"
       },
       {
         "name": "Report Writing",
@@ -245,19 +47,9 @@
         "interestQuestion": "How interested are you in Algorithm Design?"
       },
       {
-        "name": "Web Development",
-        "competenceQuestion": "How proficient are you at Web Development?",
-        "interestQuestion": "How interested are you in Web Development?"
-      },
-      {
         "name": "Literature Review",
         "competenceQuestion": "How proficient are you at Literature Review?",
         "interestQuestion": "How interested are you in Literature Review?"
-      },
-      {
-        "name": "Problem Solving",
-        "competenceQuestion": "How proficient are you at Problem Solving?",
-        "interestQuestion": "How interested are you in Problem Solving?"
       },
       {
         "name": "Project Planning",
@@ -265,9 +57,9 @@
         "interestQuestion": "How interested are you in Project Planning?"
       },
       {
-        "name": "Database Management",
-        "competenceQuestion": "How proficient are you at Database Management?",
-        "interestQuestion": "How interested are you in Database Management?"
+        "name": "System Analysis",
+        "competenceQuestion": "How proficient are you at System Analysis?",
+        "interestQuestion": "How interested are you in System Analysis?"
       }
     ]
   }

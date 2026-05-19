@@ -1,0 +1,56 @@
+{
+  "programme": "Datalogi",
+  "semester": 2,
+  "competences": [
+    {
+      "name": "Data Structures",
+      "competenceQuestion": "How proficient are you at Data Structures?",
+      "interestQuestion": "How interested are you in Data Structures?"
+    },
+    {
+      "name": "Web Development",
+      "competenceQuestion": "How proficient are you at Web Development?",
+      "interestQuestion": "How interested are you in Web Development?"
+    },
+    {
+      "name": "Problem Solving",
+      "competenceQuestion": "How proficient are you at Problem Solving?",
+      "interestQuestion": "How interested are you in Problem Solving?"
+    },
+    {
+      "name": "System Design",
+      "competenceQuestion": "How proficient are you at System Design?",
+      "interestQuestion": "How interested are you in System Design?"
+    },
+    {
+      "name": "Report Writing",
+      "competenceQuestion": "How proficient are you at Report Writing?",
+      "interestQuestion": "How interested are you in Report Writing?"
+    },
+    {
+      "name": "Group Work",
+      "competenceQuestion": "How proficient are you at Group Work?",
+      "interestQuestion": "How interested are you in Group Work?"
+    },
+    {
+      "name": "Algorithm Design",
+      "competenceQuestion": "How proficient are you at Algorithm Design?",
+      "interestQuestion": "How interested are you in Algorithm Design?"
+    },
+    {
+      "name": "Literature Review",
+      "competenceQuestion": "How proficient are you at Literature Review?",
+      "interestQuestion": "How interested are you in Literature Review?"
+    },
+    {
+      "name": "Project Planning",
+      "competenceQuestion": "How proficient are you at Project Planning?",
+      "interestQuestion": "How interested are you in Project Planning?"
+    },
+    {
+      "name": "System Analysis",
+      "competenceQuestion": "How proficient are you at System Analysis?",
+      "interestQuestion": "How interested are you in System Analysis?"
+    }
+  ]
+}

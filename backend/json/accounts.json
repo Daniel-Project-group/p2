@@ -64,5 +64,10 @@
     "username": "test123",
     "email": "test@gmail.com",
     "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
+  },
+  {
+    "username": "test1234",
+    "email": "test123@gmail.com",
+    "password": "$2b$10$.QiwwfCLSdOj1oUO0RJyDOS6qbeTU2AqYMraalNYlGA4wtnf1fA36"
   }
 ]
