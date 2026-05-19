@@ -63,31 +63,32 @@ function renderSprintHighlights(year, month) {
   .then(res => res.json())
   .then(sprints => {
 
-    sprints.forEach(sprint => {
-      const dueDate = document.getElementById(sprint.dueDate);
+    const activeSprint = sprints.find(s => s.status === 'active');
+    if (!activeSprint) return;
 
-      if (dueDate) {
-        dueDate.classList.add('sprint-due');
-        dueDate.innerHTML += `<p class="sprint-label">${sprint.title}</p>`;
-      }
+    const dueDate = document.getElementById(activeSprint.dueDate);
 
-      const endDate = new Date(sprint.dueDate);
-      const today = new Date();
+    if (dueDate) {
+      dueDate.classList.add('sprint-due');
+      dueDate.innerHTML += `<p class="sprint-label">${activeSprint.title}</p>`;
+    }
+
+    const endDate = new Date(activeSprint.dueDate);
+    const today = new Date();
 
 
-      //Highlights the other days either red or green
-      //Depending on if you are over or under the due date
-      document.querySelectorAll('.calendar-day')
-        .forEach(day => {
-          const dayDate = new Date(day.id);
+    //Highlights the other days either red or green
+    //Depending on if you are over or under the due date
+    document.querySelectorAll('.calendar-day')
+      .forEach(day => {
+        const dayDate = new Date(day.id);
 
-          if (endDate < today && dayDate >= endDate && dayDate <= today) {
-            day.classList.add('sprint-overdue-range');
-          } else if (dayDate > today && dayDate < endDate) {
-            day.classList.add('sprint-range');
-          }
-        });
-    });
+        if (endDate < today && dayDate >= endDate && dayDate <= today) {
+          day.classList.add('sprint-overdue-range');
+        } else if (dayDate > today && dayDate < endDate) {
+          day.classList.add('sprint-range');
+        }
+      });
   });
 }
 
