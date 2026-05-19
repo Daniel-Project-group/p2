@@ -1,13 +1,13 @@
 [
   {
-    "id": 1779209277753,
-    "groupCode": "Kok2",
-    "title": "Sprint1 Test",
-    "description": "Vi do it",
-    "type": "interest",
-    "dueDate": "2026-06-18",
-    "createdBy": "Kok2",
+    "id": 1779221974821,
+    "groupCode": "12412",
+    "title": "Sprint 2. The hygge fase",
+    "description": "Hello sir",
+    "type": "competence",
+    "dueDate": "2026-06-30",
+    "createdBy": "kok3",
     "status": "active",
-    "createdAt": "2026-05-19T16:47:57.753Z"
+    "tasks": []
   }
 ]

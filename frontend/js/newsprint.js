@@ -51,7 +51,7 @@ sprintForm.addEventListener('submit', async function (event) {
 
         if (response.ok) {
             alert('Sprint created successfully!');
-            window.location.href = 'HomePage.html';
+            window.location.href = 'NewTask.html';
         } else {
             alert(data.message);
         }
