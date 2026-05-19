@@ -2,32 +2,19 @@
 
 // Imports
 const express = require("express");
-<<<<<<< HEAD
 
 // Helper function
 const { readJson, writeJson } = require("../utils/jsonDb");
 
-=======
-const fs = require("fs");
-const path = require("path");
->>>>>>> matei-algorithm
 const router = express.Router();
 
 //Creates a new sprint
 router.post('/newsprint', (req, res) => {
     const { title, description, enddate } = req.body;
-<<<<<<< HEAD
 
     // Helper function reading sprints from json
     const sprints = readJson("sprints.json");
  
-=======
-    let sprints = [];
-    if (fs.existsSync(dataPath('sprints.json'))) {
-        sprints = JSON.parse(fs.readFileSync(dataPath('sprints.json'), 'utf-8'));
-    }
-
->>>>>>> matei-algorithm
     const newSprint = {
         id: Date.now(),
         title,
