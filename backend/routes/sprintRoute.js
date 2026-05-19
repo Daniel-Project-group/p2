@@ -1,18 +1,13 @@
 // Imports
 const express = require("express");
-
-// Helper function
 const { readJson, writeJson } = require("../utils/jsonDb");
-
 const router = express.Router();
 
 //Creates a new sprint
 router.post('/newsprint', (req, res) => {
     const { title, description, enddate } = req.body;
-
-    // Helper function reading sprints from json
     const sprints = readJson("sprints.json");
- 
+
     const newSprint = {
         id: Date.now(),
         title,
@@ -21,9 +16,7 @@ router.post('/newsprint', (req, res) => {
         createdAt: new Date().toISOString()
     };
 
-    // We push the new sprint object back into array
     sprints.push(newSprint);
-    // And then json with helper
     writeJson("sprints.json", sprints);
 
     res.json({ message: 'Sprint created!', sprint: newSprint });
@@ -31,8 +24,6 @@ router.post('/newsprint', (req, res) => {
 
 //Gets all the current sprints
 router.get('/sprints', (req, res) => {
-
-    // Helper
     const sprints = readJson("sprints.json");
     res.json(sprints);
 });
@@ -52,6 +43,7 @@ router.get('/sprint-tasks', (req, res) => {
     const newestSprint = sprints[sprints.length - 1]
 
     let sprintTasks = [];
+
     //Pushes every task with the matching sprintId 
     // to sprint tasks
     tasks.forEach(task => {
@@ -72,13 +64,17 @@ router.post('/sprints/assign', async (req, res) => {
     try {
         //Import assignTasks function from matcher.js
         const { assignTasks } = require('../matcher');
+<<<<<<< HEAD
         //Import relevantCompetencesForTask function from taskScorer.mjs
         const { relevantCompetencesForTask } = await import('../taskScorer');
+=======
+        //Import relevantCompetencesForTask function from taskScorer.js
+        const { relevantCompetencesForTask } = require('../taskScorer');
+>>>>>>> origin/matei/fixes
         // Destruct req.body to extract groupCode and mode
         const { groupCode, mode } = req.body;
         //Read from groups from group.json and parse them
-        const data = fs.readFileSync(dataPath("group.json"), "utf-8");
-        const currentGroups = data.trim() ? JSON.parse(data) : [];
+        const currentGroups = readJson("group.json");
         //check if there is a group that matches the groupCode from the req body
         let groupReal = null;
         for (const group of currentGroups) {
@@ -89,8 +85,7 @@ router.post('/sprints/assign', async (req, res) => {
         //If there is no such group throw 404 error that group is not found
         if (!groupReal) return res.status(404).json({ message: "Group not found" });
         //Read tasks.json and parse the tasks.
-        const data1 = fs.readFileSync(dataPath("tasks.json"), "utf-8");
-        const currentTasks = data1.trim() ? JSON.parse(data1) : [];
+        const currentTasks = readJson("tasks.json");
         //Filter the currentTasks, and save only the ones that have groupId variable the same as the groupCode from req body
         const groupTask = currentTasks.filter(t => t.groupId === groupCode);
         //Save the competence names of the groups competences

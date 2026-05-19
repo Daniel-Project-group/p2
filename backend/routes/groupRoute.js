@@ -63,7 +63,11 @@ router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) =>
     // Generate the competences in the background
     try {
         // Asynchroniously import curriculumProfiler, and destruct object to extract getCompetenceProfile
+<<<<<<< HEAD
         const { getCompetenceProfile } = require('../curriculumProfiler');
+=======
+        const { getCompetenceProfile } = require('../curriculumProfiler.js');
+>>>>>>> origin/matei/fixes
         //create variable for extractedText
         let extractedText = null;
         //If the PDF was uploaded

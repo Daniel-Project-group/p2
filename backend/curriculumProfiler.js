@@ -126,7 +126,7 @@ Return ONLY a valid JSON object in this exact format, no markdown:
   "semester": ${semester},
   "competences": [
     {
-      "name": "Short name (2-4 words)",
+      "name": "Short name (2-4 words)"
     }
   ]
 }
@@ -161,7 +161,7 @@ Return ONLY a valid JSON object, no markdown:
   "semester": ${semester},
   "competences": [
     {
-      "name": "Short name (2-4 words)",
+      "name": "Short name (2-4 words)"
     }
   ]
 }
@@ -186,8 +186,8 @@ function createQuestions(competenceProfile) {
   //Loop through all competences of competenceProfile
   for (const competence of competenceProfile.competences) {
     //Create a proficiency and interest question and add them to the competence objects
-    competence.competenceQuestion = `"How proficient are you at ${competence.name}?`;
-    competence.interestQuestion = `"How interested are you in ${competence.name}?`;
+    competence.competenceQuestion = `How proficient are you at ${competence.name}?`;
+    competence.interestQuestion = `How interested are you in ${competence.name}?`;
   }
 }
 
