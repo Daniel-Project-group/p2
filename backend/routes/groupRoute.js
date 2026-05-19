@@ -12,9 +12,9 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } });
 
 
-// POST route to Create group, where upload.single('curriculumFile') is some middleware that proceses a singlefile with name curriculumFile before route handler runs
-router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
+    router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) => {
 
+    console.log('[ROUTE] /groupCreate HIT. body =', req.body);
     //destruct object to extract name, groupCode, username, programme, semester and curriculumUrl from req.body
     const { name, groupCode, username, programme, semester, curriculumUrl } = req.body;
 
@@ -63,11 +63,7 @@ router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) =>
     // Generate the competences in the background
     try {
         // Asynchroniously import curriculumProfiler, and destruct object to extract getCompetenceProfile
-<<<<<<< HEAD
-        const { getCompetenceProfile } = require('../curriculumProfiler');
-=======
         const { getCompetenceProfile } = require('../curriculumProfiler.js');
->>>>>>> origin/matei/fixes
         //create variable for extractedText
         let extractedText = null;
         //If the PDF was uploaded
@@ -82,9 +78,9 @@ router.post('/groupCreate', upload.single('curriculumFile'), async (req, res) =>
 
         //Asynchroniously call LLM pipeline with either text or semester and curriculumUrl combination, then store competences in profile
         const profile = await getCompetenceProfile(programme, parseInt(semester), curriculumUrl || null, extractedText);
-
+        
         // Re-read group.json before writing. This is smart as other requests might have modified while LLM was running.
-
+        
         const currentGroups = readJson("group.json");
 
         // save index where the id matches the id of the new group

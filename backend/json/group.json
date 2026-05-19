@@ -115,5 +115,160 @@
     "semester": 1,
     "curriculumUrl": null,
     "competences": null
+  },
+  {
+    "name": "anot",
+    "groupCode": "96",
+    "id": 1779194269758,
+    "createdAt": "2026-05-19T12:37:49.758Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "aaa",
+    "groupCode": "95",
+    "id": 1779194968013,
+    "createdAt": "2026-05-19T12:49:28.013Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "Antons",
+    "groupCode": "94",
+    "id": 1779195472960,
+    "createdAt": "2026-05-19T12:57:52.960Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "33",
+    "groupCode": "93",
+    "id": 1779195543719,
+    "createdAt": "2026-05-19T12:59:03.719Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "7",
+    "groupCode": "92",
+    "id": 1779195785042,
+    "createdAt": "2026-05-19T13:03:05.042Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "antoni",
+    "groupCode": "91",
+    "id": 1779196183644,
+    "createdAt": "2026-05-19T13:09:43.644Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "1111",
+    "groupCode": "90",
+    "id": 1779196482571,
+    "createdAt": "2026-05-19T13:14:42.571Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "199",
+    "groupCode": "89",
+    "id": 1779196601220,
+    "createdAt": "2026-05-19T13:16:41.220Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": [
+      {
+        "name": "Programming Skills",
+        "competenceQuestion": "How proficient are you at Programming Skills?",
+        "interestQuestion": "How interested are you in Programming Skills?"
+      },
+      {
+        "name": "Data Analysis",
+        "competenceQuestion": "How proficient are you at Data Analysis?",
+        "interestQuestion": "How interested are you in Data Analysis?"
+      },
+      {
+        "name": "Report Writing",
+        "competenceQuestion": "How proficient are you at Report Writing?",
+        "interestQuestion": "How interested are you in Report Writing?"
+      },
+      {
+        "name": "Group Work",
+        "competenceQuestion": "How proficient are you at Group Work?",
+        "interestQuestion": "How interested are you in Group Work?"
+      },
+      {
+        "name": "Algorithm Design",
+        "competenceQuestion": "How proficient are you at Algorithm Design?",
+        "interestQuestion": "How interested are you in Algorithm Design?"
+      },
+      {
+        "name": "Web Development",
+        "competenceQuestion": "How proficient are you at Web Development?",
+        "interestQuestion": "How interested are you in Web Development?"
+      },
+      {
+        "name": "Literature Review",
+        "competenceQuestion": "How proficient are you at Literature Review?",
+        "interestQuestion": "How interested are you in Literature Review?"
+      },
+      {
+        "name": "Problem Solving",
+        "competenceQuestion": "How proficient are you at Problem Solving?",
+        "interestQuestion": "How interested are you in Problem Solving?"
+      },
+      {
+        "name": "Project Planning",
+        "competenceQuestion": "How proficient are you at Project Planning?",
+        "interestQuestion": "How interested are you in Project Planning?"
+      },
+      {
+        "name": "Database Management",
+        "competenceQuestion": "How proficient are you at Database Management?",
+        "interestQuestion": "How interested are you in Database Management?"
+      }
+    ]
   }
 ]

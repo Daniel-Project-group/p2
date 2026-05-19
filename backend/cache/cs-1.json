@@ -1,0 +1,56 @@
+{
+  "programme": "cs",
+  "semester": 1,
+  "competences": [
+    {
+      "name": "Programming Skills",
+      "competenceQuestion": "How proficient are you at Programming Skills?",
+      "interestQuestion": "How interested are you in Programming Skills?"
+    },
+    {
+      "name": "Data Analysis",
+      "competenceQuestion": "How proficient are you at Data Analysis?",
+      "interestQuestion": "How interested are you in Data Analysis?"
+    },
+    {
+      "name": "Report Writing",
+      "competenceQuestion": "How proficient are you at Report Writing?",
+      "interestQuestion": "How interested are you in Report Writing?"
+    },
+    {
+      "name": "Group Work",
+      "competenceQuestion": "How proficient are you at Group Work?",
+      "interestQuestion": "How interested are you in Group Work?"
+    },
+    {
+      "name": "Algorithm Design",
+      "competenceQuestion": "How proficient are you at Algorithm Design?",
+      "interestQuestion": "How interested are you in Algorithm Design?"
+    },
+    {
+      "name": "Web Development",
+      "competenceQuestion": "How proficient are you at Web Development?",
+      "interestQuestion": "How interested are you in Web Development?"
+    },
+    {
+      "name": "Literature Review",
+      "competenceQuestion": "How proficient are you at Literature Review?",
+      "interestQuestion": "How interested are you in Literature Review?"
+    },
+    {
+      "name": "Problem Solving",
+      "competenceQuestion": "How proficient are you at Problem Solving?",
+      "interestQuestion": "How interested are you in Problem Solving?"
+    },
+    {
+      "name": "Project Planning",
+      "competenceQuestion": "How proficient are you at Project Planning?",
+      "interestQuestion": "How interested are you in Project Planning?"
+    },
+    {
+      "name": "Database Management",
+      "competenceQuestion": "How proficient are you at Database Management?",
+      "interestQuestion": "How interested are you in Database Management?"
+    }
+  ]
+}

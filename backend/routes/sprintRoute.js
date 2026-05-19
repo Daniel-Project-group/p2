@@ -64,13 +64,8 @@ router.post('/sprints/assign', async (req, res) => {
     try {
         //Import assignTasks function from matcher.js
         const { assignTasks } = require('../matcher');
-<<<<<<< HEAD
-        //Import relevantCompetencesForTask function from taskScorer.mjs
-        const { relevantCompetencesForTask } = await import('../taskScorer');
-=======
         //Import relevantCompetencesForTask function from taskScorer.js
         const { relevantCompetencesForTask } = require('../taskScorer');
->>>>>>> origin/matei/fixes
         // Destruct req.body to extract groupCode and mode
         const { groupCode, mode } = req.body;
         //Read from groups from group.json and parse them
