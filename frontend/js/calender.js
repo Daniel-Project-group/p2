@@ -58,7 +58,7 @@ changeHTMLDates(year, month);
 
 //Makes the sprint due date highlight, and the days up to it or after it highlight.
 function changeHTMLDates(year, month) {
-  fetch('http://localhost:3000/sprints')
+  fetch('http://localhost:3000/sprints/sprints')
   .then(res => res.json())
   .then(sprints => {
 
@@ -89,8 +89,7 @@ function changeHTMLDates(year, month) {
     });
   });
 
-//Adds the tasks to the display
-fetch('http://localhost:3000/sprint-tasks')
+fetch('http://localhost:3000/sprints/sprint-tasks')
   .then(res => res.json())
   .then(sprintsTasks => {
     document.querySelector('#js-task-amount')

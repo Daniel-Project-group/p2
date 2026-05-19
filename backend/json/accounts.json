@@ -36,21 +36,6 @@
     "password": "$2b$10$rMLg9ggWEtudRiowzuAPKujBdSjfWpndt9stX/8LmhArihOdXvCpG"
   },
   {
-    "username": "Tobber",
-    "email": "tobber@gmail.com",
-    "password": "$2b$10$SHAJIePYZihn/ztrnQD5geeHquS9h0LsPZQk8VvnoRrFVRLMy6Hg."
-  },
-  {
-    "username": "Tob",
-    "email": "tobr@gmail.com",
-    "password": "$2b$10$7Y6UYqSRTmo2O2H7oQyqweyUalKnkHJz963JmCKehKBcNvpHvomnS"
-  },
-  {
-    "username": "Malthesigma",
-    "email": "Sigma@alpha.beta",
-    "password": "$2b$10$HTTSNJuMdCIDgGNdgtHVduu7IdXod.JtKmQS1Jlm4G9g3DTRr/4BG"
-  },
-  {
     "username": "Malthe3",
     "email": "maltheandreasen1@gmail.com",
     "password": "$2b$10$DgSI7mZh2VVUGZMZKE7nD.4YaploDQW58kgxPTnjlRagzbpanJfi."
@@ -64,5 +49,25 @@
     "username": "Kok",
     "email": "kok@gmail.com",
     "password": "$2b$10$l7Kol4PqGz/pFEqSIkTDAuVEa7wlIJP33GHLEmSNEbBsK3AgNSCBK"
+  },
+  {
+    "username": "antonhej",
+    "email": "antonio@gmail.com",
+    "password": "$2b$10$al1WpC4q1t4jAPFZwWAlte2R5.RX7B1M1w3wZd8EKdBtqpYm1dqIC"
+  },
+  {
+    "username": "anni123",
+    "email": "anton12345@gmail.com",
+    "password": "$2b$10$2nC3fOm/QO3iOiMn70nHWeK4StlfmPoNKFOO6E0GPGe/oo5VuFR7C"
+  },
+  {
+    "username": "anniton",
+    "email": "anton77@gmail.com",
+    "password": "$2b$10$zzdFwoDXZ1E5Djhv21D0fu5eEnrILWqokkozMd9Jw0nDGPdNskVRu"
+  },
+  {
+    "username": "test123",
+    "email": "test@gmail.com",
+    "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
   }
 ]

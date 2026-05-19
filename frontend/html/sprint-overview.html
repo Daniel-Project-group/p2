@@ -13,23 +13,9 @@
 
 <body>
     <div id="sidebar"></div>
-    <script src="../js/navbar.js"></script>
+    <div id="topbar"></div>
 
     <main class="Content">
-        <div id="topbar">
-            <div id="profile">
-                <span id="userInitials">DB</span>
-
-                <div id="dropdown">
-                    <div class="dropdown-header">
-                        <div id="dropdownUsername">Username</div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Settings</a>
-                    <a href="#" class="dropdown-item logout" id="logoutBtn">Logout</a>
-                </div>
-            </div>
-        </div>
 
         <header class="PageHeader">
             <p class="eyebrow">Current sprint</p>
@@ -246,24 +232,8 @@
         </section>
     </main>
 
-    <script>
-        const username = localStorage.getItem("username");
+    <script src="../js/navbar.js"></script>
 
-        if (username) {
-            document.getElementById("userInitials").textContent = username.substring(0, 2).toUpperCase();
-            document.getElementById("dropdownUsername").textContent = username;
-        }
-
-        const logoutBtn = document.getElementById("logoutBtn");
-
-        if (logoutBtn) {
-            logoutBtn.addEventListener("click", function (event) {
-                event.preventDefault();
-                localStorage.removeItem("username");
-                window.location.href = "signin.html";
-            });
-        }
-    </script>
 </body>
 
 </html>

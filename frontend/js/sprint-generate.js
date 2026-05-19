@@ -8,7 +8,7 @@ document.querySelector('#sprintForm')
       enddate: document.querySelector('#EndDate').value
     };
 
-    fetch('http://localhost:3000/newsprint', {
+    fetch('http://localhost:3000/sprints/newsprint', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sprint)
