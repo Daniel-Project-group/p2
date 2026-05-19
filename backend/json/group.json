@@ -12,5 +12,109 @@
     "semester": 2,
     "curriculumUrl": "https://www.aau.dk/uddannelser/bachelor/datalogi?utm_source=google&utm_medium=cpc&utm_campaign=AAU_Intern_Ingenior_IT_2026&utm_content=196357341720&utm_term=datalogi&gad_source=1&gad_campaignid=23626079212&gbraid=0AAAAAo5RK40RzPJ4dLHHGtRjruUXoo3uZ&gclid=Cj0KCQjwzqXQBhD2ARIsAKrIeU9IJaMW-6EVHwDzva7JBQnP2_CYvdwdzXXpyUoX9_EeCDICWrL0bmAaAuqVEALw_wcB",
     "competences": null
+  },
+  {
+    "name": "cs",
+    "groupCode": "20",
+    "id": 1779188059479,
+    "createdAt": "2026-05-19T10:54:19.479Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 2,
+    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
+    "competences": null
+  },
+  {
+    "name": "cs",
+    "groupCode": "30",
+    "id": 1779189586208,
+    "createdAt": "2026-05-19T11:19:46.208Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
+    "competences": null
+  },
+  {
+    "name": "a",
+    "groupCode": "100",
+    "id": 1779189669818,
+    "createdAt": "2026-05-19T11:21:09.818Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": "https://studieordninger.aau.dk/2026/56/6628",
+    "competences": null
+  },
+  {
+    "name": "a",
+    "groupCode": "1000",
+    "id": 1779189741008,
+    "createdAt": "2026-05-19T11:22:21.008Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "1",
+    "groupCode": "1",
+    "id": 1779190012063,
+    "createdAt": "2026-05-19T11:26:52.063Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "1",
+    "groupCode": "12",
+    "id": 1779190718602,
+    "createdAt": "2026-05-19T11:38:38.602Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "Cs",
+    "semester": 2,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "aa",
+    "groupCode": "98",
+    "id": 1779190973459,
+    "createdAt": "2026-05-19T11:42:53.459Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 2,
+    "curriculumUrl": null,
+    "competences": null
+  },
+  {
+    "name": "antons",
+    "groupCode": "97",
+    "id": 1779192028442,
+    "createdAt": "2026-05-19T12:00:28.442Z",
+    "members": [
+      "test123"
+    ],
+    "programme": "cs",
+    "semester": 1,
+    "curriculumUrl": null,
+    "competences": null
   }
 ]

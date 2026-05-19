@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     //Generates a random user ID for this session
     const sessionId = crypto.randomUUID();
     //Stores a mapping from sessionId to username
-    sessions.set(sessionId, user.username);
+    sessions.set(sessionId, user.username); // ---
     // Sends the sessionID to browser as cookie, so it can be sent back with future requests
     res.cookie('sessionId', sessionId);
 

@@ -1,5 +1,3 @@
-
-
 // Imports
 const express = require("express");
 
@@ -41,9 +39,7 @@ router.post('/newsprint', (req, res) => {
         createdAt: new Date().toISOString()
     };
 
-    // We push the new sprint object back into array
     sprints.push(newSprint);
-    // And then json with helper
     writeJson("sprints.json", sprints);
 
     res.json({ message: 'Sprint created!', sprint: newSprint });
@@ -51,8 +47,6 @@ router.post('/newsprint', (req, res) => {
 
 //Gets all the current sprints
 router.get('/sprints', (req, res) => {
-
-    // Helper
     const sprints = readJson("sprints.json");
     res.json(sprints);
 });
@@ -72,6 +66,7 @@ router.get('/sprint-tasks', (req, res) => {
     const newestSprint = sprints[sprints.length - 1]
 
     let sprintTasks = [];
+
     //Pushes every task with the matching sprintId 
     // and with status accept to sprint tasks
     tasks.forEach(task => {
@@ -92,8 +87,8 @@ router.post('/sprints/assign', async (req, res) => {
     try {
         //Import assignTasks function from matcher.js
         const { assignTasks } = require('../matcher');
-        //Import relevantCompetencesForTask function from taskScorer.mjs
-        const { relevantCompetencesForTask } = await import('../taskScorer.mjs');
+        //Import relevantCompetencesForTask function from taskScorer.js
+        const { relevantCompetencesForTask } = require('../taskScorer');
         // Destruct req.body to extract groupCode and mode
         const { groupCode, mode } = req.body;
         //Read from groups from group.json and parse them
