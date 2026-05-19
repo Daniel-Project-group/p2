@@ -1,73 +1,5 @@
 [
   {
-    "id": 1777469887691,
-    "title": "test",
-    "description": "daokdajd",
-    "quantity": 1,
-    "duedate": "2026-10-23",
-    "oriented": "competence",
-    "createdBy": "daniel2310dk",
-    "status": "pending",
-    "createdAt": "2026-04-29T13:38:07.691Z"
-  },
-  {
-    "id": 1778407623287,
-    "title": "dsrpvij",
-    "description": "sdpvo i",
-    "quantity": 1,
-    "duedate": "2026-05-30",
-    "oriented": "learning",
-    "createdBy": "anton1",
-    "status": "pending",
-    "createdAt": "2026-05-10T10:07:03.287Z"
-  },
-  {
-    "id": 1778504587411,
-    "title": "Sprint Test",
-    "description": "Daniel need to lock in",
-    "quantity": 2,
-    "duedate": "2026-05-28",
-    "oriented": "learning",
-    "createdBy": "Tobber",
-    "status": "pending",
-    "createdAt": "2026-05-11T13:03:07.411Z"
-  },
-  {
-    "id": 1778504694774,
-    "title": "Sprint Test 2",
-    "description": "Fobber",
-    "quantity": 2,
-    "duedate": "2026-05-14",
-    "oriented": "interest",
-    "createdBy": "Tobber",
-    "sprintId": 1778502444327,
-    "status": "pending",
-    "createdAt": "2026-05-11T13:04:54.774Z"
-  },
-  {
-    "id": 1778508846224,
-    "title": "Lets create this",
-    "description": "WHW",
-    "quantity": 2,
-    "duedate": "2026-05-28",
-    "createdBy": "Tobber",
-    "sprintId": 1778502444327,
-    "status": "accepted",
-    "createdAt": "2026-05-11T14:14:06.224Z"
-  },
-  {
-    "id": 1778597823635,
-    "title": "Lets DO it",
-    "description": "Tog",
-    "quantity": 1,
-    "duedate": "2026-05-14",
-    "oriented": null,
-    "createdBy": "Tobber",
-    "sprintId": 1778502444327,
-    "status": "pending",
-    "createdAt": "2026-05-12T08:47:45.934Z"
-  },
-  {
     "id": 1779189114358,
     "groupId": "10",
     "sprintId": 1779189102540,
@@ -76,8 +8,21 @@
     "quantity": 1,
     "duedate": "2026-05-29",
     "createdBy": "Kok",
-    "status": "pending",
+    "status": "todo",
     "assignedTo": null,
     "createdAt": "2026-05-19T11:11:54.358Z"
+  },
+  {
+    "id": 1779191667481,
+    "groupId": "10",
+    "sprintId": 1779189102540,
+    "title": "Unc",
+    "description": "Hello",
+    "quantity": 1,
+    "duedate": "2026-05-28",
+    "createdBy": "Kok",
+    "status": "pending",
+    "assignedTo": null,
+    "createdAt": "2026-05-19T11:54:27.481Z"
   }
 ]

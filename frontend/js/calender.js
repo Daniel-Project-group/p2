@@ -53,11 +53,12 @@ function renderCalendar(year, month) {
   document.querySelector('#calendarGrid')
     .innerHTML = calenderHTML;
 
-  changeHTMLDates(year, month);
+  renderSprintHighlights(year, month);
+  renderTaskList();
 }
 
 //Makes the sprint due date highlight, and the days up to it or after it highlight.
-function changeHTMLDates(year, month) {
+function renderSprintHighlights(year, month) {
   fetch('http://localhost:3000/sprints/sprints')
   .then(res => res.json())
   .then(sprints => {
@@ -88,8 +89,10 @@ function changeHTMLDates(year, month) {
         });
     });
   });
+}
 
-fetch('http://localhost:3000/sprints/sprint-tasks')
+function renderTaskList() {
+  fetch('http://localhost:3000/sprints/sprint-tasks')
   .then(res => res.json())
   .then(sprintsTasks => {
     document.querySelector('#js-task-amount')
@@ -98,7 +101,7 @@ fetch('http://localhost:3000/sprints/sprint-tasks')
     let tasksHTML = '';
 
     sprintsTasks.forEach(task => {
-      tasksHTML += `<li>${task.title}</li>`;
+      tasksHTML += `<li>${task.title} - ${task.assignedTo ?? 'unassigned'}</li>`;
     });
 
     document.querySelector('#js-remaning-tasks')

@@ -73,9 +73,9 @@ router.get('/sprint-tasks', (req, res) => {
 
     let sprintTasks = [];
     //Pushes every task with the matching sprintId 
-    // to sprint tasks
+    // and with status accept to sprint tasks
     tasks.forEach(task => {
-        if (task.sprintId === newestSprint.id) {
+        if (task.sprintId === newestSprint.id && task.status === 'todo' ) {
             sprintTasks.push(task);
         }
     });
