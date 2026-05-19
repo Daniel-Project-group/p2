@@ -1,30 +1,36 @@
 [
-    {
-        "value":  [
-                      {
-                          "id":  1779189102540,
-                          "groupCode":  "10",
-                          "title":  "Hello",
-                          "description":  "Hels",
-                          "type":  "interest",
-                          "dueDate":  "2026-05-29",
-                          "createdBy":  "Kok",
-                          "status":  "completed",
-                          "createdAt":  "2026-05-19T11:11:42.540Z",
-                          "completedAt":  "2026-05-19T13:34:07.620Z"
-                      },
-                      {
-                          "id":  1779197647620,
-                          "groupCode":  "10",
-                          "title":  "Audit Sprint",
-                          "description":  "",
-                          "type":  "learning",
-                          "dueDate":  "2026-06-01",
-                          "createdBy":  "test123",
-                          "status":  "active",
-                          "createdAt":  "2026-05-19T13:34:07.620Z"
-                      }
-                  ],
-        "Count":  2
-    }
+  {
+    "id": 1779200287207,
+    "groupCode": "10",
+    "title": "Hello",
+    "description": "Hej",
+    "type": "competence",
+    "dueDate": "2026-05-28",
+    "createdBy": "Kok",
+    "status": "active",
+    "createdAt": "2026-05-19T14:18:07.207Z"
+  },
+  {
+    "id": 1779201088753,
+    "groupCode": "Kok2",
+    "title": "Sprint2",
+    "description": "Hejmed dig",
+    "type": "interest",
+    "dueDate": "2026-05-29",
+    "createdBy": "Kok2",
+    "status": "completed",
+    "createdAt": "2026-05-19T14:31:28.753Z",
+    "completedAt": "2026-05-19T14:36:40.690Z"
+  },
+  {
+    "id": 1779201400690,
+    "groupCode": "Kok2",
+    "title": "Sprint 3",
+    "description": "Hello",
+    "type": "learning",
+    "dueDate": "2026-05-29",
+    "createdBy": "Kok2",
+    "status": "active",
+    "createdAt": "2026-05-19T14:36:40.690Z"
+  }
 ]

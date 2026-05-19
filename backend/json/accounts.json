@@ -69,5 +69,10 @@
     "username": "test123",
     "email": "test@gmail.com",
     "password": "$2b$10$Krn/iQ1nfvqk4i9oFaPpaOngSQNJv.xNssNN/SYWJTAnD5iqE3dWy"
+  },
+  {
+    "username": "Kok2",
+    "email": "kok2@gmail.com",
+    "password": "$2b$10$mNdAXFbtC3t5cDmJkYX2bO6jjqYmVaVQrvc9.XV4oXk82W4oooznS"
   }
 ]
