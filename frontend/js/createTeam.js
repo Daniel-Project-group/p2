@@ -8,9 +8,14 @@ const groupButton      = document.querySelector('#createGroupButton');
 
 groupButton.addEventListener('click', async function () {
     const username = localStorage.getItem('username');
+
+    if(!username){
+        alert("No logged-in user found. Please log in again.")
+        return;
+    }
     const file = curriculumFileInput.files[0];
     const url  = curriculumUrlInput.value.trim();
-
+    
     if (!url && !file) {
         alert('Please provide a curriculum URL or upload a PDF file');
         return;
@@ -29,7 +34,7 @@ groupButton.addEventListener('click', async function () {
     groupButton.textContent = 'Creating group...';
 
     try {
-        const response = await fetch('http://localhost:3000/groupCreate', {
+        const response = await fetch('http://localhost:3000/groups/groupCreate', {
             method: 'POST',
             body: formData
         });

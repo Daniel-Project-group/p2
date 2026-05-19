@@ -4,34 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Group</title>
+
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/CreateTeam.css">
 </head>
+
 <body>
     <main class="page-container">
-        <section class="form-box">
-            <h1>Create Group</h1>
-            <p>Create a new project group.</p>
 
-            <label for="groupName">Group name</label>
-            <input type="text" id="groupName" placeholder="Example: P2 Project Group">
+       <section class="form-box">
+    <h1>Create Group</h1>
+    <p>Create a new project group.</p>
 
-            <label for="groupId">Group ID</label>
-            <input type="text" id="groupId" placeholder="Example: group-001">
+    <label for="groupName">Group name</label>
+    <input 
+        type="text" 
+        id="groupName" 
+        placeholder="Example: P2 Project Group"
+    >
 
-            <label for="programme">Which programme are you in?</label>
-            <input type="text" id="programme" placeholder="Example: Computer Science">
+    <label for="groupId">Group ID</label>
+    <input 
+        type="text" 
+        id="groupId" 
+        placeholder="Example: group-001"
+    >
 
-            <label for="semester">Which semester are you on?</label>
-            <input type="number" id="semester" placeholder="Example: 2" min="1" max="10">
+    <label for="semester">Semester</label>
+    <input 
+        type="text" 
+        id="semester" 
+        placeholder = "2nd,3rd etc."
+    >
 
-            <label>Curriculum — provide a URL or upload a PDF</label>
-            <input type="url" id="curriculumUrl" placeholder="https://...">
-            <p style="text-align:center; margin: 4px 0;">or</p>
-            <input type="file" id="curriculumFile" accept=".pdf">
+    <label for="programme">Programme</label>
+    <input 
+        type="text" 
+        id="programme" 
+        placeholder="Psychology, cs etc."
+    >
 
-            <button id="createGroupButton">Create group</button>
-        </section>
+    <label for="curriculumUrl">Curriculum URL</label>
+    <input 
+        type="text" 
+        id="curriculumUrl" 
+        placeholder="Paste curriculum page URL"
+    >
+
+    <label for="curriculumFile">Curriculum pdf</label>
+    <input 
+        type="file" 
+        id="curriculumFile" 
+        accept="application/pdf"
+    >
+
+    <button id="createGroupButton">Create group</button>
+</section>
+
     </main>
 
     <script src="../js/createTeam.js"></script>
