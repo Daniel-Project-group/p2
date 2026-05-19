@@ -34,7 +34,7 @@ sprintForm.addEventListener('submit', async function (event) {
 
     // Send to server
     try {
-        const response = await fetch('http://localhost:3000/createSprint', {
+        const response = await fetch('http://localhost:3000/sprints/newsprint', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

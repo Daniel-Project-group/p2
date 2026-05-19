@@ -13,47 +13,47 @@ renderCalendar(displayYear, displayMonth);
 addEventListenerToButtons();
 
 function renderCalendar(year, month) {
-//Gets which week day, the first day in the month lands on
-//Also changes it so sunday = 6 and not 0.
-const firstDay = ((new Date(year, month, 1)
-  .getDay()) + 6) % 7;
+  //Gets which week day, the first day in the month lands on
+  //Also changes it so sunday = 6 and not 0.
+  const firstDay = ((new Date(year, month, 1)
+    .getDay()) + 6) % 7;
 
-//Gets the amount of days in the month
-//This works since day 0 gives you the last day of the last month
-const daysInMonth = new Date(year, month + 1, 0)
-  .getDate();
+  //Gets the amount of days in the month
+  //This works since day 0 gives you the last day of the last month
+  const daysInMonth = new Date(year, month + 1, 0)
+    .getDate();
 
-let calenderHTML = '';
+  let calenderHTML = '';
 
-//Display the current month and year
-document.querySelector('#current-year-month')
-  .innerHTML = `${months[month]} ${displayYear}`;
+  //Display the current month and year
+  document.querySelector('#current-year-month')
+    .innerHTML = `${months[month]} ${displayYear}`;
 
-//Creates empty div's before the first day comes
-for (let i = 0; i < firstDay; i++) {
-  calenderHTML += '<div class="calendar-day-empty"></div>';
-}
-//Creates a div with a given date in the month
-for (let i = 1; i <= daysInMonth; i++) {
-
-  //Checks if its the current date, and if gives it a new class
-  if (year === currentDate.getFullYear() &&
-      month === currentDate.getMonth() && currentDate.getDate() === i) {
-
-    calenderHTML += `<div class="calendar-day current-day"
-      id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
-      <p class="DateNumber">${i}</p></div>`;
-  } else {
-    calenderHTML += `<div class="calendar-day"
-      id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
-      <p class="DateNumber">${i}</p></div>`;
+  //Creates empty div's before the first day comes
+  for (let i = 0; i < firstDay; i++) {
+    calenderHTML += '<div class="calendar-day-empty"></div>';
   }
-}
-//Adds the HTML to the page
-document.querySelector('#calendarGrid')
-  .innerHTML = calenderHTML;
+  //Creates a div with a given date in the month
+  for (let i = 1; i <= daysInMonth; i++) {
 
-changeHTMLDates(year, month);
+    //Checks if its the current date, and if gives it a new class
+    if (year === currentDate.getFullYear() &&
+        month === currentDate.getMonth() && currentDate.getDate() === i) {
+
+      calenderHTML += `<div class="calendar-day current-day"
+        id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
+        <p class="DateNumber">${i}</p></div>`;
+    } else {
+      calenderHTML += `<div class="calendar-day"
+        id="${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}">
+        <p class="DateNumber">${i}</p></div>`;
+    }
+  }
+  //Adds the HTML to the page
+  document.querySelector('#calendarGrid')
+    .innerHTML = calenderHTML;
+
+  changeHTMLDates(year, month);
 }
 
 //Makes the sprint due date highlight, and the days up to it or after it highlight.
@@ -63,14 +63,14 @@ function changeHTMLDates(year, month) {
   .then(sprints => {
 
     sprints.forEach(sprint => {
-      const dueDate = document.getElementById(sprint.enddate);
+      const dueDate = document.getElementById(sprint.dueDate);
 
       if (dueDate) {
         dueDate.classList.add('sprint-due');
         dueDate.innerHTML += `<p class="sprint-label">${sprint.title}</p>`;
       }
 
-      const endDate = new Date(sprint.enddate);
+      const endDate = new Date(sprint.dueDate);
       const today = new Date();
 
 

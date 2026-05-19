@@ -9,7 +9,22 @@
       "PowerShell(node backend/server.js)",
       "Bash(node server.js)",
       "PowerShell(node C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\\\\server.js)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr LISTENING)",
+      "Bash(findstr -E \":3000 :8080 :5000 :4000 :8000\")",
+      "Bash(tasklist)",
+      "Bash(findstr -i node)",
+      "PowerShell(Stop-Process -Id 14136 -Force)",
+      "PowerShell(\"killed\")",
+      "PowerShell($p = \"C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\frontend\\\\html\\\\calender.html\"; $lines = Get-Content -LiteralPath $p; $out = New-Object System.Collections.Generic.List[string]; $skip = $false; foreach \\($l in $lines\\) { if \\($l -eq \"=======\"\\) { $skip = $true; continue }; if \\($l -eq \">>>>>>> theirs\"\\) { $skip = $false; continue }; if \\(-not $skip\\) { $out.Add\\($l\\) } }; Set-Content -LiteralPath $p -Value $out -Encoding utf8; \"done, lines: $\\($out.Count\\)\")",
+      "Bash(git commit *)",
+      "Bash(Start-Sleep -Seconds 2)",
+      "Bash(Get-Content C:\\\\Users\\\\kalle\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-kalle-Desktop-task-delegator\\\\1465faae-60ec-4a1e-9d7a-4d2cd1221199\\\\tasks\\\\bynfax87k.output)",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; $log = \"C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\server.log\"; Remove-Item -LiteralPath $log -ErrorAction SilentlyContinue; $null = Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\" -WindowStyle Hidden -RedirectStandardOutput $log -RedirectStandardError \"$log.err\" -PassThru; Start-Sleep -Seconds 2; \"started\"; Get-Content -LiteralPath $log -ErrorAction SilentlyContinue)",
+      "PowerShell($body = @{groupCode='10';title='X';description='y';type='learning';dueDate='2026-06-01';createdBy='test123'} | ConvertTo-Json; try { Invoke-RestMethod -Uri http://localhost:3000/sprints/newsprint -Method Post -Body $body -ContentType 'application/json' | ConvertTo-Json -Depth 5 } catch { \"STATUS: $\\($_.Exception.Response.StatusCode.value__\\)\"; $_.ErrorDetails.Message })",
+      "PowerShell($p = \"C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\\\\json\\\\sprints.json\"; $content = Get-Content -LiteralPath $p -Raw; $content = $content -replace '^﻿', ''; [System.IO.File]::WriteAllText\\($p, $content, [System.Text.UTF8Encoding]::new\\($false\\)\\); \"ok\"; Get-Content -LiteralPath $p -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 5)",
+      "PowerShell($p = \"C:\\\\Users\\\\kalle\\\\Desktop\\\\task-delegator\\\\backend\\\\json\\\\sprints.json\"; $sprints = Get-Content -LiteralPath $p -Raw | ConvertFrom-Json; $kept = @\\($sprints | Where-Object { $_.id -ne 1779189024978 }\\); $json = ConvertTo-Json -InputObject $kept -Depth 10; [System.IO.File]::WriteAllText\\($p, $json, [System.Text.UTF8Encoding]::new\\($false\\)\\); \"kept $\\($kept.Count\\) sprint\\(s\\)\")"
     ]
   }
 }

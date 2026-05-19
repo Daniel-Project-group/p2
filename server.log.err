@@ -1,0 +1,24 @@
+SyntaxError: Unexpected token '﻿', "﻿[{
+    ""... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at readJson (C:\Users\kalle\Desktop\task-delegator\backend\utils\jsonDb.js:16:39)
+    at C:\Users\kalle\Desktop\task-delegator\backend\routes\sprintRoute.js:22:21
+    at Layer.handleRequest (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:582:12)
+SyntaxError: Unexpected token '﻿', "﻿[{
+    ""... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at readJson (C:\Users\kalle\Desktop\task-delegator\backend\utils\jsonDb.js:16:39)
+    at C:\Users\kalle\Desktop\task-delegator\backend\routes\sprintRoute.js:22:21
+    at Layer.handleRequest (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:295:15
+    at processParams (C:\Users\kalle\Desktop\task-delegator\backend\node_modules\router\index.js:582:12)

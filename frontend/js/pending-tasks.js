@@ -3,8 +3,10 @@ renderPendingTasks();
 
 //Renders the current pending tasks
 function renderPendingTasks() {
-  //Gets every task with the status "pending"
-  fetch('http://localhost:3000/pending-tasks')
+  //Gets the group the user is currently in
+  const groupCode = localStorage.getItem('groupCode') || '';
+  //Gets every task with the status "pending" for that group
+  fetch(`http://localhost:3000/tasks/pending-tasks?group=${encodeURIComponent(groupCode)}`)
   .then(res => res.json())
   .then(pendingTasks => {
 
@@ -41,7 +43,7 @@ function renderPendingTasks() {
     const cardId = (button.closest('.pending-card').id)
       .replace('pending-card-', '');
 
-    fetch(`http://localhost:3000/task-${status}`, {
+    fetch(`http://localhost:3000/tasks/task-${status}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: Number(cardId) })

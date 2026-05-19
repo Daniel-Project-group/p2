@@ -10,16 +10,34 @@ const router = express.Router();
 
 //Creates a new sprint
 router.post('/newsprint', (req, res) => {
-    const { title, description, enddate } = req.body;
+    // Accept both dueDate (new form) and enddate (legacy form) for the deadline
+    const { groupCode, title, description, type, dueDate, enddate, createdBy } = req.body;
+    const deadline = dueDate || enddate;
+
+    if (!groupCode || !title || !createdBy) {
+        return res.status(400).json({ message: 'Group code, title, and creator are required' });
+    }
 
     // Helper function reading sprints from json
     const sprints = readJson("sprints.json");
 
+    // Mark any existing active sprint for this group as completed
+    sprints.forEach(s => {
+        if (s.groupCode === groupCode && s.status === 'active') {
+            s.status = 'completed';
+            s.completedAt = new Date().toISOString();
+        }
+    });
+
     const newSprint = {
         id: Date.now(),
+        groupCode,
         title,
-        description,
-        enddate,
+        description: description || '',
+        type: type || null,
+        dueDate: deadline,
+        createdBy,
+        status: 'active',
         createdAt: new Date().toISOString()
     };
 

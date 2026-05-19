@@ -37,7 +37,7 @@ router.post('/newtask', (req, res) => {
         quantity: parseInt(quantity) || 1,
         duedate: duedate,
         createdBy: createdBy,
-        status: 'todo',                  // Changed from 'pending' to 'todo'
+        status: 'pending',               // Starts pending — needs accept/reject before joining the sprint
         assignedTo: null,                // assigned later by algorithm
         createdAt: new Date().toISOString()
     };
@@ -50,6 +50,44 @@ router.post('/newtask', (req, res) => {
 
     // send response that task was created succesfully along with task
     res.json({ message: 'Task created successfully!', task: newTask });
+});
+
+// List pending tasks for a group (suggestion inbox)
+router.get('/pending-tasks', (req, res) => {
+    const { group } = req.query;
+    const tasks = readJson("tasks.json");
+    const pending = group
+        ? tasks.filter(t => t.status === 'pending' && t.groupId === group)
+        : tasks.filter(t => t.status === 'pending');
+    res.json(pending);
+});
+
+// Accept a pending task — promotes it into the active sprint as 'todo'
+router.post('/task-accept', (req, res) => {
+    const { id } = req.body;
+    if (!id) return res.status(400).json({ message: 'Task id is required' });
+
+    const tasks = readJson("tasks.json");
+    const idx = tasks.findIndex(t => t.id === id);
+    if (idx === -1) return res.status(404).json({ message: 'Task not found' });
+
+    tasks[idx].status = 'todo';
+    writeJson("tasks.json", tasks);
+    res.json({ message: 'Task accepted', task: tasks[idx] });
+});
+
+// Reject a pending task — removes it entirely
+router.post('/task-reject', (req, res) => {
+    const { id } = req.body;
+    if (!id) return res.status(400).json({ message: 'Task id is required' });
+
+    const tasks = readJson("tasks.json");
+    const idx = tasks.findIndex(t => t.id === id);
+    if (idx === -1) return res.status(404).json({ message: 'Task not found' });
+
+    const [removed] = tasks.splice(idx, 1);
+    writeJson("tasks.json", tasks);
+    res.json({ message: 'Task rejected', task: removed });
 });
 
 //export the router
