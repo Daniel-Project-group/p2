@@ -250,7 +250,7 @@ async function getCompetenceProfile(programme, semester, curriculumUrl = null, c
   }
 
   //Call createQuestions helper function to create questions for the competence profile
-  createQuestions(proffile);
+  createQuestions(profile);
 
   //Log the generated profile
   console.log('Generated profile:', JSON.stringify(profile, null, 2));

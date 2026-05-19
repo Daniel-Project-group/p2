@@ -1,5 +1,3 @@
-
-
 // Imports
 const express = require("express");
 
@@ -75,7 +73,7 @@ router.post('/sprints/assign', async (req, res) => {
         //Import assignTasks function from matcher.js
         const { assignTasks } = require('../matcher');
         //Import relevantCompetencesForTask function from taskScorer.mjs
-        const { relevantCompetencesForTask } = await import('../taskScorer.mjs');
+        const { relevantCompetencesForTask } = await import('../taskScorer');
         // Destruct req.body to extract groupCode and mode
         const { groupCode, mode } = req.body;
         //Read from groups from group.json and parse them
