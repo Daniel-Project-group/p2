@@ -186,8 +186,8 @@ function createQuestions(competenceProfile) {
   //Loop through all competences of competenceProfile
   for (const competence of competenceProfile.competences) {
     //Create a proficiency and interest question and add them to the competence objects
-    competence.competenceQuestion = `"How proficient are you at ${competence.name}?`;
-    competence.interestQuestion = `"How interested are you in ${competence.name}?`;
+    competence.competenceQuestion = `How proficient are you at ${competence.name}?`;
+    competence.interestQuestion = `How interested are you in ${competence.name}?`;
   }
 }
 
@@ -250,7 +250,7 @@ async function getCompetenceProfile(programme, semester, curriculumUrl = null, c
   }
 
   //Call createQuestions helper function to create questions for the competence profile
-  createQuestions(proffile);
+  createQuestions(profile);
 
   //Log the generated profile
   console.log('Generated profile:', JSON.stringify(profile, null, 2));
