@@ -27,7 +27,7 @@ function renderCalendar(year, month) {
 
   //Display the current month and year
   document.querySelector('#current-year-month')
-    .innerHTML = `${months[month]} ${displayYear}`;
+    .innerHTML = `${months[month]} ${year}`;
 
   //Creates empty div's before the first day comes
   for (let i = 0; i < firstDay; i++) {
@@ -46,7 +46,7 @@ function renderCalendar(year, month) {
     .innerHTML = calenderHTML;
 
   // Runs the functions for the highlights and the task list
-  renderSprintHighlights(year, month);
+  renderSprintHighlights();
   renderTaskList();
   highlightToday();
 }
@@ -62,7 +62,7 @@ function highlightToday() {
 }
 
 //Makes the sprint due date highlight, and the days up to it or after it highlight.
-function renderSprintHighlights(year, month) {
+function renderSprintHighlights() {
   fetch('http://localhost:3000/sprints/sprints')
   .then(res => res.json())
   .then(sprints => {
@@ -95,7 +95,8 @@ function renderSprintHighlights(year, month) {
           day.classList.add('sprint-range');
         }
       });
-  });
+  })
+  .catch(err => console.error('Failed to load sprint highlights:', err));
 }
 
 //Renders the current tasks and who is assigned to them
@@ -115,7 +116,8 @@ function renderTaskList() {
     document.querySelector('#js-remaning-tasks')
       .innerHTML = tasksHTML;
 
-  });
+  })
+  .catch(err => console.error('Failed to load sprint tasks:', err));
 }
 
 
