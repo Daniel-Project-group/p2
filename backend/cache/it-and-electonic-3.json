@@ -1,0 +1,56 @@
+{
+  "programme": "It and electronic",
+  "semester": 3,
+  "competences": [
+    {
+      "name": "Python Coding",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Data Analysis",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Report Writing",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Network Design",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Database Management",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Problem Solving",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Group Work",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Algorithm Design",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Project Planning",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    },
+    {
+      "name": "Literature Review",
+      "competenceQuestion": "How proficient are you in this area? (1-10)",
+      "interestQuestion": "How interested are you in this area? (1-10)"
+    }
+  ]
+}

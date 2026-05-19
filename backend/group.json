@@ -233,5 +233,126 @@
         "interestQuestion": "How interested are you in research and academic writing? (1-10)"
       }
     ]
+  },
+  {
+    "name": "test1",
+    "groupCode": "TEST\"3232",
+    "id": 1779182141944,
+    "createdAt": "2026-05-19T09:15:41.944Z",
+    "members": [
+      "daniel2310dk"
+    ],
+    "programme": "It and electonic",
+    "semester": 3,
+    "curriculumUrl": null,
+    "competences": [
+      {
+        "name": "Python Coding",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Data Analysis",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Report Writing",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Network Design",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Database Management",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Problem Solving",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Group Work",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Algorithm Design",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Project Planning",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      },
+      {
+        "name": "Literature Review",
+        "competenceQuestion": "How proficient are you in this area? (1-10)",
+        "interestQuestion": "How interested are you in this area? (1-10)"
+      }
+    ],
+    "memberProfiles": [
+      {
+        "username": "daniel2310dk",
+        "answers": [
+          {
+            "competence": "Python Coding",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Data Analysis",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Report Writing",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Network Design",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Database Management",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Problem Solving",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Group Work",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Algorithm Design",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Project Planning",
+            "proficiency": 5,
+            "interest": 5
+          },
+          {
+            "competence": "Literature Review",
+            "proficiency": 5,
+            "interest": 5
+          }
+        ]
+      }
+    ]
   }
 ]
