@@ -35,7 +35,8 @@ router.post('/newsprint', (req, res) => {
         type: type || null,
         dueDate: deadline,
         createdBy,
-        status: 'active'
+        status: 'active',
+        tasks: []
     };
 
     sprints.push(newSprint);
@@ -44,7 +45,7 @@ router.post('/newsprint', (req, res) => {
     res.json({ message: 'Sprint created!', sprint: newSprint });
 });
 
-//Gets all the current sprints
+//Gets current sprint
 router.get('/sprints', (req, res) => {
     const sprints = readJson("sprints.json");
     res.json(sprints);
@@ -53,28 +54,8 @@ router.get('/sprints', (req, res) => {
 // Read sprint route
 router.get('/sprint-tasks', (req, res) => {
 
-    const sprints = readJson("sprints.json");
-    const tasks = readJson("tasks.json");
-
-    //Makes sure there are sprints in the file
-    if (sprints.length === 0) {
-        return res.json([]);
-    }
-
-    //Gets the latest sprint
-    const newestSprint = sprints[sprints.length - 1]
-
-    let sprintTasks = [];
-
-    //Pushes every task with the matching sprintId 
-    // and with status accept to sprint tasks
-    tasks.forEach(task => {
-        if (task.sprintId === newestSprint.id && task.status === 'todo' ) {
-            sprintTasks.push(task);
-        }
-    });
-
-    res.json(sprintTasks);
+    const sprint = readJson("sprints.json");
+    res.json(sprint.tasks);
 
 });
 
@@ -101,10 +82,13 @@ router.post('/sprints/assign', async (req, res) => {
         }
         //If there is no such group throw 404 error that group is not found
         if (!groupReal) return res.status(404).json({ message: "Group not found" });
-        //Read tasks.json and parse the tasks.
-        const currentTasks = readJson("tasks.json");
-        //Filter the currentTasks, and save only the ones that have groupId variable the same as the groupCode from req body
-        const groupTask = currentTasks.filter(t => t.groupId === groupCode);
+        //Read sprints.json and parse the tasks.
+        const sprints = readJson("sprints.json");
+        //Filter the sprints, and save only the ones that have groupCode variable the same as the groupCode from req body
+        const activeSprint = sprints.find(s => s.groupCode === groupCode && s.status === 'active');
+        //Save the tasks of that sprint
+        const groupTask = activeSprint.tasks;
+       
         //Save the competence names of the groups competences
         const competenceNames = groupReal.competences.map(c => c.name);
         //Loop through all the tasks of the group

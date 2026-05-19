@@ -11,7 +11,7 @@ const { readJson, writeJson } = require("../utils/jsonDb");
 
 // Create new task route
 router.post('/newtask', (req, res) => {
-    const { group, title, description, quantity } = req.body;
+    const { group, title, description, quantity} = req.body;
 
     // Validate required fields
     if (!title || !duedate) {
@@ -22,14 +22,6 @@ router.post('/newtask', (req, res) => {
     const sprints = readJson("sprints.json");
     const activeSprint = sprints.find(s => s.groupCode === group && s.status === 'active');
 
-    const tasks = readJson("tasks.json");
-
-    //Gets the current sprint ID and adds it to the task
-    let currentSprintId = null;
-    const sprints = readJson("sprints.json");
-    if (sprints.length > 0) {
-        currentSprintId = sprints[sprints.length - 1].id;
-    }
 
 
     //create newTask object, where quantity is amount of members on task and oriented is distribution mode. If quantity cannot be parsed default to 1.
@@ -42,14 +34,13 @@ router.post('/newtask', (req, res) => {
         quantity: parseInt(quantity) || 1,
         status: 'pending',               // Starts pending
         assignedTo: null,                // assigned later by algorithm
-
     };
 
     //Push task to tasks array
-    tasks.push(newTask);
+    activeSprint.tasks.push(newTask);
 
-    //Write updated tasks in JSON format to file ---- helper again
-    writeJson("tasks.json", tasks);
+    //Write updated sprint with new task in JSON format to file ---- helper again
+    writeJson("sprints.json", activeSprint);
 
     // send response that task was created succesfully along with task
     res.json({ message: 'Task created successfully!', task: newTask });
