@@ -126,7 +126,7 @@ Return ONLY a valid JSON object in this exact format, no markdown:
   "semester": ${semester},
   "competences": [
     {
-      "name": "Short name (2-4 words)",
+      "name": "Short name (2-4 words)"
     }
   ]
 }
@@ -161,7 +161,7 @@ Return ONLY a valid JSON object, no markdown:
   "semester": ${semester},
   "competences": [
     {
-      "name": "Short name (2-4 words)",
+      "name": "Short name (2-4 words)"
     }
   ]
 }
