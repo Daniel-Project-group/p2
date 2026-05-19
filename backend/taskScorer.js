@@ -39,7 +39,6 @@ async function callGroq(model, prompt) {
 
 async function relevantCompetencesForTask(taskTitle, taskDescription, competenceNames) {
   //The Grok model that will be used is the fast model
-
   //Prompt for Grok to return JSON with relevant competences
   const prompt = `This a prompt telling you what to do. You will get a task for an university group project together with a description of this task.
   Furthermore, you will also recieve a list of competences which are relevant for the given education. Based on these competences, and the task and its description,

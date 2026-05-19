@@ -16,7 +16,7 @@ function readJson(fileName) {
             return data.trim() ? JSON.parse(data) : [];
      }
      // Fallback if the file doesnt exist
-     return[];
+     return [];
  }
 
  function writeJson(fileName,data){

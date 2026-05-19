@@ -7,6 +7,8 @@ const { readJson, writeJson } = require("../utils/jsonDb");
 
 const router = express.Router();
 
+const { readJson, writeJson } = require("../utils/jsonDb");
+
 // Create new task route
 router.post('/newtask', (req, res) => {
     const { group, title, description, quantity, duedate, createdBy } = req.body;
@@ -20,14 +22,17 @@ router.post('/newtask', (req, res) => {
     const sprints = readJson("sprints.json");
     const activeSprint = sprints.find(s => s.groupCode === group && s.status === 'active');
 
-    if (!activeSprint) {
-        return res.status(400).json({ message: 'No active sprint. Please create a sprint first.' });
-    }
-
-    // Read existing tasks (or start empty) --- Done with helper
     const tasks = readJson("tasks.json");
 
-    //create newTask object, where quantity is amount of members on task. If quantity cannot be parsed default to 1.
+    //Gets the current sprint ID and adds it to the task
+    let currentSprintId = null;
+    const sprints = readJson("sprints.json");
+    if (sprints.length > 0) {
+        currentSprintId = sprints[sprints.length - 1].id;
+    }
+
+
+    //create newTask object, where quantity is amount of members on task and oriented is distribution mode. If quantity cannot be parsed default to 1.
     const newTask = {
         id: Date.now(),
         groupId: group,

@@ -51,17 +51,6 @@ const sideBarHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
             <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1z"/>
           </svg> Generate sprint</a>
-
-    <a href = "pending-task.html" class="SideBarButton"> 
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4" />
-        <path d="M8 4.5V8L10 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg> Pending tasks</a>     
-      
-
-    <a id="AddTask" href="NewTask.html">+ Add task</a>
-
-
 </nav>
 `
 const topBarHTML = `
@@ -104,12 +93,12 @@ const logoutBtn = document.querySelector("#logoutBtn");
 const welcomeText = document.querySelector("#welcomeText");
 
 // If the user insnt logged in, then they're redirected to login page
-if(!username){
+if (!username) {
     window.location.href = "signin.html"
 }
 // We check for all the individual elements 
 // This ensures we dont return undefined values, say they were only conditioned by username
- if (welcomeText) {
+if (welcomeText) {
     welcomeText.textContent = `Welcome Back ${username}`;
 }
 
@@ -122,26 +111,26 @@ if (dropdownUsername) {
 }
 
 if (logoutBtn) {
-    logoutBtn.addEventListener("click", async function(event) {
+    logoutBtn.addEventListener("click", async function (event) {
         event.preventDefault();
 
-    try{
-        const response = await fetch('http://localhost:3000/auth/logout',{
-            method: 'POST',
-        });
+        try {
+            const response = await fetch('http://localhost:3000/auth/logout', {
+                method: 'POST',
+            });
 
-        const data = await response.json();
-        // If backend determines request isnt valid
-        if(!response.ok){
-            // Either backend responds or we fallback to logout fail
-            console.log(data.message || "Logout fail")
-            return;
+            const data = await response.json();
+            // If backend determines request isnt valid
+            if (!response.ok) {
+                // Either backend responds or we fallback to logout fail
+                console.log(data.message || "Logout fail")
+                return;
+            }
+            localStorage.removeItem("username");
+            window.location.href = "signin.html";
+            // If the backend doesnt even respond / the request fails
+        } catch (errror) {
+            console.error("Logout error:", error);
         }
-        localStorage.removeItem("username");
-        window.location.href = "signin.html";
-    // If the backend doesnt even respond / the request fails
-    } catch (errror){
-        console.error("Logout error:", error);
-    }
     });
 }
