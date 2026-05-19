@@ -3,14 +3,18 @@
 
 <head>
     <script src="../js/newtask.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
 
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/NewTask.css">
     <link rel="stylesheet" href="../css/NewTaskBatch.css">
 
 </head>
 
 <body>
+
+    <div id="topbar"></div>
 
     <main>
 
@@ -48,27 +52,38 @@
                 <div class="TaskGrid" id="taskGrid">
                     <!-- Placeholder cards so you can see the layout. JS will replace these. -->
                     <div class="TaskCard">
-                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
-                        <h4>Task 1</h4>
+                        <button class="TaskCardRemove" aria-label="Remove task">x</button>
+                        <h4 class="TaskCardTitle">Task 1</h4>
+                        <p class="TaskCardDescription">Short description of what needs to get done.</p>
+                        <label class="TaskCardQuantity">
+                            <input type="number" class="TaskCardQuantityInput" value="2" min="1" max="20">
+                            <span>people</span>
+                        </label>
                     </div>
                     <div class="TaskCard">
-                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
-                        <h4>Task 2</h4>
+                        <button class="TaskCardRemove" aria-label="Remove task">x</button>
+                        <h4 class="TaskCardTitle">Task 2</h4>
+                        <p class="TaskCardDescription">Another description.</p>
+                        <span class="TaskCardQuantity">1 person</span>
                     </div>
                     <div class="TaskCard">
-                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
-                        <h4>Task 3</h4>
+                        <button class="TaskCardRemove" aria-label="Remove task">x</button>
+                        <h4 class="TaskCardTitle">Task 3</h4>
+                        <p class="TaskCardDescription">Yet another description that might be a bit longer to show how it wraps.</p>
+                        <span class="TaskCardQuantity">3 people</span>
                     </div>
                     <div class="TaskCard">
-                        <button class="TaskCardRemove" aria-label="Remove task">×</button>
-                        <h4>Task 4</h4>
+                        <button class="TaskCardRemove" aria-label="Remove task">x</button>
+                        <h4 class="TaskCardTitle">Task 4</h4>
+                        <p class="TaskCardDescription">Description four.</p>
+                        <span class="TaskCardQuantity">1 person</span>
                     </div>
                 </div>
             </section>
 
         </div>
 
-        <button id="delegateBtn" class="DelegateButton">Delegate</button>
+        <button id="delegateBtn" class="DelegateButton yellow">Delegate</button>
 
     </main>
 

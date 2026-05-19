@@ -71,9 +71,11 @@ const topBarHTML = `
 
 `
 
-//Adds the html to the page
-document.querySelector('#sidebar').innerHTML = sideBarHTML;
-document.querySelector('#topbar').innerHTML = topBarHTML;
+//Adds the html to the page — only when the host page actually has the slots
+const sidebarSlot = document.querySelector('#sidebar');
+const topbarSlot = document.querySelector('#topbar');
+if (sidebarSlot) sidebarSlot.innerHTML = sideBarHTML;
+if (topbarSlot) topbarSlot.innerHTML = topBarHTML;
 
 const currentPage = window.location.pathname.split('/').pop();
 
