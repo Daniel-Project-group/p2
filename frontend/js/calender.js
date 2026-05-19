@@ -91,6 +91,7 @@ function renderSprintHighlights(year, month) {
   });
 }
 
+//Renders the current tasks and who is assigned to them
 function renderTaskList() {
   fetch('http://localhost:3000/sprints/sprint-tasks')
   .then(res => res.json())
